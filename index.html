@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>TahsinKidz.ai</title>
+<!-- GitHub Pages: unggah file ini sebagai index.html. Font LPMQ Isep Misbah (dari Kemenag): letakkan file "LPMQ-IsepMisbah.ttf" di folder yang sama; jika belum ada, dipakai Scheherazade New. -->
+<link href="https://fonts.googleapis.com/css2?family=Scheherazade+New&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+@font-face{font-family:LPMQ;src:url(LPMQ-IsepMisbah.ttf) format('truetype');font-display:swap}
+:root{--m:#14a38b;--md:#0b6e5f;--g:#f5b82e;--o:#ff9a3c;--c:#fffaf0;--t:#173a35}
+*{box-sizing:border-box}[hidden]{display:none!important}
+html,body{height:100%}
+body{margin:0;font-family:Nunito,sans-serif;background:#e8f7f3;color:var(--t)}
+button,select,input{font:inherit}
+#home{max-width:420px;margin:0 auto;padding:40px 20px;text-align:center}
+#home h1{font-size:2.4rem;margin:0;color:var(--md)}#home p{margin:6px 0 22px}
+#home input{display:block;width:100%;padding:14px;margin:0 0 12px;border:2px solid #b9e6dd;border-radius:14px;background:#fff}
+.big{background:linear-gradient(135deg,var(--m),var(--md));color:#fff;border:0;border-radius:16px;padding:14px 26px;font-weight:800;cursor:pointer}
+#app{max-width:720px;margin:0 auto;height:100vh;height:100dvh;display:flex;flex-direction:column}
+header{background:var(--md);color:#fff;padding:10px 14px}
+.r{display:flex;justify-content:space-between;align-items:center;gap:8px;margin:3px 0}
+header select,header button{background:#ffffff26;color:#fff;border:0;border-radius:10px;padding:6px 10px}
+header option{color:#000}#st{background:var(--g);color:#5a3d00;padding:4px 12px;border-radius:20px}
+.tabs{display:flex;gap:8px;padding:10px 14px 6px}
+.tabs button{flex:1;padding:11px;border:2px solid var(--m);background:#fff;border-radius:14px;font-weight:800;color:var(--md)}
+.tabs .on{background:var(--m);color:#fff}
+#bn{margin:0 14px 8px;padding:9px 14px;border-radius:12px;background:#fff3d6;border-left:6px solid var(--g);font-weight:600;font-size:.95rem}
+#stage{flex:1;min-height:0;overflow-y:auto;margin:0 14px;padding:14px 12px;background:var(--c);border-radius:18px;direction:rtl;text-align:right;
+ font-family:LPMQ,'Scheherazade New',serif;font-size:clamp(25px,5.6vw,31px);line-height:2.3;scroll-behavior:smooth;box-shadow:0 4px 0 #cfe9e2}
+.ay{border-radius:12px;padding:2px 3px;-webkit-box-decoration-break:clone;box-decoration-break:clone;transition:background .3s}
+.ay.now{background:#fff0c2}
+.w{display:inline-block;padding:0 4px;border-radius:10px;cursor:pointer;transition:filter .3s,background .3s}
+.ok{background:#d6f5ec}.er{background:#ffdcae;box-shadow:0 3px 0 var(--o)}.cur{outline:2px dashed var(--m)}.hid .x{display:inline-block;filter:blur(9px);transition:filter .3s}
+.ad::after{content:' ＋';color:var(--o);font-size:.6em}
+.no{font-size:.72em;color:var(--md);margin:0 3px}
+.tn{font-style:normal}
+#pk{text-align:center;margin-top:6px}#pk button{background:none;border:2px dashed var(--m);border-radius:12px;padding:5px 14px;color:var(--md)}
+#pl{margin:8px 14px 0;padding:8px 12px;background:#fff;border-radius:18px;box-shadow:0 2px 6px #0001}
+#pl .c{display:flex;justify-content:center;align-items:center;gap:12px}
+#pl button{width:44px;height:44px;border-radius:50%;border:2px solid var(--m);background:#fff;color:var(--md);font-size:19px;cursor:pointer}
+#pl #pp{width:56px;height:56px;background:var(--m);color:#fff;font-size:25px}
+#sk{flex:1;accent-color:var(--m)}
+.eq{display:inline-flex;gap:3px;align-items:flex-end;height:18px}.eq i{width:4px;height:5px;background:var(--m);border-radius:2px}
+.eq.on i{animation:eq .8s infinite ease-in-out}.eq.on i:nth-child(2){animation-delay:.2s}.eq.on i:nth-child(3){animation-delay:.4s}.eq.on i:nth-child(4){animation-delay:.1s}
+@keyframes eq{50%{height:18px}}
+footer{position:relative;display:flex;justify-content:space-between;align-items:center;padding:10px 20px 14px}
+#note{background:#fff;border:2px solid var(--m);border-radius:30px;padding:12px 20px;font-weight:800;color:var(--md)}
+#mic{width:68px;height:68px;border-radius:50%;border:0;font-size:28px;color:#fff;background:radial-gradient(circle at 30% 30%,#3be0c0,var(--md));box-shadow:0 6px 0 #08463d}
+#mic.on{background:#e8742c;animation:pl 1s infinite}
+@keyframes pl{50%{transform:scale(1.08)}}
+#menu{position:absolute;right:20px;bottom:88px;display:flex;flex-direction:column;gap:10px;z-index:5}
+#menu button{background:#fff;border:2px solid var(--m);border-radius:30px;padding:12px 20px;font-weight:800;box-shadow:0 3px 8px #0002}
+#pop{position:fixed;inset:0;background:#0006;display:flex;align-items:center;justify-content:center;padding:20px;z-index:9}
+#pop>div{background:#fff;border-radius:20px;padding:20px;max-width:420px;width:100%;max-height:80vh;overflow:auto}
+.ar{font-family:LPMQ,'Scheherazade New',serif;font-size:1.5em}
+.star{position:fixed;left:50%;top:40%;font-size:90px;transform:translate(-50%,-50%);pointer-events:none;animation:sf 1.4s forwards;z-index:8}
+@keyframes sf{0%{opacity:0;transform:translate(-50%,-50%) scale(.3)}30%{opacity:1;transform:translate(-50%,-50%) scale(1.2)}100%{opacity:0;transform:translate(120px,-340px) scale(.4)}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+
+body{padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+#home select{display:block;width:100%;padding:14px;margin:0 0 12px;border:2px solid #b9e6dd;border-radius:14px;background:#fff}
+#app{max-width:820px;height:calc(100vh - env(safe-area-inset-top) - env(safe-area-inset-bottom));height:calc(100dvh - env(safe-area-inset-top) - env(safe-area-inset-bottom))}
+#stage{font-size:max(20px,calc(clamp(24px,5.6vw,34px)*var(--z,1)));line-height:2.45;overflow-x:hidden}
+#who{font-size:.85rem;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;max-width:62%}
+#ms{margin:0 14px 8px;padding:8px 14px;border-radius:12px;background:#e3f6ff;border-left:6px solid #3aa0d8;font-weight:700;font-size:.92rem;cursor:pointer}
+#ms.sel{background:#dff7e3;border-color:#2e9e4f}
+footer{padding:8px 12px 12px}
+footer .mid{display:flex;gap:6px}
+footer .mid button{width:40px;height:40px;border-radius:50%;border:2px solid var(--m);background:#fff;color:var(--md);font-weight:800;padding:0}
+#note{padding:10px 14px}
+#mic{width:64px;height:64px}
+#mic:not(.on){animation:rp 1.8s infinite}
+@keyframes rp{0%{box-shadow:0 6px 0 #08463d,0 0 0 0 #14a38bb3}70%{box-shadow:0 6px 0 #08463d,0 0 0 24px #14a38b00}100%{box-shadow:0 6px 0 #08463d,0 0 0 0 #14a38b00}}
+#hint{position:absolute;right:12px;bottom:84px;background:var(--g);color:#5a3d00;font-weight:800;padding:8px 14px;border-radius:14px;box-shadow:0 3px 8px #0003;animation:bob 1.2s infinite}
+#hint::after{content:'';position:absolute;right:26px;bottom:-8px;border:8px solid transparent;border-top-color:var(--g);border-bottom:0}
+@keyframes bob{50%{transform:translateY(-5px)}}
+#menu{right:12px;bottom:84px}
+#pl{padding:8px 10px}
+#nt{text-align:center;font-weight:800;font-size:.9rem;color:var(--md)}
+#pl .c2{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:6px;margin-top:6px}
+#pl .c2 button{width:auto;height:34px;border-radius:17px;padding:0 10px;font-size:.85rem;font-weight:800}
+.seg{display:inline-flex}.seg button{border-radius:0!important}.seg button:first-child{border-radius:17px 0 0 17px!important}.seg button:last-child{border-radius:0 17px 17px 0!important}
+.seg .on,#lp.on{background:var(--m)!important;color:#fff!important}
+.sheet{border:1px solid #cfe9e2;border-radius:14px;padding:10px;margin:10px 0}
+.bd{display:inline-block;background:#eef6f4;border:1px solid #cfe9e2;border-radius:8px;padding:1px 8px;margin-inline-end:8px;font-weight:800}
+.ln{display:flex;justify-content:space-between;align-items:baseline;gap:8px;direction:rtl;padding:4px 0}
+.ln small{direction:ltr;color:#6b807b;min-width:70px}
+.ln .ar{direction:rtl;text-align:right}
+.hl{color:#0b6e5f}.bad{color:#d9480f}
+.sheet .ac{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.sheet .ac button{background:#fff;border:2px solid var(--m);border-radius:20px;padding:6px 12px;font-weight:800;color:var(--md)}
+#app.sim #bn{display:none}
+header .r b,header .r>span,#ay{white-space:nowrap}#who{flex:1;min-width:0;text-align:right}header select{max-width:140px;min-width:0}
+@media(max-width:350px){.eq{display:none}#pl .c2 button{padding:0 8px;font-size:.78rem}#st{padding:4px 8px}}
+@media(max-height:760px){.mini .tabs,.mini #ms{display:none}}
+@media(max-height:700px){
+ #nt{display:none}
+ header{padding:6px 14px}
+ .tabs{padding:6px 14px 4px}.tabs button{padding:7px;font-size:.9rem}
+ #bn,#ms{padding:5px 12px;font-size:.85rem;margin-bottom:6px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+ #pl{padding:6px 8px;margin-top:6px}#pl button{width:40px;height:40px}#pl #pp{width:50px;height:50px;font-size:22px}
+ #pl .c2{margin-top:4px}#pl .c2 button{height:30px}
+ #mic{width:56px;height:56px}footer{padding:6px 12px 8px}#hint,#menu{bottom:72px}
+}
+@media(max-height:600px){#ms{display:none}}
+@media(max-height:520px){
+ #bn,#ms,.tabs,#nt,#pl .c2{display:none}
+ #pl{display:flex;align-items:center;gap:10px;padding:4px 10px}#pl .r{flex:1;margin:0}
+ #pl button{width:36px;height:36px;font-size:16px}#pl #pp{width:42px;height:42px}
+ #mic{width:48px;height:48px;font-size:22px}footer{padding:4px 12px}#hint,#menu{bottom:58px}
+ #stage{padding:8px 12px}
+}
+@media(max-width:350px){#pl button{width:38px;height:38px}#pl #pp{width:48px;height:48px}#note{padding:10px}}
+.ft{margin-top:22px;font-size:.78rem;color:#6b807b}
+.w.lw{background:#fff3b0;border-bottom:3px dashed #d9a400}
+.w.sl{background:#ffdcae;border-bottom:3px solid var(--o)}
+.w.bl{border-bottom:3px dotted #7a3fd1}.w.bl::after{content:' ＋';color:#7a3fd1;font-size:.6em}
+.lg{font-size:.85rem;color:#4b6560}
+footer{padding:10px clamp(18px,6vw,36px) 18px}
+#mic{width:84px;height:84px;font-size:36px}
+@keyframes rp{0%{box-shadow:0 6px 0 #08463d,0 0 0 0 #14a38bb3}70%{box-shadow:0 6px 0 #08463d,0 0 0 30px #14a38b00}100%{box-shadow:0 6px 0 #08463d,0 0 0 0 #14a38b00}}
+#hint,#menu{right:clamp(18px,6vw,36px);bottom:108px}
+@media(max-width:400px){#mic{width:76px;height:76px;font-size:32px}#hint,#menu{bottom:100px}}
+@media(max-width:350px){#mic{width:64px;height:64px;font-size:28px}footer .mid{gap:4px}footer .mid button{width:34px;height:34px;font-size:.8rem}#note{padding:9px 10px;font-size:.85rem}#hint,#menu{bottom:88px}}
+@media(max-height:700px){#mic{width:64px;height:64px;font-size:28px}footer{padding-top:6px;padding-bottom:12px}#hint,#menu{bottom:84px}}
+@media(max-height:520px){#mic{width:54px;height:54px;font-size:24px}#hint,#menu{bottom:70px}}
+/* ===== footer Opsi A: dock dengan mikrofon di tengah ===== */
+:root{--mic:104px;--dk:max(56px,calc(var(--mic)*.7))}
+@media(max-width:350px){:root{--mic:80px}}
+@media(max-height:700px){:root{--mic:76px}}
+@media(max-height:520px){:root{--mic:56px}}
+footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8px + env(safe-area-inset-bottom,0px))}
+.dock{display:flex;justify-content:space-between;align-items:center;height:var(--dk);padding:0 clamp(14px,5vw,28px);background:#fff;border:1px solid #cfe9e2;border-radius:28px;box-shadow:0 4px 14px #0b6e5f26}
+#note,#cat{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:72px;height:calc(var(--dk) - 12px);padding:0;border:0;border-radius:16px;background:transparent;color:var(--md);font-weight:800;font-size:.72rem;line-height:1.1}
+#note:active,#cat:active{background:#e6f6f2}
+#note .ic,#cat .ic{font-size:1.45rem;line-height:1}
+#mic{position:absolute;top:0;left:calc(50% - var(--mic)/2);width:var(--mic);height:var(--mic);font-size:calc(var(--mic)*.42);display:flex;align-items:center;justify-content:center;padding:0;z-index:3}
+#hint,#menu{position:absolute;left:0;right:0;margin:0 auto;width:max-content;bottom:calc(100% + 6px)}
+#hint{z-index:4}#hint::after{right:auto;left:calc(50% - 8px)}
+#menu{flex-direction:column;align-items:center;z-index:6}
+#az{flex:none;padding:5px 11px;font-weight:800}
+#pop.doa .big{display:none}
+.dock{padding:0 clamp(6px,2.2vw,18px)}
+.dock .gap{display:block;width:calc(var(--mic)*.95);flex:none;height:1px}
+#note,#cat,#zm1,#zm2{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:clamp(46px,14.2vw,60px);flex:none;height:calc(var(--dk) - 12px);padding:0;border:0;border-radius:16px;background:transparent;color:var(--md);font-weight:800;font-size:.66rem;letter-spacing:-.1px;line-height:1.05}
+#note span,#cat span,#zm1 span,#zm2 span{text-align:center}
+#zm1:active,#zm2:active{background:#e6f6f2}
+.ic.az{width:30px;height:30px;border:2px solid var(--m);border-radius:50%;display:grid;place-items:center;font-size:.85rem;font-weight:800;line-height:1}
+.tool:disabled{opacity:.35}
+@media(max-width:400px){:root{--mic:88px}}
+@media(max-width:350px){:root{--mic:80px}#note,#cat,#zm1,#zm2{font-size:.58rem}}
+@media(max-height:700px){:root{--mic:76px}}
+@media(max-height:520px){:root{--mic:56px}.tool span{display:none}.dock .gap{width:calc(var(--mic)*.9)}}
+.ket{background:#fff3d6;border-left:5px solid var(--g);padding:6px 10px;border-radius:8px;font-weight:700;margin:6px 0}
+.rw{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:8px 0}
+.kt{border:1px solid #cfe9e2;border-radius:12px;padding:8px;text-align:center;font-size:.85rem}
+.kt b{display:block;font-size:1.6rem;color:var(--md)}
+.bar{display:flex;align-items:flex-end;gap:4px;height:70px;margin:6px 0}
+.bar div{flex:1;text-align:center;font-size:.65rem;display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bar i{display:block;background:var(--m);border-radius:4px 4px 0 0;min-height:2px}
+.med{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0}
+.med span{border:1px solid #cfe9e2;border-radius:12px;padding:4px 8px;font-size:.78rem}
+.med .off{filter:grayscale(1);opacity:.55}
+.prog{height:10px;background:#e4f1ee;border-radius:6px;overflow:hidden}.prog i{display:block;height:100%;background:var(--g)}
+.mot{background:#eefaf6;border-radius:12px;padding:10px;margin-top:10px}
+</style></head><body>
+
+<section id="home">
+ <h1>❇️ TahsinKidz.ai</h1><p>Belajar membaca Al-Qur'an Juz 30 bersama asisten AI</p>
+ <input id="fn" placeholder="Nama lengkap" aria-label="Nama lengkap"><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Nomor absen" aria-label="Nomor absen">
+ <button class="big" id="go">Mulai Belajar</button>
+ <p class="ft">Made With Love By Mohammad Safari, M.Pd.</p>
+</section>
+
+<main id="app" hidden>
+ <header>
+  <div class="r"><b>❇️ TahsinKidz.ai</b><span id="who"></span></div>
+  <div class="r"><select id="sel" aria-label="Pilih surah"></select><span><button id="pv" aria-label="Ayat sebelumnya">‹</button> <span id="ay"></span> <button id="nx" aria-label="Ayat berikutnya">›</button></span><b id="st">⭐ 0</b></div>
+ </header>
+ <nav class="tabs"><button id="t1" class="on">🎧 Sima'an & Tilawah</button><button id="t2">🧠 Hafalan</button></nav>
+ <div id="ms" hidden role="button" tabindex="0"></div>
+ <div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div>
+ <div id="stage"></div>
+ <div id="pk" hidden><button id="pkb">👀 Intip</button></div>
+ <div id="pl" hidden>
+  <div id="nt"></div>
+  <div class="r"><small id="tm">0:00</small><input id="sk" type="range" min="0" max="1000" value="0" aria-label="Posisi bacaan dalam ayat"><small id="tr">-0:00</small></div>
+  <div class="c"><button id="pa" aria-label="Ayat sebelumnya">⏮</button><button id="pp" aria-label="Putar atau jeda">▶</button><button id="ps" aria-label="Berhenti">⏹</button><button id="pr" aria-label="Ulangi ayat dari awal">🔁</button><button id="pn" aria-label="Lanjut ke ayat berikutnya">⏭</button></div>
+  <div class="c2"><button id="bk" aria-label="Mundur 5 detik">⏪ 5</button><span class="eq" id="eq"><i></i><i></i><i></i><i></i></span><button id="fw" aria-label="Maju 5 detik">5 ⏩</button><span class="seg"><button id="s75">0,75x</button><button id="s10" class="on">1,00x</button></span><button id="lp">🔂 Ulang: Mati</button></div>
+ </div>
+ <footer>
+  <div class="dock"><button id="note" class="tool"><b class="ic">📝</b><span>Catatan</span></button><button id="zm1" class="tool" aria-label="Perkecil huruf"><b class="ic az">A−</b><span>Perkecil</span></button><i class="gap"></i><button id="zm2" class="tool" aria-label="Perbesar huruf"><b class="ic az">A+</b><span>Perbesar</span></button><button id="cat" class="tool" aria-label="Riwayatku"><b class="ic">📚</b><span>Riwayatku</span></button></div>
+  <div id="menu" hidden><button id="m1">🎧 Menyimak</button><button id="m2">📖 Membaca</button></div><div id="hint">Tekan aku, yuk! 👇</div><button id="mic" aria-label="Mikrofon">🎙</button>
+ </footer>
+</main>
+<div id="pop" hidden><div><div id="pb"></div><p style="text-align:center"><button class="big" onclick="$('pop').hidden=1">Tutup</button></p></div></div>
+
+<script>
+const SHEET_URL=''; // tempel URL Web App Apps Script (…/exec)
+const $=i=>document.getElementById(i);
+const NAMA="An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infithar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,Ath-Thariq,Al-A'la,Al-Ghasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Adh-Dhuha,Al-Insyirah,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takatsur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kautsar,Al-Kafirun,An-Nashr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
+const T={};`h|Hamzah Wasal|Tidak dibaca jika disambung|#8a9a97
+s|Huruf Tidak Dibaca|Huruf ini tidak dibaca|#8a9a97
+l|Lam Syamsiyah|Lam tidak dibaca, huruf sesudahnya bertasydid|#8a9a97
+n|Mad Thabi'i|Dibaca panjang 2 harakat|#e0457b
+p|Mad Jaiz Munfashil|Dibaca panjang 2, 4, atau 6 harakat|#e0457b
+m|Mad Lazim|Dibaca panjang 6 harakat|#b3123f
+o|Mad Wajib Muttashil|Dibaca panjang 4-5 harakat|#e0457b
+q|Qalqalah|Dibaca memantul|#1a73e8
+c|Ikhfa Syafawi|Mim mati samar, bibir hampir menutup|#2e9e4f
+f|Ikhfa Haqiqi|Dibaca samar dengan dengung|#2e9e4f
+w|Idgham Syafawi|Mim mati masuk ke mim, berdengung|#2e9e4f
+i|Iqlab|Nun diubah menjadi mim, berdengung|#7a3fd1
+a|Idgham Bighunnah|Dibaca masuk dengan dengung|#2e9e4f
+u|Idgham Bilaghunnah|Dibaca masuk tanpa dengung|#8a9a97
+d|Idgham Mutajanisain|Dua huruf sejenis dibaca menyatu|#8a9a97
+b|Idgham Mutaqaribain|Dua huruf berdekatan dibaca menyatu|#8a9a97
+g|Ghunnah|Dengung 2 harakat|#2e9e4f`.split('\n').forEach(l=>{const[a,b,c,d]=l.split('|');T[a]=[b,c,d]});
+const sty=document.createElement('style');sty.textContent=Object.keys(T).map(k=>`.t${k}{color:${T[k][2]};font-style:normal}`).join('');document.head.append(sty);
+
+const nm=s=>s.replace(/[\u0610-\u061A\u064B-\u065F\u0670\u06D6-\u06ED\u0640]/g,'').replace(/[أإآٱ]/g,'ا').replace(/ى/g,'ي').replace(/ة/g,'ه').replace(/ؤ/g,'و').replace(/ئ/g,'ي').replace(/[^\u0621-\u064A ]/g,'').trim();
+function sim(a,b){if(a==b)return 1;const m=a.length,n=b.length;if(!m||!n)return 0;let p=[...Array(n+1).keys()];for(let i=1;i<=m;i++){const c=[i];for(let j=1;j<=n;j++)c[j]=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]==b[j-1]?0:1));p=c}return 1-p[n]/Math.max(m,n)}
+
+// state: A=ayat, F=semua kata (berurutan antar-ayat), E=[indeks kata pertama, terakhir] tiap ayat
+let U,sur=78,A=[],F=[],E=[],SP=[],AY=[],mode='t',sub='',lis=false,peek=0,pkOn=false,fin=false,cur=0,S=0,P=0,ST=[],HD=[],AD=[],done=[],sesStar=0,AC;
+let rec,mr,chunks=[],stream,acc='',last='',t0=0,sil,baseM=0,baseH=0,AL=[],alIdx=0,srvRows=0,sentTotal=0,tries=0,inited=false,HS=null,misi=null,autoM=null,ayErr=[];
+const JML=[40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];   // jumlah ayat surah 78-114
+const bM=()=>baseM+AL.filter(x=>x.mode=='Tilawah'&&x.salah==0).length,bH=()=>baseH+AL.filter(x=>x.mode=='Hafalan'&&x.salah==0&&!x.intip).length;
+const bintang=()=>bM()+bH();
+let ann=new Set(),pend=new Map(),flashUntil=0,flashT,flip=0,tanpaWarna=false;
+let MSTR=null,recOn=false,wd,galatNet=false,PM=0;
+async function ambilMic(){if(MSTR&&MSTR.getTracks().every(t=>t.readyState=='live'))return MSTR;MSTR=await navigator.mediaDevices.getUserMedia({audio:true});return MSTR}
+const hidupMic=on=>{MSTR&&MSTR.getTracks().forEach(t=>{t.enabled=on})};
+const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
+const aud=new Audio();
+const SRC=i=>`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${A[i].number}.mp3`;
+const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
+
+function tone(f,d,ty='sine',v=.15){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}
+const chime=()=>{tone(880,.2);setTimeout(()=>tone(1320,.35),130)},oops=()=>tone(300,.25,'triangle',.1);
+function star(){const s=document.createElement('div');s.className='star';s.textContent='⭐';document.body.append(s);setTimeout(()=>s.remove(),1500)}
+function pop(h){$('pop').classList.remove('doa');$('pb').innerHTML=h;$('pop').hidden=0}
+let doaT;function tutupDoa(){const p=$('pop');if(p.classList.contains('doa')){p.hidden=1;p.classList.remove('doa')}}
+function popDoa(){pop('<div style="text-align:center"><div style="font-size:2.4rem">🤲</div><h3>Awali dengan berdoa terlebih dahulu</h3></div>');$('pop').classList.add('doa');clearTimeout(doaT);doaT=setTimeout(tutupDoa,3000)}
+$('pop').addEventListener('click',()=>{if($('pop').classList.contains('doa'))tutupDoa()});
+
+$('sel').innerHTML=NAMA.map((n,i)=>`<option value="${78+i}">${78+i}. ${n}</option>`).join('');
+$('fa').oninput=()=>{$('fa').value=$('fa').value.replace(/\D/g,'').slice(0,2)};
+$('fa').onblur=()=>{const v=parseInt($('fa').value,10);$('fa').value=v>=1?String(v).padStart(2,'0'):''};
+$('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseInt($('fa').value,10);
+ if(!n||!k||!(a>=1&&a<=99))return alert('Isi nama, pilih kelas, dan isi nomor absen (1-99) dulu ya 😊');
+ const ab=String(a).padStart(2,'0');U={nama:n,kelas:k,absen:ab,id:k+'-'+ab};AC=new(window.AudioContext||window.webkitAudioContext)();
+ let izin=true;try{await ambilMic();hidupMic(false)}catch(e){izin=false}
+ $('who').textContent=`👤 ${n} · ${k} · Absen ${ab}`;$('home').hidden=1;$('app').hidden=0;setTimeout(()=>{$('hint').hidden=1},12000);
+ await muatRiwayat();const t=tujuanAwal();$('sel').value=t.s;await load(t.s);
+ if(t.a>A.length){t.s=t.s<114?t.s+1:78;t.a=1;$('sel').value=t.s;await load(t.s)}   // setelah ayat terakhir: surah berikutnya, atau kembali ke An-Naba'
+ autoM=misi?null:{surah:t.s,awal:Math.max(1,t.a||1),akhir:Math.max(1,t.a||1)+4,auto:1};
+ if(t.a)mark(Math.min(t.a,A.length)-1);misiUI();
+ if(izin)popDoa();else pop('<p>Mikrofon belum diizinkan. Menyimak tetap bisa dipakai. Untuk membaca, izinkan mikrofon lewat pengaturan situs di Chrome (ikon gembok di alamat), lalu muat ulang halaman.</p>')};
+$('sel').onchange=e=>load(+e.target.value);
+
+async function load(n){halt();sub='';$('pl').hidden=1;sur=n;$('stage').textContent='Memuat ayat…';let d=null,ed0='';
+ try{const c=JSON.parse(localStorage.getItem('tk_s1_'+n)||'null');if(c&&c.ed=='quran-tajweed'&&c.ayahs&&c.ayahs.length)d={ayahs:c.ayahs}}catch(e){}   // teks tersimpan di perangkat: cepat dan tahan sinyal lemah
+ if(!d)for(const ed of['quran-tajweed','quran-uthmani']){try{d=(await(await fetch(`https://api.alquran.cloud/v1/surah/${n}/${ed}`)).json()).data;if(d&&ed=='quran-tajweed'&&d.ayahs.some(a=>parseAyah(a.text).some(x=>/[\d\[\]]/.test(x.p)))){d=null;tanpaWarna=true;continue}if(d){ed0=ed;break}}catch(e){}}
+ if(!d){$('stage').textContent='Ayat belum bisa dimuat. Periksa internet lalu muat ulang.';return}
+ if(ed0=='quran-tajweed'){try{localStorage.setItem('tk_s1_'+n,JSON.stringify({ed:ed0,ayahs:d.ayahs.map(a=>({number:a.number,numberInSurah:a.numberInSurah,text:a.text}))}))}catch(e){}}
+ A=d.ayahs;build();zoom(0,1);if(tanpaWarna){tanpaWarna=false;$('bn').textContent='ℹ️ Teks polos dipakai agar ayat tetap sempurna.'}}
+
+const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
+// Membaca satu ayat bertajwid dari AlQuran.cloud. Hukum tajwid boleh melintasi spasi (dua kata): warnanya ikut berlanjut ke kata berikutnya.
+function parseAyah(txt){const out=[];let w={h:'',p:'',r:null},rule=null,pend='';
+ const push=lk=>{if(!w.p)return;const n=nm(w.p);
+  if(!n){if(out.length){const o=out[out.length-1];o.h+=' '+w.h;o.p+=' '+w.p}else pend+=w.h+' '}   // tanda waqf/sajdah menempel pada kata sebelumnya
+  else{out.push({h:pend+w.h,p:w.p,n,r:w.r,k:!!lk});pend=''}                                          // k: hukum tajwid berlanjut ke kata berikutnya
+  w={h:'',p:'',r:null}};
+ for(const t of txt.match(/\[[A-Za-z]+(?::\d+)?\[|\]|\[|\s+|[^\[\]\s]+/g)||[]){
+  if(t.length>1&&t[0]=='['&&t.endsWith('['))rule=/^\[([A-Za-z]+)/.exec(t)[1];
+  else if(t==']')rule=null;
+  else if(t=='[');
+  else if(/^\s+$/.test(t))push(rule!=null);
+  else{w.p+=t;w.h+=rule?`<i class="t${rule}">${t}</i>`:t;if(rule&&!w.r)w.r=rule}}
+ push();return out}
+function build(){F=[];E=[];
+ A.forEach((a,ai)=>{let w=parseAyah(a.text.trim());
+  if(ai==0&&sur!=1&&nm(w.slice(0,4).map(x=>x.p).join(' ')).startsWith('بسم'))w=w.slice(4);
+  const s=F.length;w.forEach(x=>F.push({a:ai,h:x.h,p:x.p,n:x.n,r:x.r,k:x.k}));E[ai]=[s,F.length-1]});
+ $('stage').innerHTML=A.map((a,ai)=>`<span class="ay" data-a="${ai}">${F.slice(E[ai][0],E[ai][1]+1).map((w,k)=>`<span class="w" data-i="${E[ai][0]+k}"><span class="x">${w.h}</span></span>`).join(' ')} <span class="no">﴿${AR(a.numberInSurah)}﴾</span></span>`).join(' ');
+ SP=[...$('stage').querySelectorAll('.w')];AY=[...$('stage').querySelectorAll('.ay')];
+ $('stage').scrollTop=0;resetRead();mark(0,false);misiUI()}
+
+function resetRead(){ST=[];HD=[];AD=[];done=[];ayErr=[];PM=0;ann=new Set();pend.forEach(clearTimeout);pend=new Map();S=P=0;peek=0;pkOn=false;fin=false;sesStar=0;paint()}
+const unit=i=>F[i]&&F[i].k?[i,i+1]:F[i-1]&&F[i-1].k?[i-1,i]:[i];
+function paint(){const cu=new Set(lis&&F.length?unit(Math.min(P,F.length-1)):[]);
+ SP.forEach((s,i)=>{const o=ST[i]==1;
+  s.className='w'+(o?' ok':'')+(ST[i]==2?' lw':'')+(ST[i]==3?' sl':'')+(AD[i]?' bl':'')+(cu.has(i)?' cur':'')+(mode=='h'&&!o&&ST[i]!=2&&ST[i]!=3&&!pkOn&&!fin?' hid':'')});
+ $('app').classList.toggle('sim',!$('pl').hidden);$('st').textContent='⭐ '+bintang();$('mic').className=lis?'on':'';$('mic').textContent=lis?'⏹':'🎙'}
+function mark(i,sc=true){cur=i;$('app').classList.toggle('sim',!$('pl').hidden);AY.forEach((e,k)=>e.classList.toggle('now',k==i));
+ $('ay').textContent=`Ayat ${A[i].numberInSurah}/${A.length}`;if(sc)AY[i].scrollIntoView({block:'center'})}
+function banner(i){if(Date.now()<flashUntil)return;const r=F[i]&&F[i].r;$('bn').textContent=r&&T[r]?`💡 ${T[r][0]}: ${T[r][1]}`:'💡 Baca pelan-pelan dan tartil, ya!'}
+
+$('stage').onclick=e=>{const y=e.target.closest('.ay');if(!y)return;const a=+y.dataset.a,s=e.target.closest('.w');
+ if(s)banner(+s.dataset.i);
+ if(sub=='s'){playAyah(a);return}
+ if(!lis)mark(a,false);
+ if(s&&ST[+s.dataset.i]>1){const i=+s.dataset.i;pop(`<p>Terdengar: <b class="ar">${HD[i]||'(terlewat)'}</b></p><p>Seharusnya: <b class="ar">${F[i].p}</b></p><p>Bismillah, coba lagi ya, insya Allah bisa! 💪</p>`)}};
+
+/* ===== MENYIMAK (player) ===== */
+let rate=1,lm=0;const LM=['Mati','Ayat','Surah'];
+function playAyah(i){mark(i);aud.src=SRC(i);aud.playbackRate=rate;aud.defaultPlaybackRate=rate;
+ aud.play().catch(()=>pop('<p>Audio belum bisa diputar. Periksa internet.</p>'));
+ $('nt').textContent=`${NAMA[sur-78]} · Ayat ${A[i].numberInSurah} dari ${A.length} · Mishary Alafasy`;$('bn').textContent=`🎧 Menyimak ayat ${A[i].numberInSurah}`;
+ try{navigator.mediaSession.metadata=new MediaMetadata({title:`${NAMA[sur-78]} ayat ${A[i].numberInSurah}`,artist:'Mishary Alafasy',album:'TahsinKidz.ai'})}catch(e){}}
+function startSim(){halt();resetRead();sub='s';$('pl').hidden=0;playAyah(cur)}
+aud.onplay=()=>{$('pp').textContent='⏸';$('eq').classList.add('on')};
+aud.onpause=()=>{$('pp').textContent='▶';$('eq').classList.remove('on')};
+aud.ontimeupdate=()=>{$('sk').value=aud.duration?aud.currentTime/aud.duration*1000:0;$('tm').textContent=fmt(aud.currentTime);$('tr').textContent='-'+fmt((aud.duration||0)-aud.currentTime)};
+aud.onended=()=>{if(sub!='s')return;if(lm==1)playAyah(cur);else if(cur<A.length-1)playAyah(cur+1);else if(lm==2)playAyah(0);else{$('bn').textContent='✅ Selesai menyimak satu surah. Alhamdulillah!';chime()}};
+$('pp').onclick=()=>{if(!aud.src||aud.ended)playAyah(aud.ended&&cur==A.length-1?0:cur);else if(aud.paused)aud.play();else aud.pause()};
+$('ps').onclick=()=>{aud.pause();try{aud.currentTime=0}catch(e){}$('sk').value=0};
+$('pr').onclick=()=>playAyah(cur);
+$('pn').onclick=()=>playAyah(Math.min(cur+1,A.length-1));
+$('pa').onclick=()=>playAyah(Math.max(cur-1,0));
+$('bk').onclick=()=>{aud.currentTime=Math.max(0,aud.currentTime-5)};
+$('fw').onclick=()=>{aud.currentTime=Math.min(aud.duration||0,aud.currentTime+5)};
+$('sk').oninput=()=>{if(aud.duration)aud.currentTime=$('sk').value/1000*aud.duration};
+function setRate(r){rate=r;aud.playbackRate=r;aud.defaultPlaybackRate=r;$('s75').className=r==.75?'on':'';$('s10').className=r==1?'on':''}
+$('s75').onclick=()=>setRate(.75);$('s10').onclick=()=>setRate(1);
+$('lp').onclick=()=>{lm=(lm+1)%3;$('lp').textContent='🔂 Ulang: '+LM[lm];$('lp').className=lm?'on':''};
+try{[['play',()=>aud.play()],['pause',()=>aud.pause()],['previoustrack',()=>$('pa').click()],['nexttrack',()=>$('pn').click()],['stop',()=>$('ps').click()],['seekbackward',()=>$('bk').click()],['seekforward',()=>$('fw').click()]].forEach(([a,f])=>navigator.mediaSession.setActionHandler(a,f))}catch(e){}
+
+/* ===== MEMBACA dan MENGHAFAL (pengenalan suara + koreksi langsung) ===== */
+async function startRead(){
+ if(!SR)return pop('<p>Browser ini belum mendukung pengenalan suara. Gunakan Chrome ya.</p>');
+ halt();$('pl').hidden=1;if(AC&&AC.state=='suspended')AC.resume();
+ try{stream=await ambilMic();hidupMic(true)}catch(e){return pop('<p>Izinkan mikrofon dulu ya (pengaturan situs di Chrome), lalu muat ulang halaman.</p>')}
+ if(fin)mark(0);resetRead();S=P=PM=E[cur][0];sub='r';lis=true;acc='';last='';t0=Date.now();
+ try{mr=new MediaRecorder(stream);chunks=[];mr.ondataavailable=e=>chunks.push(e.data);mr.start()}catch(e){mr=null}
+ let lokalOK=false;try{lokalOK=(await SR.available({langs:['ar-SA'],processLocally:true}))=='available'}catch(e){}   // pengenalan di perangkat bila tersedia (tanpa internet)
+ rec=new SR();rec.lang='ar-SA';rec.continuous=true;rec.interimResults=true;if(lokalOK)rec.processLocally=true;
+ rec.onstart=()=>{recOn=true;galatNet=false};
+ rec.onresult=e=>{if(!lis)return;let s='';for(const r of e.results)s+=r[0].transcript+' ';last=s;check(acc+' '+s,e.results[e.results.length-1].isFinal)};
+ rec.onend=()=>{recOn=false;if(lis){acc+=' '+last;last='';setTimeout(tryStart,galatNet?800:0)}};
+ rec.onerror=e=>{if(e.error=='not-allowed'||e.error=='service-not-allowed'){halt();paint();pop('<p>Mikrofon atau pengenalan suara belum diizinkan. Izinkan dulu ya, lalu coba lagi.</p>')}
+  else if(e.error=='audio-capture')pop('<p>Mikrofon sedang dipakai aplikasi lain. Tutup aplikasi itu dulu ya.</p>');
+  else if(e.error=='no-speech'&&P==S)sepi();
+  else if(e.error=='network'){galatNet=true;flash('📶 Sinyal kurang baik, aku tetap mendengarkan…')}};
+ try{rec.start()}catch(e){}
+ clearInterval(wd);wd=setInterval(()=>{if(lis&&!recOn)tryStart()},2500);                            // penjaga: pengenalan selalu menyala selama membaca
+ banner(S);clearTimeout(sil);sil=setTimeout(()=>{if(lis&&P==S&&!acc.trim()&&!last.trim())sepi()},9000);$('bn').textContent='🎙 Silakan membaca… '+$('bn').textContent.replace('💡 ','');paint()}
+function tryStart(){if(!lis||recOn)return;try{rec.start()}catch(x){setTimeout(tryStart,300)}}
+
+const PSN={2:['🟡 Maaf, ada yang terlewat 🌿','🟡 Maaf, ada kata terlewat. Pelan-pelan saja ya'],3:['🟠 Maaf, kata kurang tepat 🌿','🟠 Hampir tepat! Bismillah, coba lagi ya'],4:['🟣 Maaf, ada kata tambahan 🌿','🟣 Maaf, ada tambahan. Tenang, pelan-pelan ya']};
+const SND={2:()=>{tone(660,.18);setTimeout(()=>tone(520,.28),150)},3:()=>tone(300,.28,'triangle',.1),4:()=>{tone(740,.1);setTimeout(()=>tone(880,.14),110)}};
+function flash(m){$('bn').textContent=m;flashUntil=Date.now()+2900;clearTimeout(flashT);flashT=setTimeout(()=>banner(Math.min(P,F.length-1)),3000)}
+function beritahu(t){SND[t]();try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}flash(PSN[t][flip++%2])}   // satu getaran pendek untuk semua jenis
+function cekGalat(){const it=[];ST.forEach((x,i)=>{if(x==2||x==3)it.push([x,i])});AD.forEach((x,i)=>{if(x)it.push([4,i])});
+ it.forEach(([t,i])=>{const k=t+':'+i;if(ann.has(k)||pend.has(k))return;
+  pend.set(k,setTimeout(()=>{pend.delete(k);if(lis&&(t==4?AD[i]:ST[i]==t)){ann.add(k);beritahu(t)}},250))})}
+function errCount(){let c=0;ST.forEach(x=>{if(x>1)c++});AD.forEach(x=>{if(x)c+=x.length});return c}
+function check(txt,final){const tk=nm(txt).split(/\s+/).filter(Boolean),n=F.length,st=[],hd=[],ad=[];let q=S,mx=S;
+ // mengulang dari kata sebelumnya (setelah waqf): cocokkan ke kata dalam 12 kata terakhir, dengan kata berikutnya yang menyambung
+ const ulang=k=>{const t=tk[k];for(let j=q-1;j>=Math.max(S,q-12);j--){
+  if(k+1<tk.length?(sim(t,F[j].n)>=.75&&sim(tk[k+1],F[j+1].n)>=.6):(q-1-j<=3&&sim(t,F[j].n)>=.85))return j}return -1};
+ for(let k=0;k<tk.length&&q<n;k++){const t=tk[k],lt=k==tk.length-1&&!final,s1=sim(t,F[q].n),s2=k+1<tk.length?sim(t+tk[k+1],F[q].n):0;
+  if(q+1<n&&F[q].k&&sim(t,F[q].n+F[q+1].n)>=.7){st[q]=1;st[q+1]=1;q+=2}          // dua kata dibaca menyambung
+  else if(s2>=.8&&s2>s1){st[q]=1;q++;k++}                                        // satu kata terdengar terpisah
+  else if(s1>=.6){st[q]=1;q++}                                                   // benar
+  else if(q+1<n&&sim(t,F[q+1].n)>=.7){st[q]=2;st[q+1]=1;q+=2}                    // kata terlewat
+  else{const j=ulang(k);
+   if(j>=0){st[j]=1;delete hd[j];q=j+1}                                          // mengulang dari kata sebelumnya
+   else if(!lt){const x=Math.max(q-1,S);
+    if(k+1<tk.length&&sim(tk[k+1],F[q].n)>=.6)(ad[x]=ad[x]||[]).push(t)          // kata tertambah
+    else{st[q]=3;hd[q]=t;q++}}}                                                  // kata tertukar/kurang tepat
+  mx=Math.max(mx,q)}
+ ST=st;HD=hd;AD=ad;P=q;PM=mx;cekGalat();
+ award(final);paint();misiUI();banner(Math.min(P,n-1));if(F[Math.min(P,n-1)].a!=cur)mark(F[Math.min(P,n-1)].a);
+ if(PM>=n)finish(true)}
+function award(final){for(let a=0;a<A.length;a++){if(done[a]||E[a][0]<S)continue;const e=E[a][1];
+ if(PM>e+1||(final&&PM>e)){done[a]=1;let c=0;for(let i=E[a][0];i<=e;i++){if(ST[i]>1)c++;if(AD[i])c+=AD[i].length}
+  const pk=mode=='h'&&peek>0;peek=0;const ok=c==0&&!pk;ayErr[a]=c;
+  AL.push({surah:sur,ayat:A[a].numberInSurah,mode:mode=='h'?'Hafalan':'Tilawah',salah:c,intip:pk?1:0});
+  if(ok){sesStar++;chime();star();flash('✨ Masyaallah, bagus! ⭐')}
+  else{tone(520,.18);flash(pk?'👀 Ayat ini memakai Intip. Coba tanpa Intip untuk meraih ⭐':'🌿 Alhamdulillah, ayat selesai. Coba lagi untuk meraih ⭐')}}}}
+
+function halt(){lis=false;clearTimeout(sil);try{rec&&rec.stop()}catch(e){}try{mr&&mr.state!='inactive'&&mr.stop()}catch(e){}hidupMic(false);stream=null;mr=null;clearInterval(wd);aud.pause();$('menu').hidden=1}
+function finish(auto){if(!lis)return;lis=false;clearTimeout(sil);clearInterval(wd);try{rec.stop()}catch(e){}
+ if(auto){award(true);fin=true;misiUI()}
+ const m=mr,sm=stream;mr=null;stream=null;
+ const n=PM-S,benar=ST.reduce((c,x)=>c+(x==1?1:0),0),bad=errCount();paint();
+ const lepas=()=>hidupMic(false);
+ if(n<=0||(!benar&&!bad)){try{m&&m.state!='inactive'&&m.stop()}catch(e){}lepas();return}
+ const kes=[],ay=i=>A[F[i].a].numberInSurah;
+ ST.forEach((x,i)=>{if(x>1)kes.push({ayat:ay(i),kata_seharusnya:F[i].p,kata_terbaca:HD[i]||'',jenis:x==2?'terlewat':'tertukar',hukum_tajwid:F[i].r&&T[F[i].r]?T[F[i].r][0]:''})});
+ AD.forEach((x,i)=>{if(x)x.forEach(t=>kes.push({ayat:ay(i),kata_seharusnya:'',kata_terbaca:t,jenis:'tertambah',hukum_tajwid:''}))});
+ const a1=ay(S),a2=ay(Math.min(PM,F.length)-1);
+ const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-78],
+  ayat:a1==a2?a1:a1+'-'+a2,kelancaran_persen:Math.round(100*benar/n),jumlah_salah:bad,bintang:sesStar,durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:kes,ayat_detail:AL.slice(alIdx),audio:null};sentTotal+=AL.length-alIdx;alIdx=AL.length;
+ const kirim=()=>{if(SHEET_URL)fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(pay)}).catch(()=>{});setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)};
+ if(m&&m.state!='inactive'){m.onstop=()=>{lepas();const b=new Blob(chunks,{type:m.mimeType});
+  if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
+ else{lepas();kirim()}
+ if(auto)pop(`<h3>🎉 Alhamdulillah, selesai!</h3><p>Kamu mendapat <b>⭐ ${sesStar}</b> bintang. Kelancaran bacaan ${Math.round(100*benar/n)}%.</p><p>Tekan 📝 Catatan untuk melihat catatan bacaanmu.</p>`)}
+
+/* ===== kontrol umum ===== */
+$('mic').onclick=()=>{$('hint').hidden=1;if(lis)return finish(false);if(mode=='h')return startRead();$('menu').hidden=!$('menu').hidden};
+$('m1').onclick=()=>{$('menu').hidden=1;startSim()};
+$('m2').onclick=()=>{$('menu').hidden=1;startRead()};
+$('t1').onclick=()=>tab('t');$('t2').onclick=()=>tab('h');
+function tab(m){halt();mode=m;sub='';$('pl').hidden=1;$('t1').className=m=='t'?'on':'';$('t2').className=m=='h'?'on':'';$('pk').hidden=m!='h';
+ resetRead();if(A.length)mark(0);$('bn').textContent='💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.'}
+$('pkb').onclick=()=>{peek++;pkOn=true;paint();setTimeout(()=>{pkOn=false;paint()},2500)};
+function nav(d){if(lis||!A.length)return;const i=Math.max(0,Math.min(A.length-1,cur+d));sub=='s'?playAyah(i):mark(i)}
+$('pv').onclick=()=>nav(-1);$('nx').onclick=()=>nav(1);
+
+/* ===== riwayat, misi, Riwayatku ===== */
+const hariIni=()=>new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Jakarta'});
+const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
+async function muatRiwayat(){if(!SHEET_URL||!U)return;
+ try{const d=await(await fetch(`${SHEET_URL}?id=${encodeURIComponent(U.id)}&kelas=${encodeURIComponent(U.kelas)}`)).json();
+  if(!d.ok)return;HS=d;if(d.misi)misi=d.misi;
+  if(!inited){inited=true;srvRows=d.baris;sentTotal=0;baseM=d.bintang_membaca;baseH=d.bintang_menghafal}
+  else if(d.baris>=srvRows+sentTotal){AL.splice(0,alIdx);alIdx=0;sentTotal=0;srvRows=d.baris;baseM=d.bintang_membaca;baseH=d.bintang_menghafal;tries=0}
+  else if(tries++<4)setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)}catch(e){}}
+function tujuanAwal(){const r=HS&&HS.terakhir;
+ if(misi)return{s:misi.surah,a:misi.awal};
+ if(r&&r.surah>=78)return{s:r.surah,a:(+r.ayat||0)+1};
+ return{s:78,a:0}}
+const mm=()=>misi||autoM;
+const rng=m=>[m.awal,sur==m.surah&&A.length?Math.min(m.akhir,A.length):m.akhir];
+function misiProg(){const m=mm(),[a0,a1]=rng(m),got=new Set();
+ ((HS&&HS.hari_ini)||[]).forEach(r=>{if(r.surah==m.surah&&r.salah<=1)got.add(r.ayat)});
+ AL.forEach(r=>{if(r.surah==m.surah&&r.salah<=1)got.add(r.ayat)});
+ let n=0;for(let i=a0;i<=a1;i++)if(got.has(i))n++;return{n,t:a1-a0+1}}
+function misiUI(){const m=mm(),e=$('ms');if(!m||!U){e.hidden=1;return}
+ const [a0,a1]=rng(m);if(a1<a0){e.hidden=1;return}const p=misiProg(),ok=p.n>=p.t&&p.t>0;e.hidden=0;e.className=ok?'sel':'';
+ e.textContent=ok?`✅ Misi selesai! ${NAMA[m.surah-78]} ayat ${a0}-${a1}. Alhamdulillah!`:`🎯 Misi hari ini${m.auto?' (otomatis)':''}: ${NAMA[m.surah-78]} ayat ${a0}-${a1} · ${p.n}/${p.t} ayat${m.target?' · ⭐ target '+m.target:''}`}
+$('ms').onclick=async()=>{const m=mm();if(!m||lis)return;if(sur!=m.surah){$('sel').value=m.surah;await load(m.surah)}mark(Math.min(m.awal,A.length)-1)};
+const MED=[['🥉','Perunggu','50 ⭐',s=>s.tot>=50],['🥈','Perak','150 ⭐',s=>s.tot>=150],['🥇','Emas','300 ⭐',s=>s.tot>=300],['🏅','Rajin','7 hari berturut-turut',s=>s.best>=7],['📖','Pembaca Surah','selesaikan 1 surah',s=>s.sel>=1],['🧠','Penghafal','10 ⭐ menghafal',s=>s.bh>=10]];
+const MOT={
+ umum:['“Sebaik-baik kalian adalah orang yang belajar Al-Qur’an dan mengajarkannya.” (HR. Bukhari)','“Barangsiapa menempuh jalan untuk mencari ilmu, Allah memudahkan baginya jalan menuju surga.” (HR. Muslim)','“Sungguh, telah Kami mudahkan Al-Qur’an untuk peringatan, maka adakah orang yang mau mengambil pelajaran?” (QS. Al-Qamar: 17)','“Satu huruf Al-Qur’an dibalas satu kebaikan, dan satu kebaikan dilipatgandakan sepuluh kali.” (HR. Tirmidzi)'],
+ belum:['“Bacalah Al-Qur’an, karena ia akan datang pada hari Kiamat sebagai pemberi syafaat bagi pembacanya.” (HR. Muslim)<br>Yuk, baca satu ayat saja hari ini 🌿'],
+ terbata:['“Orang yang membaca Al-Qur’an dengan terbata-bata dan merasa berat, baginya dua pahala.” (HR. Bukhari dan Muslim)<br>Jangan menyerah ya, pelan-pelan pasti bisa 💪'],
+ rajin:['“Amalan yang paling dicintai Allah adalah yang terus-menerus meskipun sedikit.” (HR. Bukhari dan Muslim)<br>MasyaAllah, kamu sudah {n} hari berturut-turut!'],
+ surah:['Alhamdulillah, kamu sudah menyelesaikan {n} surah. Barakallahu fiik! 🌟']};
+function statistik(){const H=HS||{},key=r=>r.surah+':'+r.ayat,hari=new Set((H.hari_ini||[]).map(key)),mg=new Set(H.kunci_minggu||[]),bl=new Set(H.kunci_bulan||[]),all=new Set(H.semua||[]);
+ AL.forEach(r=>{const k=key(r);hari.add(k);mg.add(k);bl.add(k);all.add(k)});
+ const per={};all.forEach(k=>{const s=+k.split(':')[0];per[s]=(per[s]||0)+1});
+ let sel=0;Object.keys(per).forEach(s=>{if(JML[s-78]&&per[s]>=JML[s-78])sel++});
+ const bm=bM(),bh=bH(),pend=AL.length>0;
+ const st=H.membaca_hari_ini?(H.streak_aktif||0):(H.streak_kemarin||0)+(pend?1:0);
+ const t7=(H.tujuh_hari||[]).map(x=>({tgl:x.tgl,n:x.n}));if(t7.length)t7[t7.length-1].n=Math.max(t7[t7.length-1].n,hari.size);
+ const kl=H.kelas?{nama:H.kelas.nama,x:H.kelas.bintang_minggu+AL.filter(x=>x.salah==0&&!x.intip).length,y:H.kelas.target}:null;
+ const salahHariIni=[...(H.hari_ini||[]),...AL].filter(r=>r.salah>0).length;
+ return{bm,bh,tot:bm+bh,hari:hari.size,minggu:mg.size,bulan:bl.size,dibaca:Object.keys(per).length,sel,st,best:Math.max(H.streak_terbaik||0,st),t7,kl,salahHariIni,total:hari.size}}
+function motiv(s){const pilih=a=>a[Math.floor(Date.now()/864e5)%a.length],isi=t=>t.replace('{n}',t.includes('hari')?s.st:s.sel);
+ if(s.hari==0)return isi(pilih(MOT.belum));
+ if(s.salahHariIni>=Math.ceil(s.hari/2))return isi(pilih(MOT.terbata));
+ if(s.st>=3)return isi(pilih(MOT.rajin));
+ if(s.sel>0&&Math.floor(Date.now()/864e5)%3==0)return isi(pilih(MOT.surah));
+ return pilih(MOT.umum)}
+$('cat').onclick=()=>{const s=statistik(),nh=['Ahd','Sen','Sel','Rab','Kam','Jum','Sab'],mx=Math.max(1,...s.t7.map(x=>x.n));
+ pop(`<h3>📚 Riwayatku</h3>
+ <p class="ket">1 ⭐ = 1 ayat dibaca dengan baik dan benar</p>
+ <div class="rw"><div class="kt">⭐ Bintang Membaca<b>${s.bm}</b></div><div class="kt">⭐ Bintang Menghafal<b>${s.bh}</b></div></div>
+ <p>📖 <b>Ayat dibaca</b><br>Hari ini <b>${s.hari}</b> · Minggu ini <b>${s.minggu}</b> · Bulan ini <b>${s.bulan}</b></p>
+ <div class="bar" aria-label="Ayat dibaca 7 hari terakhir">${s.t7.map(x=>`<div><small>${x.n}</small><i style="height:${Math.round(x.n/mx*46)+2}px"></i>${nh[new Date(x.tgl+'T00:00:00').getDay()]}</div>`).join('')}</div>
+ <p>🕌 <b>Surah dibaca</b>: ${s.dibaca} dari 37 surah Juz 30 (${s.sel} surah selesai)</p>
+ <p>🔥 <b>${s.st}</b> hari berturut-turut membaca</p>
+ <div class="med">${MED.map(m=>`<span class="${m[3](s)?'':'off'}" title="${m[2]}">${m[0]} ${m[1]}${m[3](s)?'':' <small>('+m[2]+')</small>'}</span>`).join('')}</div>
+ ${s.kl?`<p>🏫 <b>Target Kelas ${esc(s.kl.nama)}</b> minggu ini: ${s.kl.x} dari ${s.kl.y} ⭐</p><div class="prog"><i style="width:${Math.min(100,Math.round(s.kl.x/s.kl.y*100))}%"></i></div>`:''}
+ <div class="mot">💬 ${motiv(s)}</div>`)};
+
+/* ===== NOTE: catatan bacaan (bacaan salah, seharusnya) ===== */
+function frasa(i,m,h){const a=F[i].a,[s,e]=E[a],lo=Math.max(s,i-3),hi=Math.min(e,i+3),o=[];if(lo>s)o.push('…');
+ for(let k=lo;k<=hi;k++){let w=F[k].p;if(k==i){if(m=='benar')w=`<b class="hl">${w}</b>`;else if(m=='salah')w=`<b class="bad">${w}</b>`;else if(m=='ganti')w=`<b class="bad">${esc(h)}</b>`}
+  o.push(w);if(k==i&&m=='tambah')o.push(`<b class="bad">${esc(h)}</b>`)}
+ if(hi<e)o.push('…');return o.join(' ')}
+function kartu(i,judul,l1,l2){const a=F[i].a,r=F[i].r&&T[F[i].r],ln=l=>l?`<div class="ln"><span class="ar">${l[1]}</span><small>${l[0]}</small></div>`:'';
+ return`<div class="sheet"><span class="bd">${sur}:${A[a].numberInSurah}</span><b>${judul}</b>${ln(l1)}${ln(l2)}${r?`<small>Hukum tajwid: ${r[0]}. ${r[1]}</small>`:''}
+ <div class="ac"><button data-d="${a}">🔊 Dengarkan yang benar</button><button data-c="${a}">🎙 Coba lagi ayat ini</button></div></div>`}
+$('note').onclick=()=>{const k=[];
+ ST.forEach((x,i)=>{if(x==3)k.push([i,kartu(i,'Kata kurang tepat',['Seharusnya',frasa(i,'benar')],['Terdengar',frasa(i,'ganti',HD[i])])]);
+  else if(x==2)k.push([i,kartu(i,'Ada yang terlewat',['Seharusnya',frasa(i,'salah')])])});
+ AD.forEach((x,i)=>{if(x)k.push([i,kartu(i,'Ada kata tambahan',['Seharusnya',frasa(i,'biasa')],['Terdengar',frasa(i,'tambah',x.join(' '))])])});
+ k.sort((a,b)=>a[0]-b[0]);
+ pop(`<h3>📝 Catatan Bacaan</h3>${k.length?'<p class="lg">🟡 terlewat · 🟠 kurang tepat · 🟣 tambahan</p>'+k.map(x=>x[1]).join('')+'<p>Tidak apa-apa, belajar itu butuh proses. Bismillah, coba lagi ya, insya Allah bisa! 💪</p>':PM>S?'<p>Hebat! Bacaanmu lancar sekali 🌟</p>':'<p>Belum ada catatan. Ayo mulai membaca dengan tombol 🎙!</p>'}${kataSec()}`)};
+function kataSec(){const k=(HS&&HS.kata)||[];return k.length?`<b>Kata yang sering salah (7 hari)</b><ul>${k.map(x=>`<li><span class="ar">${esc(x.kata)}</span> × ${x.n}</li>`).join('')}</ul>`:''}
+$('pb').onclick=e=>{const d=e.target.closest('[data-d]'),c=e.target.closest('[data-c]');
+ if(d){$('pop').hidden=1;if(lis)finish(false);halt();resetRead();sub='s';$('pl').hidden=0;playAyah(+d.dataset.d)}
+ if(c){$('pop').hidden=1;if(lis)finish(false);fin=false;mark(+c.dataset.c);startRead()}};
+function sepi(){if(lis)$('bn').textContent='🔈 Aku belum mendengar suaramu. Dekatkan HP ke mulutmu, ya!'}
+
+/* ===== ukuran huruf dan header ringkas ===== */
+let zi=1;const ZS=[.75,1,1.25,1.5,1.75,2,2.5,3],fz=z=>String(z).replace('.',',')+'×';
+function maxFit(){const sc=$('stage');if(!SP.length||!sc.clientWidth)return ZS.length-1;const w=Math.max(...SP.map(s=>s.offsetWidth))/ZS[zi],av=sc.clientWidth-34;let k=0;ZS.forEach((v,i)=>{if(w*v<=av)k=i});return k}
+function zoom(d,diam){zi=Math.max(0,Math.min(ZS.length-1,zi+d));const set=()=>document.documentElement.style.setProperty('--z',ZS[zi]);set();
+ let mx=maxFit();if(zi>mx){zi=Math.max(0,mx);set();mx=maxFit()}
+ $('zm1').disabled=zi<=0;$('zm2').disabled=zi>=mx;try{localStorage.setItem('tk_z2',zi)}catch(e){}
+ if(d&&!diam)flash('🔠 Ukuran huruf: '+fz(ZS[zi]))}
+try{const v=localStorage.getItem('tk_z2');if(v!==null&&+v>=0&&+v<ZS.length)zi=+v}catch(e){}
+zoom(0,1);$('zm1').onclick=()=>zoom(-1);$('zm2').onclick=()=>zoom(1);addEventListener('resize',()=>zoom(0,1));
+$('stage').onscroll=()=>{const s=$('stage').scrollTop,a=$('app');if(s>80)a.classList.add('mini');else if(s<10)a.classList.remove('mini')};
+</script></body></html>
