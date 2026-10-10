@@ -161,13 +161,89 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 .med .off{filter:grayscale(1);opacity:.55}
 .prog{height:10px;background:#e4f1ee;border-radius:6px;overflow:hidden}.prog i{display:block;height:100%;background:var(--g)}
 .mot{background:#eefaf6;border-radius:12px;padding:10px;margin-top:10px}
+
+.big2{background:linear-gradient(135deg,var(--m),var(--md));color:#fff;border:0;border-radius:16px;padding:12px 20px;font-weight:800;cursor:pointer}
+#home{max-width:none;margin:0;text-align:center;display:flex;flex-direction:column;height:var(--vh,100dvh);overflow:hidden;position:relative;background:linear-gradient(180deg,#e0f5ef 0%,#fffaf0 60%,#f7f0e0 100%);padding:env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left)}
+#home::before{content:'';position:absolute;left:0;right:0;top:0;height:clamp(40px,11vh,92px);pointer-events:none;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Cg fill='none' stroke='%2314a38b' stroke-opacity='.4' stroke-width='1.4'%3E%3Crect x='11' y='11' width='18' height='18'/%3E%3Crect x='11' y='11' width='18' height='18' transform='rotate(45 20 20)'/%3E%3C/g%3E%3C/svg%3E") repeat-x top left;-webkit-mask-image:linear-gradient(#000,transparent);mask-image:linear-gradient(#000,transparent)}
+#home>*{position:relative}
+.hw{flex:1 1 auto;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:clamp(4px,1.2vh,12px);padding:clamp(6px,1.4vh,14px) 20px 0}
+.hero{margin-top:auto}.card{margin-bottom:auto}
+.hero{display:flex;flex-direction:column;align-items:center;gap:clamp(1px,.6vh,6px)}
+.hico{height:clamp(44px,11vh,92px);width:auto}
+#home h1{font-size:clamp(1.5rem,4.4vh,2.3rem);margin:0;color:var(--md)}
+.hd{font-family:LPMQ,'Scheherazade New',serif;font-size:min(clamp(1.05rem,6.3vw,1.9rem),4vh);line-height:1.7;margin:0;color:#173a35;white-space:nowrap}
+.hm{font-size:clamp(.66rem,1.55vh,.82rem);margin:0;color:#4b6560;max-width:44ch;line-height:1.4}
+.hm .tl{display:block}
+#home.s1 .hm .tl{display:none}#home.s2 .hico{height:38px}#home.s3 .mosque{display:none}#home.s4 .hm{display:none}
+.sal{font-weight:800;font-size:clamp(.85rem,min(4.4vw,2.4vh),1.2rem);margin:clamp(2px,.8vh,8px) 0 0;color:var(--md)}
+.card{width:100%;max-width:420px;background:#fff;border-radius:20px;padding:clamp(8px,1.6vh,16px);box-shadow:0 6px 20px #0b6e5f24;text-align:left}
+.fld{display:block;margin:0 0 clamp(5px,1.1vh,12px)}.fld:last-child{margin-bottom:0}
+.lbl{display:block;font-size:clamp(.66rem,1.6vh,.82rem);font-weight:800;color:var(--md);margin:0 0 2px 4px}
+.in{position:relative;display:block}
+.in svg{position:absolute;left:13px;top:50%;margin-top:-11px;width:22px;height:22px;fill:none;stroke:var(--m);stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round;pointer-events:none}
+#home .in input,#home .in select{display:block;width:100%;height:clamp(40px,6.2vh,52px);padding:0 12px 0 46px;margin:0;font-size:max(16px,1rem);border:2px solid #b9e6dd;border-radius:14px;background-color:#f8fdfc;color:var(--t);-webkit-appearance:none;appearance:none}
+#home .in select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230b6e5f' stroke-width='3' stroke-linecap='round'%3E%3Cpath d='M5 9l7 7 7-7'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+#home .in input:focus,#home .in select:focus{outline:3px solid var(--g);outline-offset:1px;border-color:var(--m)}
+.mosque{flex:0 1 auto;width:100%;height:clamp(0px,7vh,58px);min-height:0;display:block}
+.bot{flex:0 0 auto;padding:0 20px clamp(6px,1.4vh,14px);display:flex;flex-direction:column;align-items:center}
+#hmsg{min-height:1.1em;font-size:.8rem;color:#b45309;margin:0 0 2px;font-weight:700}
+#home .big{width:100%;max-width:420px;padding:clamp(11px,1.8vh,15px);font-size:1.1rem;box-shadow:0 5px 0 #08463d}
+#home .big.dis{opacity:.55}
+.ft{margin:clamp(4px,1vh,10px) 0 0;font-size:.74rem;color:#6b807b}
+#home.kb{overflow-y:auto}
+#home.kb .hico,#home.kb .hd,#home.kb .hm,#home.kb .sal,#home.kb .mosque{display:none}
+#home.kb .hw{justify-content:flex-start;padding-top:12px}
+#home.kb h1{font-size:1.3rem}
+#home.kb .in input,#home.kb .in select{height:56px;font-size:1.1rem}
+#home.kb .lbl{font-size:.9rem}
+@media (orientation:landscape) and (max-height:520px){
+ .hw{flex-direction:row;gap:20px;justify-content:center}
+ .hero{flex:1}.card{flex:1;max-width:none}.mosque,.hm{display:none}.hico{height:clamp(36px,12vh,60px)}
+}
+.brow{display:flex;align-items:stretch;gap:8px;margin:0 14px 8px}
+.bcol{flex:1;min-width:0}
+.brow #bn{margin:0}
+#bsrc{font-size:.68rem;line-height:1.35;color:#5b706b;padding:0 4px 3px}
+#lg{flex:none;width:58px;border-radius:12px;border:2px solid var(--m);background:#fff;color:var(--md);font-weight:800;line-height:1.05;padding:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#lg b{font-size:1.05rem}#lg small{font-size:.62rem}
+#lg.on{background:var(--m);color:#fff}
+#app.hf #lg{opacity:.4;pointer-events:none}
+.ay .lbtn{display:inline-flex;vertical-align:middle;align-items:center;justify-content:center;width:30px;height:30px;margin:0 4px;padding:0;border-radius:9px;border:2px solid var(--m);background:#fff;color:var(--md);font:800 12px Nunito,sans-serif;direction:ltr;position:relative;cursor:pointer}
+.ay .lbtn::after{content:'';position:absolute;inset:-6px}
+.ay .lbtn[aria-expanded=true]{background:var(--m);color:#fff}
+#app.hf .lbtn{opacity:.3;pointer-events:none}
+.lt{display:none;direction:ltr;text-align:left;font-family:Nunito,system-ui,sans-serif;font-size:15px;line-height:1.55;color:#2f6f66;background:#eaf6f3;border-radius:10px;padding:7px 11px;margin:2px 0 10px}
+.lt.on{display:block}
+#app.hf .lt{display:none!important}
+@media(max-height:700px){.brow{margin-bottom:6px}}
+@media(max-height:520px){.brow{display:none}}
+#mst{margin:0 14px 6px;padding:4px 12px;border-radius:20px;background:#e8f7f3;border:1px solid #cfe9e2;color:var(--md);font-weight:800;font-size:.8rem;text-align:center}
+@media(max-height:700px){#bsrc{font-size:.62rem}#mst{padding:2px 10px;font-size:.72rem;margin-bottom:4px}.hd{line-height:1.4}.sal{margin-top:0}.hw{padding-top:4px}}
+@media(max-height:520px){#mst{display:none}}
+#home .big.dis{opacity:1;background:#cfd8d5;color:#6b807b;box-shadow:0 5px 0 #aebcb8}
 </style></head><body>
 
 <section id="home">
- <h1>❇️ TahsinKidz.ai</h1><p>Belajar membaca Al-Qur'an Juz 30 bersama asisten AI</p>
- <input id="fn" placeholder="Nama lengkap" aria-label="Nama lengkap"><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Nomor absen" aria-label="Nomor absen">
- <button class="big" id="go">Mulai Belajar</button>
- <p class="ft">Made With Love By Mohammad Safari, M.Pd.</p>
+ <div class="hw">
+  <div class="hero">
+   <svg class="hico" viewBox="0 0 140 96" aria-hidden="true"><g stroke="#f5b82e" stroke-width="3" stroke-linecap="round"><path d="M70 3v7M42 11l4 5M98 11l-4 5M24 28l7 3M116 28l-7 3"/></g><path d="M44 58c0-18 10-30 26-40 16 10 26 22 26 40z" fill="#14a38b"/><path d="M66 8a7 7 0 1 0 9 9 5.6 5.6 0 1 1-9-9z" fill="#f5b82e"/><path d="M14 66c18-9 36-9 56 3 20-12 38-12 56-3v22c-18-9-36-9-56 3-20-12-38-12-56-3z" fill="#fff" stroke="#0b6e5f" stroke-width="3" stroke-linejoin="round"/><path d="M70 69v22" stroke="#0b6e5f" stroke-width="3"/><path d="M26 75c10-3 20-2 32 4M26 83c10-3 20-2 32 4M82 79c12-6 22-7 32-4M82 87c12-6 22-7 32-4" stroke="#14a38b" stroke-width="2" fill="none" stroke-linecap="round"/></svg>
+   <h1>TahsinKidz.ai</h1>
+   <p class="hd">خَيْرُكُمْ مَنْ تَعَلَّمَ الْقُرْآنَ وَعَلَّمَهُ</p>
+   <p class="hm"><span class="tl">Khairukum man ta'allamal-Qur'āna wa 'allamah.</span>“Sebaik-baik kalian adalah orang yang belajar Al-Qur'an dan mengajarkannya.” (HR. Bukhari)</p>
+   <p class="sal">Assalamu'alaikum, siap belajar Al-Qur'an?</p>
+  </div>
+  <div class="card">
+   <label class="fld"><span class="lbl">Nama lengkap</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><input id="fn" placeholder="Nama lengkap" aria-label="Nama lengkap" autocomplete="off"></span></label>
+   <label class="fld"><span class="lbl">Kelas</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select></span></label>
+   <label class="fld"><span class="lbl">Nomor absen</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9.5 8.5l-1 7M15.5 8.5l-1 7M6.5 10.5h11M6 13.5h11"/></svg><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Nomor absen" aria-label="Nomor absen" autocomplete="off"></span></label>
+  </div>
+ </div>
+ <svg class="mosque" viewBox="0 0 400 80" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g fill="#0b6e5f" opacity=".17"><path d="M150 66c0-26 20-40 50-52 30 12 50 26 50 52z"/><path d="M198 14h4V4h-4z"/><path d="M40 66c0-14 10-22 24-28 14 6 24 14 24 28zM312 66c0-14 10-22 24-28 14 6 24 14 24 28z"/><path d="M96 66V26l7-16 7 16v40zM290 66V26l7-16 7 16v40z"/><path d="M0 66h400v14H0z"/></g><path d="M194 3a4 4 0 1 0 5 5 3.2 3.2 0 1 1-5-5z" fill="#f5b82e"/></svg>
+ <div class="bot">
+  <p id="hmsg" role="status"></p>
+  <button class="big dis" id="go">Mulai Belajar</button>
+  <p class="ft">Made With Love By Mohammad Safari, M.Pd.</p>
+ </div>
 </section>
 
 <main id="app" hidden>
@@ -177,7 +253,8 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
  </header>
  <nav class="tabs"><button id="t1" class="on">🎧 Sima'an & Tilawah</button><button id="t2">🧠 Hafalan</button></nav>
  <div id="ms" hidden role="button" tabindex="0"></div>
- <div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div>
+ <div class="brow"><div class="bcol"><div id="bsrc"></div><div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div></div><button id="lg" aria-label="Tampilkan atau sembunyikan transliterasi Latin semua ayat"><b>Ab</b><small>Latin</small></button></div>
+ <div id="mst" hidden role="status"></div>
  <div id="stage"></div>
  <div id="pk" hidden><button id="pkb">👀 Intip</button></div>
  <div id="pl" hidden>
@@ -229,12 +306,15 @@ let ann=new Set(),pend=new Map(),flashUntil=0,flashT,flip=0,tanpaWarna=false;
 let MSTR=null,recOn=false,wd,galatNet=false,PM=0;
 async function ambilMic(){if(MSTR&&MSTR.getTracks().every(t=>t.readyState=='live'))return MSTR;MSTR=await navigator.mediaDevices.getUserMedia({audio:true});return MSTR}
 const hidupMic=on=>{MSTR&&MSTR.getTracks().forEach(t=>{t.enabled=on})};
+const lepasMic=()=>{MSTR&&MSTR.getTracks().forEach(t=>t.stop());MSTR=null};
+const ANDROID=/Android/i.test(navigator.userAgent),SOLO=ANDROID;const UA=navigator.userAgent,INAPP=/FBAN|FBAV|Instagram|MicroMessenger|WhatsApp|; wv\)/i.test(UA),NOSR=INAPP?'Halaman ini terbuka di dalam aplikasi lain (misalnya WhatsApp atau Instagram). Ketuk menu <b>⋮</b> lalu pilih <b>Buka di Chrome</b>.':/Firefox|SamsungBrowser/i.test(UA)?'Browser ini belum mendukung pengenalan suara bahasa Arab. Buka halaman ini di <b>Google Chrome</b>.':'Browser ini belum mendukung pengenalan suara. Gunakan Google Chrome.';      // Android: pengenalan suara berjalan sendiri (mikrofon HP tidak bisa dipakai dua pihak)
+let gotAudio=false,audT,recOnly=false,LT=[],latOn=new Set(),srcArab='AlQuran.cloud (tajwid)',srcLatin='',latLoading=false;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 const aud=new Audio();
 const SRC=i=>`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${A[i].number}.mp3`;
 const fmt=s=>isFinite(s)?Math.floor(s/60)+':'+String(Math.floor(s%60)).padStart(2,'0'):'0:00';
 
-function tone(f,d,ty='sine',v=.15){if(!AC)return;const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}
+function tone(f,d,ty='sine',v=.15){if(!AC||(SOLO&&lis))return;const o=AC.createOscillator(),g=AC.createGain();o.type=ty;o.frequency.value=f;g.gain.value=v;o.connect(g);g.connect(AC.destination);o.start();g.gain.exponentialRampToValueAtTime(.001,AC.currentTime+d);o.stop(AC.currentTime+d)}
 const chime=()=>{tone(880,.2);setTimeout(()=>tone(1320,.35),130)},oops=()=>tone(300,.25,'triangle',.1);
 function star(){const s=document.createElement('div');s.className='star';s.textContent='⭐';document.body.append(s);setTimeout(()=>s.remove(),1500)}
 function pop(h){$('pop').classList.remove('doa');$('pb').innerHTML=h;$('pop').hidden=0}
@@ -246,9 +326,9 @@ $('sel').innerHTML=NAMA.map((n,i)=>`<option value="${78+i}">${78+i}. ${n}</optio
 $('fa').oninput=()=>{$('fa').value=$('fa').value.replace(/\D/g,'').slice(0,2)};
 $('fa').onblur=()=>{const v=parseInt($('fa').value,10);$('fa').value=v>=1?String(v).padStart(2,'0'):''};
 $('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseInt($('fa').value,10);
- if(!n||!k||!(a>=1&&a<=99))return alert('Isi nama, pilih kelas, dan isi nomor absen (1-99) dulu ya 😊');
+ if(!n||!k||!(a>=1&&a<=99)){$('hmsg').textContent='Isi nama, pilih kelas, dan isi nomor absen (1-99) dulu ya 😊';(!n?$('fn'):!k?$('fk'):$('fa')).focus();return}$('hmsg').textContent='';
  const ab=String(a).padStart(2,'0');U={nama:n,kelas:k,absen:ab,id:k+'-'+ab};AC=new(window.AudioContext||window.webkitAudioContext)();
- let izin=true;try{await ambilMic();hidupMic(false)}catch(e){izin=false}
+ let izin=true;try{await ambilMic();hidupMic(false);if(SOLO){lepasMic();await new Promise(r=>setTimeout(r,500))}}catch(e){izin=false}
  $('who').textContent=`👤 ${n} · ${k} · Absen ${ab}`;$('home').hidden=1;$('app').hidden=0;setTimeout(()=>{$('hint').hidden=1},12000);
  await muatRiwayat();const t=tujuanAwal();$('sel').value=t.s;await load(t.s);
  if(t.a>A.length){t.s=t.s<114?t.s+1:78;t.a=1;$('sel').value=t.s;await load(t.s)}   // setelah ayat terakhir: surah berikutnya, atau kembali ke An-Naba'
@@ -262,7 +342,8 @@ async function load(n){halt();sub='';$('pl').hidden=1;sur=n;$('stage').textConte
  if(!d)for(const ed of['quran-tajweed','quran-uthmani']){try{d=(await(await fetch(`https://api.alquran.cloud/v1/surah/${n}/${ed}`)).json()).data;if(d&&ed=='quran-tajweed'&&d.ayahs.some(a=>parseAyah(a.text).some(x=>/[\d\[\]]/.test(x.p)))){d=null;tanpaWarna=true;continue}if(d){ed0=ed;break}}catch(e){}}
  if(!d){$('stage').textContent='Ayat belum bisa dimuat. Periksa internet lalu muat ulang.';return}
  if(ed0=='quran-tajweed'){try{localStorage.setItem('tk_s1_'+n,JSON.stringify({ed:ed0,ayahs:d.ayahs.map(a=>({number:a.number,numberInSurah:a.numberInSurah,text:a.text}))}))}catch(e){}}
- A=d.ayahs;build();zoom(0,1);if(tanpaWarna){tanpaWarna=false;$('bn').textContent='ℹ️ Teks polos dipakai agar ayat tetap sempurna.'}}
+ srcArab=(!ed0||ed0=='quran-tajweed')?'AlQuran.cloud (tajwid)':'AlQuran.cloud (teks polos)';latOn.clear();LT=[];srcLatin='';A=d.ayahs;build();zoom(0,1);sumber();muatLatin(n);if(tanpaWarna){tanpaWarna=false;$('bn').textContent='ℹ️ Teks polos dipakai agar ayat tetap sempurna.'}
+ try{if(!localStorage.getItem('tk_lh')){localStorage.setItem('tk_lh',1);flash('🔤 Ketuk tombol “Ab” di ujung ayat untuk melihat bacaan Latin')}}catch(e){}}
 
 const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
 // Membaca satu ayat bertajwid dari AlQuran.cloud. Hukum tajwid boleh melintasi spasi (dua kata): warnanya ikut berlanjut ke kata berikutnya.
@@ -282,21 +363,22 @@ function build(){F=[];E=[];
  A.forEach((a,ai)=>{let w=parseAyah(a.text.trim());
   if(ai==0&&sur!=1&&nm(w.slice(0,4).map(x=>x.p).join(' ')).startsWith('بسم'))w=w.slice(4);
   const s=F.length;w.forEach(x=>F.push({a:ai,h:x.h,p:x.p,n:x.n,r:x.r,k:x.k}));E[ai]=[s,F.length-1]});
- $('stage').innerHTML=A.map((a,ai)=>`<span class="ay" data-a="${ai}">${F.slice(E[ai][0],E[ai][1]+1).map((w,k)=>`<span class="w" data-i="${E[ai][0]+k}"><span class="x">${w.h}</span></span>`).join(' ')} <span class="no">﴿${AR(a.numberInSurah)}﴾</span></span>`).join(' ');
+ $('stage').innerHTML=A.map((a,ai)=>`<span class="ay" data-a="${ai}">${F.slice(E[ai][0],E[ai][1]+1).map((w,k)=>`<span class="w" data-i="${E[ai][0]+k}"><span class="x">${w.h}</span></span>`).join(' ')} <span class="no">﴿${AR(a.numberInSurah)}﴾</span><button class="lbtn" data-l="${ai}" aria-expanded="false" aria-label="Tampilkan Latin ayat ${a.numberInSurah}">Ab</button></span><div class="lt" dir="ltr" data-t="${ai}"></div>`).join(' ');
  SP=[...$('stage').querySelectorAll('.w')];AY=[...$('stage').querySelectorAll('.ay')];
- $('stage').scrollTop=0;resetRead();mark(0,false);misiUI()}
+ $('stage').scrollTop=0;resetRead();mark(0,false);misiUI();renderLatin()}
 
 function resetRead(){ST=[];HD=[];AD=[];done=[];ayErr=[];PM=0;ann=new Set();pend.forEach(clearTimeout);pend=new Map();S=P=0;peek=0;pkOn=false;fin=false;sesStar=0;paint()}
 const unit=i=>F[i]&&F[i].k?[i,i+1]:F[i-1]&&F[i-1].k?[i-1,i]:[i];
 function paint(){const cu=new Set(lis&&F.length?unit(Math.min(P,F.length-1)):[]);
  SP.forEach((s,i)=>{const o=ST[i]==1;
   s.className='w'+(o?' ok':'')+(ST[i]==2?' lw':'')+(ST[i]==3?' sl':'')+(AD[i]?' bl':'')+(cu.has(i)?' cur':'')+(mode=='h'&&!o&&ST[i]!=2&&ST[i]!=3&&!pkOn&&!fin?' hid':'')});
- $('app').classList.toggle('sim',!$('pl').hidden);$('st').textContent='⭐ '+bintang();$('mic').className=lis?'on':'';$('mic').textContent=lis?'⏹':'🎙'}
+ $('app').classList.toggle('sim',!$('pl').hidden);$('st').textContent='⭐ '+bintang();$('mic').className=lis?'on':'';$('mic').textContent=lis?'⏹':'🎙';$('mst').hidden=!lis||recOnly}
 function mark(i,sc=true){cur=i;$('app').classList.toggle('sim',!$('pl').hidden);AY.forEach((e,k)=>e.classList.toggle('now',k==i));
  $('ay').textContent=`Ayat ${A[i].numberInSurah}/${A.length}`;if(sc)AY[i].scrollIntoView({block:'center'})}
 function banner(i){if(Date.now()<flashUntil)return;const r=F[i]&&F[i].r;$('bn').textContent=r&&T[r]?`💡 ${T[r][0]}: ${T[r][1]}`:'💡 Baca pelan-pelan dan tartil, ya!'}
 
-$('stage').onclick=e=>{const y=e.target.closest('.ay');if(!y)return;const a=+y.dataset.a,s=e.target.closest('.w');
+$('stage').onclick=e=>{const lb=e.target.closest('.lbtn');if(lb){if(mode=='h')return;const i=+lb.dataset.l;latOn.has(i)?latOn.delete(i):latOn.add(i);renderLatin();return}
+ const y=e.target.closest('.ay');if(!y)return;const a=+y.dataset.a,s=e.target.closest('.w');
  if(s)banner(+s.dataset.i);
  if(sub=='s'){playAyah(a);return}
  if(!lis)mark(a,false);
@@ -327,25 +409,44 @@ $('lp').onclick=()=>{lm=(lm+1)%3;$('lp').textContent='🔂 Ulang: '+LM[lm];$('lp
 try{[['play',()=>aud.play()],['pause',()=>aud.pause()],['previoustrack',()=>$('pa').click()],['nexttrack',()=>$('pn').click()],['stop',()=>$('ps').click()],['seekbackward',()=>$('bk').click()],['seekforward',()=>$('fw').click()]].forEach(([a,f])=>navigator.mediaSession.setActionHandler(a,f))}catch(e){}
 
 /* ===== MEMBACA dan MENGHAFAL (pengenalan suara + koreksi langsung) ===== */
-async function startRead(){
- if(!SR)return pop('<p>Browser ini belum mendukung pengenalan suara. Gunakan Chrome ya.</p>');
+async function startRead(rekamSaja){
+ if(!SR&&!rekamSaja)return galatSuara('no-sr');
  halt();$('pl').hidden=1;if(AC&&AC.state=='suspended')AC.resume();
- try{stream=await ambilMic();hidupMic(true)}catch(e){return pop('<p>Izinkan mikrofon dulu ya (pengaturan situs di Chrome), lalu muat ulang halaman.</p>')}
- if(fin)mark(0);resetRead();S=P=PM=E[cur][0];sub='r';lis=true;acc='';last='';t0=Date.now();
- try{mr=new MediaRecorder(stream);chunks=[];mr.ondataavailable=e=>chunks.push(e.data);mr.start()}catch(e){mr=null}
- let lokalOK=false;try{lokalOK=(await SR.available({langs:['ar-SA'],processLocally:true}))=='available'}catch(e){}   // pengenalan di perangkat bila tersedia (tanpa internet)
- rec=new SR();rec.lang='ar-SA';rec.continuous=true;rec.interimResults=true;if(lokalOK)rec.processLocally=true;
- rec.onstart=()=>{recOn=true;galatNet=false};
- rec.onresult=e=>{if(!lis)return;let s='';for(const r of e.results)s+=r[0].transcript+' ';last=s;check(acc+' '+s,e.results[e.results.length-1].isFinal)};
- rec.onend=()=>{recOn=false;if(lis){acc+=' '+last;last='';setTimeout(tryStart,galatNet?800:0)}};
- rec.onerror=e=>{if(e.error=='not-allowed'||e.error=='service-not-allowed'){halt();paint();pop('<p>Mikrofon atau pengenalan suara belum diizinkan. Izinkan dulu ya, lalu coba lagi.</p>')}
-  else if(e.error=='audio-capture')pop('<p>Mikrofon sedang dipakai aplikasi lain. Tutup aplikasi itu dulu ya.</p>');
-  else if(e.error=='no-speech'&&P==S)sepi();
-  else if(e.error=='network'){galatNet=true;flash('📶 Sinyal kurang baik, aku tetap mendengarkan…')}};
+ const perluMic=!SOLO||!!rekamSaja;
+ if(perluMic){try{stream=await ambilMic();hidupMic(true)}catch(e){return pop('<p>Izinkan mikrofon dulu ya (pengaturan situs di Chrome), lalu muat ulang halaman.</p>')}}
+ if(fin)mark(0);resetRead();S=P=PM=E[cur][0];sub='r';lis=true;acc='';last='';t0=Date.now();recOnly=!!rekamSaja;
+ if(perluMic){try{mr=new MediaRecorder(stream);chunks=[];mr.ondataavailable=e=>chunks.push(e.data);mr.start()}catch(e){mr=null}}
+ if(rekamSaja){$('bn').textContent='🎙 Merekam… (tanpa koreksi otomatis). Tekan ⏹ bila selesai.';paint();return}
+ let lokalOK=false;if(!SOLO)try{lokalOK=(await SR.available({langs:['ar-SA'],processLocally:true}))=='available'}catch(e){}   // pengenalan di perangkat bila tersedia (tanpa internet)
+ rec=new SR();rec.lang='ar-SA';rec.continuous=!SOLO;gotAudio=false;rec.interimResults=true;if(lokalOK)rec.processLocally=true;
+ rec.onstart=()=>{recOn=true;galatNet=false;mst('🎙 Mikrofon menyala…')};rec.onaudiostart=()=>{gotAudio=true;mst('🎙 Mikrofon aktif, silakan membaca')};rec.onsoundstart=()=>mst('🔊 Suara terdengar');rec.onspeechstart=()=>mst('🗣 Bacaan sedang dikenali…');rec.onspeechend=()=>mst('🎙 Mikrofon aktif, silakan membaca');
+ rec.onresult=e=>{if(!lis)return;let s='',pv='';for(const r of e.results){const x=r[0].transcript;if(SOLO&&x.trim()==pv)continue;pv=x.trim();s+=x+' '}last=s;check(acc+' '+s,e.results[e.results.length-1].isFinal)};
+ rec.onend=()=>{recOn=false;if(lis){acc+=' '+last;last='';setTimeout(tryStart,galatNet?800:(SOLO?250:0))}};
+ rec.onerror=e=>{const c=e.error;
+  if(c=='not-allowed'||c=='service-not-allowed'||c=='language-not-supported'){halt();paint();galatSuara(c)}
+  else if(c=='audio-capture')galatSuara(c);
+  else if(c=='no-speech'&&P==S)sepi();
+  else if(c=='network'){galatNet=true;flash('📶 Sinyal kurang baik, aku tetap mendengarkan…')}};
  try{rec.start()}catch(e){}
- clearInterval(wd);wd=setInterval(()=>{if(lis&&!recOn)tryStart()},2500);                            // penjaga: pengenalan selalu menyala selama membaca
+ clearTimeout(audT);audT=setTimeout(()=>{if(lis&&!gotAudio)mst('⚠️ Mikrofon belum menerima suara. Tutup aplikasi lain yang memakai mikrofon, lalu coba lagi.')},4500);clearInterval(wd);wd=setInterval(()=>{if(lis&&!recOn)tryStart()},2500);                            // penjaga: pengenalan selalu menyala selama membaca
  banner(S);clearTimeout(sil);sil=setTimeout(()=>{if(lis&&P==S&&!acc.trim()&&!last.trim())sepi()},9000);$('bn').textContent='🎙 Silakan membaca… '+$('bn').textContent.replace('💡 ','');paint()}
+const mst=t=>{$('mst').textContent=t};
 function tryStart(){if(!lis||recOn)return;try{rec.start()}catch(x){setTimeout(tryStart,300)}}
+function galatSuara(c){const t={
+ 'not-allowed':['Izin mikrofon belum diberikan','Ketuk gambar <b>gembok</b> di kiri alamat Chrome, pilih <b>Izin</b>, lalu ubah <b>Mikrofon</b> menjadi <b>Izinkan</b>. Muat ulang halaman, lalu coba lagi.'],
+ 'service-not-allowed':['Layanan suara di HP belum aktif','Izin mikrofon sudah benar, tetapi HP ini belum menyediakan layanan pengenalan suara untuk Chrome. Coba: (1) perbarui aplikasi <b>Google</b> dan <b>Layanan Ucapan oleh Google</b> di Play Store, (2) izinkan <b>Mikrofon</b> untuk aplikasi Google di Pengaturan HP, (3) pastikan input suara bawaan HP adalah Google.'],
+ 'language-not-supported':['Bahasa Arab belum didukung','HP ini belum mendukung pengenalan suara bahasa Arab. Perbarui aplikasi Google lalu coba lagi.'],
+ 'audio-capture':['Mikrofon tidak terdeteksi','Mikrofon sedang dipakai aplikasi lain atau tidak terbaca. Tutup aplikasi lain yang memakai mikrofon, lalu coba lagi.'],
+ 'no-sr':['Pengenalan suara belum didukung',NOSR]}[c]||['Pengenalan suara bermasalah','Coba lagi sebentar lagi.'];
+ const bisa=c=='service-not-allowed'||c=='language-not-supported'||c=='no-sr';
+ pop(`<h3>${t[0]}</h3><p>${t[1]}</p><p><small>Kode: ${esc(c)}</small></p>${bisa?'<p><button class="big2" data-rekam>🎙 Rekam saja (tanpa koreksi)</button></p><p><small>Mode rekam saja menyimpan suara untuk didengar guru, tanpa koreksi otomatis.</small></p>':''}`)}
+function finishRekam(){lis=false;recOnly=false;clearTimeout(sil);clearInterval(wd);const m=mr;mr=null;stream=null;
+ const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-78],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
+ const kirim=()=>{if(SHEET_URL)fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(pay)}).catch(()=>{})};
+ if(m&&m.state!='inactive'){m.onstop=()=>{hidupMic(false);const b=new Blob(chunks,{type:m.mimeType});
+  if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
+ else{hidupMic(false);kirim()}
+ paint();flash('✅ Rekaman tersimpan. Barakallahu fiik!')}
 
 const PSN={2:['🟡 Maaf, ada yang terlewat 🌿','🟡 Maaf, ada kata terlewat. Pelan-pelan saja ya'],3:['🟠 Maaf, kata kurang tepat 🌿','🟠 Hampir tepat! Bismillah, coba lagi ya'],4:['🟣 Maaf, ada kata tambahan 🌿','🟣 Maaf, ada tambahan. Tenang, pelan-pelan ya']};
 const SND={2:()=>{tone(660,.18);setTimeout(()=>tone(520,.28),150)},3:()=>tone(300,.28,'triangle',.1),4:()=>{tone(740,.1);setTimeout(()=>tone(880,.14),110)}};
@@ -380,8 +481,8 @@ function award(final){for(let a=0;a<A.length;a++){if(done[a]||E[a][0]<S)continue
   if(ok){sesStar++;chime();star();flash('✨ Masyaallah, bagus! ⭐')}
   else{tone(520,.18);flash(pk?'👀 Ayat ini memakai Intip. Coba tanpa Intip untuk meraih ⭐':'🌿 Alhamdulillah, ayat selesai. Coba lagi untuk meraih ⭐')}}}}
 
-function halt(){lis=false;clearTimeout(sil);try{rec&&rec.stop()}catch(e){}try{mr&&mr.state!='inactive'&&mr.stop()}catch(e){}hidupMic(false);stream=null;mr=null;clearInterval(wd);aud.pause();$('menu').hidden=1}
-function finish(auto){if(!lis)return;lis=false;clearTimeout(sil);clearInterval(wd);try{rec.stop()}catch(e){}
+function halt(){lis=false;recOnly=false;clearTimeout(sil);try{rec&&rec.stop()}catch(e){}try{mr&&mr.state!='inactive'&&mr.stop()}catch(e){}hidupMic(false);stream=null;mr=null;clearInterval(wd);aud.pause();$('menu').hidden=1}
+function finish(auto){if(!lis)return;if(recOnly)return finishRekam();lis=false;clearTimeout(sil);clearInterval(wd);try{rec.stop()}catch(e){}
  if(auto){award(true);fin=true;misiUI()}
  const m=mr,sm=stream;mr=null;stream=null;
  const n=PM-S,benar=ST.reduce((c,x)=>c+(x==1?1:0),0),bad=errCount();paint();
@@ -404,7 +505,7 @@ $('mic').onclick=()=>{$('hint').hidden=1;if(lis)return finish(false);if(mode=='h
 $('m1').onclick=()=>{$('menu').hidden=1;startSim()};
 $('m2').onclick=()=>{$('menu').hidden=1;startRead()};
 $('t1').onclick=()=>tab('t');$('t2').onclick=()=>tab('h');
-function tab(m){halt();mode=m;sub='';$('pl').hidden=1;$('t1').className=m=='t'?'on':'';$('t2').className=m=='h'?'on':'';$('pk').hidden=m!='h';
+function tab(m){halt();mode=m;sub='';$('app').classList.toggle('hf',m=='h');$('pl').hidden=1;$('t1').className=m=='t'?'on':'';$('t2').className=m=='h'?'on':'';$('pk').hidden=m!='h';
  resetRead();if(A.length)mark(0);$('bn').textContent='💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.'}
 $('pkb').onclick=()=>{peek++;pkOn=true;paint();setTimeout(()=>{pkOn=false;paint()},2500)};
 function nav(d){if(lis||!A.length)return;const i=Math.max(0,Math.min(A.length-1,cur+d));sub=='s'?playAyah(i):mark(i)}
@@ -485,7 +586,8 @@ $('note').onclick=()=>{const k=[];
 function kataSec(){const k=(HS&&HS.kata)||[];return k.length?`<b>Kata yang sering salah (7 hari)</b><ul>${k.map(x=>`<li><span class="ar">${esc(x.kata)}</span> × ${x.n}</li>`).join('')}</ul>`:''}
 $('pb').onclick=e=>{const d=e.target.closest('[data-d]'),c=e.target.closest('[data-c]');
  if(d){$('pop').hidden=1;if(lis)finish(false);halt();resetRead();sub='s';$('pl').hidden=0;playAyah(+d.dataset.d)}
- if(c){$('pop').hidden=1;if(lis)finish(false);fin=false;mark(+c.dataset.c);startRead()}};
+ if(c){$('pop').hidden=1;if(lis)finish(false);fin=false;mark(+c.dataset.c);startRead()}
+ if(e.target.closest('[data-rekam]')){$('pop').hidden=1;startRead(true)}};
 function sepi(){if(lis)$('bn').textContent='🔈 Aku belum mendengar suaramu. Dekatkan HP ke mulutmu, ya!'}
 
 /* ===== ukuran huruf dan header ringkas ===== */
@@ -498,4 +600,38 @@ function zoom(d,diam){zi=Math.max(0,Math.min(ZS.length-1,zi+d));const set=()=>do
 try{const v=localStorage.getItem('tk_z2');if(v!==null&&+v>=0&&+v<ZS.length)zi=+v}catch(e){}
 zoom(0,1);$('zm1').onclick=()=>zoom(-1);$('zm2').onclick=()=>zoom(1);addEventListener('resize',()=>zoom(0,1));
 $('stage').onscroll=()=>{const s=$('stage').scrollTop,a=$('app');if(s>80)a.classList.add('mini');else if(s<10)a.classList.remove('mini')};
+
+/* ===== transliterasi Latin per ayat dan sumber teks ===== */
+function sumber(){const lt=latLoading?'memuat…':(srcLatin?srcLatin+(/Tanzil/.test(srcLatin)?' (ejaan Inggris)':''):'tidak tersedia');
+ $('bsrc').innerHTML=`📖 Teks Al-Qur'an: ${esc(srcArab)}<br>🔤 Transliterasi: ${esc(lt)} · untuk pembelajaran non-komersial`}
+function renderLatin(){if(!AY.length)return;
+ document.querySelectorAll('.lt').forEach(el=>{const i=+el.dataset.t,on=latOn.has(i);el.classList.toggle('on',on);
+  el.textContent=on?(LT[i]||(latLoading?'Memuat transliterasi…':'Transliterasi belum tersedia untuk ayat ini.')):'';
+  const b=AY[i]&&AY[i].querySelector('.lbtn');if(b){b.setAttribute('aria-expanded',on);b.setAttribute('aria-label',(on?'Sembunyikan':'Tampilkan')+' Latin ayat '+A[i].numberInSurah)}});
+ $('lg').classList.toggle('on',latOn.size>0)}
+$('lg').onclick=()=>{if(mode=='h'||!A.length)return;if(latOn.size<A.length)A.forEach((a,i)=>latOn.add(i));else latOn.clear();renderLatin()};
+// Teks Latin dipakai persis seperti sumbernya (tanda ā, ḥ, dan lainnya tidak diubah). Utama: EQuran.id; cadangan: AlQuran.cloud (Tanzil).
+async function muatLatin(n){latLoading=true;sumber();let L=[],s='';
+ try{const c=JSON.parse(localStorage.getItem('tk_l1_'+n)||'null');if(c&&c.t&&c.t.length){L=c.t;s=c.s}}catch(e){}
+ if(!s){
+  try{const j=await(await fetch(`https://equran.id/api/v2/surat/${n}`)).json(),ay=j&&j.data&&j.data.ayat;
+   if(ay&&ay.length){ay.forEach(a=>{L[(+a.nomorAyat)-1]=String(a.teksLatin||'')});s='EQuran.id'}}catch(e){}
+  if(!s){try{const j=await(await fetch(`https://api.alquran.cloud/v1/surah/${n}/en.transliteration`)).json(),ay=j&&j.data&&j.data.ayahs;
+   if(ay&&ay.length){L=[];ay.forEach((a,i)=>{let t=String(a.text||'');if(i==0&&n!=1)t=t.replace(/^\s*bismi\s+allahi\s+alrrahmani\s+alrraheemi\s*/i,'');L[i]=t});s='AlQuran.cloud (Tanzil)'}}catch(e){}}
+  if(s)try{localStorage.setItem('tk_l1_'+n,JSON.stringify({s,t:L}))}catch(e){}}
+ if(n!=sur)return;LT=L;srcLatin=s;latLoading=false;sumber();renderLatin()}
+
+/* ===== halaman awal: pas di layar, membesar bila papan ketik menutupi ===== */
+let vhMax=0,lastW=0;      // tinggi layar terbesar yang pernah terlihat (untuk mengenali papan ketik terbuka)
+function vv(){const v=window.visualViewport,t=v?v.height:innerHeight;if(innerWidth!==lastW){lastW=innerWidth;vhMax=t}else vhMax=Math.max(vhMax,t);
+ document.documentElement.style.setProperty('--vh',t+'px');fitHome()}
+function fitHome(){const hm=$('home');if(hm.hidden)return;hm.classList.remove('kb','s1','s2','s3','s4');
+ const hw=document.querySelector('.hw'),ov=()=>hw.scrollHeight>hw.clientHeight+1,ae=document.activeElement,fok=ae&&hm.contains(ae)&&/^(INPUT|SELECT)$/.test(ae.tagName);
+ let i=0;while(i<4&&ov())hm.classList.add(['s1','s2','s3','s4'][i++]);      // layar kurang tinggi: sembunyikan hiasan bertahap, tanpa gulir
+ const t=window.visualViewport?visualViewport.height:innerHeight;
+ if(fok&&i>0&&t<vhMax*.8){hm.classList.remove('s1','s2','s3','s4');hm.classList.add('kb')}}      // sedang mengisi dan ruang kurang: formulir diperbesar, hiasan disembunyikan
+if(window.visualViewport)visualViewport.addEventListener('resize',vv);addEventListener('resize',vv);
+['focusin','focusout'].forEach(ev=>$('home').addEventListener(ev,()=>setTimeout(fitHome,80)));
+function cekIsi(){const a=parseInt($('fa').value,10);$('go').classList.toggle('dis',!($('fn').value.trim()&&$('fk').value&&a>=1&&a<=99))}
+['fn','fk','fa'].forEach(i=>{$(i).addEventListener('input',cekIsi);$(i).addEventListener('change',cekIsi)});vv();cekIsi();
 </script></body></html>
