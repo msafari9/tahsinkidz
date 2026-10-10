@@ -221,6 +221,12 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 @media(max-height:700px){#bsrc{font-size:.62rem}#mst{padding:2px 10px;font-size:.72rem;margin-bottom:4px}.hd{line-height:1.4}.sal{margin-top:0}.hw{padding-top:4px}}
 @media(max-height:520px){#mst{display:none}}
 #home .big.dis{opacity:1;background:#cfd8d5;color:#6b807b;box-shadow:0 5px 0 #aebcb8}
+#srcnote{background:none;border:0;font-family:inherit;color:#5b706b;font-size:clamp(.56rem,1.55vh,.68rem);line-height:1.3;text-align:center;padding:1px 4px;flex:0 0 auto}#srcnote b{color:var(--m)}
+#bsrc{background:none;border:0;text-align:left;font-family:inherit;font-weight:800;color:var(--md);text-decoration:underline dotted;padding:2px 4px;cursor:pointer}
+.ay.now{background:#ffe9a3;box-shadow:0 0 0 3px #ffd95a}
+button.no{font:inherit;color:inherit;background:transparent;border:2px solid transparent;border-radius:14px;padding:2px 6px;min-height:38px;min-width:46px;cursor:pointer;vertical-align:middle;-webkit-tap-highlight-color:transparent}
+.ay.now button.no{background:#fff;border-color:var(--m)}
+#app.wlon #who::after{content:' · 🔆'}
 </style></head><body>
 
 <section id="home">
@@ -237,6 +243,7 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
    <label class="fld"><span class="lbl">Kelas</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select></span></label>
    <label class="fld"><span class="lbl">Nomor absen</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9.5 8.5l-1 7M15.5 8.5l-1 7M6.5 10.5h11M6 13.5h11"/></svg><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Nomor absen" aria-label="Nomor absen" autocomplete="off"></span></label>
   </div>
+  <button id="srcnote" type="button">📖 Teks Al-Qur'an: AlQuran.cloud · Transliterasi: EQuran.id <b>ⓘ</b></button>
  </div>
  <svg class="mosque" viewBox="0 0 400 80" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g fill="#0b6e5f" opacity=".17"><path d="M150 66c0-26 20-40 50-52 30 12 50 26 50 52z"/><path d="M198 14h4V4h-4z"/><path d="M40 66c0-14 10-22 24-28 14 6 24 14 24 28zM312 66c0-14 10-22 24-28 14 6 24 14 24 28z"/><path d="M96 66V26l7-16 7 16v40zM290 66V26l7-16 7 16v40z"/><path d="M0 66h400v14H0z"/></g><path d="M194 3a4 4 0 1 0 5 5 3.2 3.2 0 1 1-5-5z" fill="#f5b82e"/></svg>
  <div class="bot">
@@ -253,7 +260,7 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
  </header>
  <nav class="tabs"><button id="t1" class="on">🎧 Sima'an & Tilawah</button><button id="t2">🧠 Hafalan</button></nav>
  <div id="ms" hidden role="button" tabindex="0"></div>
- <div class="brow"><div class="bcol"><div id="bsrc"></div><div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div></div><button id="lg" aria-label="Tampilkan atau sembunyikan transliterasi Latin semua ayat"><b>Ab</b><small>Latin</small></button></div>
+ <div class="brow"><div class="bcol"><button id="bsrc" type="button">ⓘ Sumber teks &amp; transliterasi</button><div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div></div><button id="lg" aria-label="Tampilkan atau sembunyikan transliterasi Latin semua ayat"><b>Ab</b><small>Latin</small></button></div>
  <div id="mst" hidden role="status"></div>
  <div id="stage"></div>
  <div id="pk" hidden><button id="pkb">👀 Intip</button></div>
@@ -271,7 +278,7 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 <div id="pop" hidden><div><div id="pb"></div><p style="text-align:center"><button class="big" onclick="$('pop').hidden=1">Tutup</button></p></div></div>
 
 <script>
-const SHEET_URL=''; // tempel URL Web App Apps Script (…/exec)
+const SHEET_URL='https://script.google.com/macros/s/AKfycbxoWCWDZZ4wXK6C4RPoNbqfFGOTfM4DKyZ2fxMKqMEdXYz1GDV7mKuNHKL3zHLMYQR4HQ/exec'; // tempel URL Web App Apps Script (…/exec)
 const $=i=>document.getElementById(i);
 const NAMA="An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infithar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,Ath-Thariq,Al-A'la,Al-Ghasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Adh-Dhuha,Al-Insyirah,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takatsur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kautsar,Al-Kafirun,An-Nashr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
 const T={};`h|Hamzah Wasal|Tidak dibaca jika disambung|#8a9a97
@@ -307,8 +314,13 @@ let MSTR=null,recOn=false,wd,galatNet=false,PM=0;
 async function ambilMic(){if(MSTR&&MSTR.getTracks().every(t=>t.readyState=='live'))return MSTR;MSTR=await navigator.mediaDevices.getUserMedia({audio:true});return MSTR}
 const hidupMic=on=>{MSTR&&MSTR.getTracks().forEach(t=>{t.enabled=on})};
 const lepasMic=()=>{MSTR&&MSTR.getTracks().forEach(t=>t.stop());MSTR=null};
+/* izin mikrofon: diminta sekali, saat ikon 🎙 pertama kali ditekan (berlaku untuk mode membaca dan menghafal) */
+let micOK=false,izinBusy=false;
+async function izinMic(){if(micOK)return true;
+ try{const ps=await navigator.permissions.query({name:'microphone'});if(ps.state=='denied')return false;if(ps.state=='granted'){micOK=true;return true}}catch(e){}
+ try{await ambilMic();hidupMic(false);if(SOLO){lepasMic();await new Promise(r=>setTimeout(r,500))}micOK=true;return true}catch(e){return false}}
 const ANDROID=/Android/i.test(navigator.userAgent),SOLO=ANDROID;const UA=navigator.userAgent,INAPP=/FBAN|FBAV|Instagram|MicroMessenger|WhatsApp|; wv\)/i.test(UA),NOSR=INAPP?'Halaman ini terbuka di dalam aplikasi lain (misalnya WhatsApp atau Instagram). Ketuk menu <b>⋮</b> lalu pilih <b>Buka di Chrome</b>.':/Firefox|SamsungBrowser/i.test(UA)?'Browser ini belum mendukung pengenalan suara bahasa Arab. Buka halaman ini di <b>Google Chrome</b>.':'Browser ini belum mendukung pengenalan suara. Gunakan Google Chrome.';      // Android: pengenalan suara berjalan sendiri (mikrofon HP tidak bisa dipakai dua pihak)
-let gotAudio=false,audT,recOnly=false,LT=[],latOn=new Set(),srcArab='AlQuran.cloud (tajwid)',srcLatin='',latLoading=false;
+let izinPrompt=false,located=false,skipN=0,lastN=0,picked=false,LOG=[],WL=null,gotAudio=false,audT,recOnly=false,LT=[],latOn=new Set(),srcArab='AlQuran.cloud (tajwid)',srcLatin='',latLoading=false;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
 const aud=new Audio();
 const SRC=i=>`https://cdn.islamic.network/quran/audio/128/ar.alafasy/${A[i].number}.mp3`;
@@ -327,14 +339,13 @@ $('fa').oninput=()=>{$('fa').value=$('fa').value.replace(/\D/g,'').slice(0,2)};
 $('fa').onblur=()=>{const v=parseInt($('fa').value,10);$('fa').value=v>=1?String(v).padStart(2,'0'):''};
 $('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseInt($('fa').value,10);
  if(!n||!k||!(a>=1&&a<=99)){$('hmsg').textContent='Isi nama, pilih kelas, dan isi nomor absen (1-99) dulu ya 😊';(!n?$('fn'):!k?$('fk'):$('fa')).focus();return}$('hmsg').textContent='';
- const ab=String(a).padStart(2,'0');U={nama:n,kelas:k,absen:ab,id:k+'-'+ab};AC=new(window.AudioContext||window.webkitAudioContext)();
- let izin=true;try{await ambilMic();hidupMic(false);if(SOLO){lepasMic();await new Promise(r=>setTimeout(r,500))}}catch(e){izin=false}
+ const ab=String(a).padStart(2,'0');U={nama:n,kelas:k,absen:ab,id:k+'-'+ab};muatLog();kirimAntrean();wl(true);AC=new(window.AudioContext||window.webkitAudioContext)();
  $('who').textContent=`👤 ${n} · ${k} · Absen ${ab}`;$('home').hidden=1;$('app').hidden=0;setTimeout(()=>{$('hint').hidden=1},12000);
  await muatRiwayat();const t=tujuanAwal();$('sel').value=t.s;await load(t.s);
  if(t.a>A.length){t.s=t.s<114?t.s+1:78;t.a=1;$('sel').value=t.s;await load(t.s)}   // setelah ayat terakhir: surah berikutnya, atau kembali ke An-Naba'
  autoM=misi?null:{surah:t.s,awal:Math.max(1,t.a||1),akhir:Math.max(1,t.a||1)+4,auto:1};
  if(t.a)mark(Math.min(t.a,A.length)-1);misiUI();
- if(izin)popDoa();else pop('<p>Mikrofon belum diizinkan. Menyimak tetap bisa dipakai. Untuk membaca, izinkan mikrofon lewat pengaturan situs di Chrome (ikon gembok di alamat), lalu muat ulang halaman.</p>')};
+ popDoa()};
 $('sel').onchange=e=>load(+e.target.value);
 
 async function load(n){halt();sub='';$('pl').hidden=1;sur=n;$('stage').textContent='Memuat ayat…';let d=null,ed0='';
@@ -363,11 +374,11 @@ function build(){F=[];E=[];
  A.forEach((a,ai)=>{let w=parseAyah(a.text.trim());
   if(ai==0&&sur!=1&&nm(w.slice(0,4).map(x=>x.p).join(' ')).startsWith('بسم'))w=w.slice(4);
   const s=F.length;w.forEach(x=>F.push({a:ai,h:x.h,p:x.p,n:x.n,r:x.r,k:x.k}));E[ai]=[s,F.length-1]});
- $('stage').innerHTML=A.map((a,ai)=>`<span class="ay" data-a="${ai}">${F.slice(E[ai][0],E[ai][1]+1).map((w,k)=>`<span class="w" data-i="${E[ai][0]+k}"><span class="x">${w.h}</span></span>`).join(' ')} <span class="no">﴿${AR(a.numberInSurah)}﴾</span><button class="lbtn" data-l="${ai}" aria-expanded="false" aria-label="Tampilkan Latin ayat ${a.numberInSurah}">Ab</button></span><div class="lt" dir="ltr" data-t="${ai}"></div>`).join(' ');
+ $('stage').innerHTML=A.map((a,ai)=>`<span class="ay" data-a="${ai}">${F.slice(E[ai][0],E[ai][1]+1).map((w,k)=>`<span class="w" data-i="${E[ai][0]+k}"><span class="x">${w.h}</span></span>`).join(' ')} <button type="button" class="no" aria-label="Pilih ayat ${a.numberInSurah}">﴿${AR(a.numberInSurah)}﴾</button><button class="lbtn" data-l="${ai}" aria-expanded="false" aria-label="Tampilkan Latin ayat ${a.numberInSurah}">Ab</button></span><div class="lt" dir="ltr" data-t="${ai}"></div>`).join(' ');
  SP=[...$('stage').querySelectorAll('.w')];AY=[...$('stage').querySelectorAll('.ay')];
  $('stage').scrollTop=0;resetRead();mark(0,false);misiUI();renderLatin()}
 
-function resetRead(){ST=[];HD=[];AD=[];done=[];ayErr=[];PM=0;ann=new Set();pend.forEach(clearTimeout);pend=new Map();S=P=0;peek=0;pkOn=false;fin=false;sesStar=0;paint()}
+function resetRead(){located=false;skipN=0;lastN=0;ST=[];HD=[];AD=[];done=[];ayErr=[];PM=0;ann=new Set();pend.forEach(clearTimeout);pend=new Map();S=P=0;peek=0;pkOn=false;fin=false;sesStar=0;paint()}
 const unit=i=>F[i]&&F[i].k?[i,i+1]:F[i-1]&&F[i-1].k?[i-1,i]:[i];
 function paint(){const cu=new Set(lis&&F.length?unit(Math.min(P,F.length-1)):[]);
  SP.forEach((s,i)=>{const o=ST[i]==1;
@@ -378,10 +389,11 @@ function mark(i,sc=true){cur=i;$('app').classList.toggle('sim',!$('pl').hidden);
 function banner(i){if(Date.now()<flashUntil)return;const r=F[i]&&F[i].r;$('bn').textContent=r&&T[r]?`💡 ${T[r][0]}: ${T[r][1]}`:'💡 Baca pelan-pelan dan tartil, ya!'}
 
 $('stage').onclick=e=>{const lb=e.target.closest('.lbtn');if(lb){if(mode=='h')return;const i=+lb.dataset.l;latOn.has(i)?latOn.delete(i):latOn.add(i);renderLatin();return}
- const y=e.target.closest('.ay');if(!y)return;const a=+y.dataset.a,s=e.target.closest('.w');
+ const y=e.target.closest('.ay');if(!y)return;const a=+y.dataset.a,s=e.target.closest('.w'),nb=e.target.closest('.no');
  if(s)banner(+s.dataset.i);
  if(sub=='s'){playAyah(a);return}
- if(!lis)mark(a,false);
+ if(lis&&!recOnly&&(nb||!(s&&ST[+s.dataset.i]>1))){jumpTo(a);return}
+ if(!lis){picked=true;mark(a,false);if(nb)flash(`📍 Ayat ${A[a].numberInSurah} dipilih. Tekan 🎙 untuk membaca dari sini`)}
  if(s&&ST[+s.dataset.i]>1){const i=+s.dataset.i;pop(`<p>Terbaca: <b class="ar">${HD[i]||'(terlewat)'}</b></p><p>Seharusnya: <b class="ar">${F[i].p}</b></p><p>Bismillah, coba lagi ya, insya Allah bisa! 💪</p>`)}};
 
 /* ===== MENYIMAK (player) ===== */
@@ -414,12 +426,12 @@ async function startRead(rekamSaja){
  halt();$('pl').hidden=1;if(AC&&AC.state=='suspended')AC.resume();
  const perluMic=!SOLO||!!rekamSaja;
  if(perluMic){try{stream=await ambilMic();hidupMic(true)}catch(e){return pop('<p>Izinkan mikrofon dulu ya (pengaturan situs di Chrome), lalu muat ulang halaman.</p>')}}
- if(fin)mark(0);resetRead();S=P=PM=E[cur][0];sub='r';lis=true;acc='';last='';t0=Date.now();recOnly=!!rekamSaja;
+ if(fin&&!picked)mark(0);picked=false;resetRead();S=P=PM=E[cur][0];sub='r';lis=true;acc='';last='';t0=Date.now();recOnly=!!rekamSaja;
  if(perluMic){try{mr=new MediaRecorder(stream);chunks=[];mr.ondataavailable=e=>chunks.push(e.data);mr.start()}catch(e){mr=null}}
  if(rekamSaja){$('bn').textContent='🎙 Merekam… (tanpa koreksi otomatis). Tekan ⏹ bila selesai.';paint();return}
  let lokalOK=false;if(!SOLO)try{lokalOK=(await SR.available({langs:['ar-SA'],processLocally:true}))=='available'}catch(e){}   // pengenalan di perangkat bila tersedia (tanpa internet)
  rec=new SR();rec.lang='ar-SA';rec.continuous=!SOLO;gotAudio=false;rec.interimResults=true;if(lokalOK)rec.processLocally=true;
- rec.onstart=()=>{recOn=true;galatNet=false;mst('🎙 Mikrofon menyala…')};rec.onaudiostart=()=>{gotAudio=true;mst('🎙 Mikrofon aktif, silakan membaca')};rec.onsoundstart=()=>mst('🔊 Suara terdengar');rec.onspeechstart=()=>mst('🗣 Bacaan sedang dikenali…');rec.onspeechend=()=>mst('🎙 Mikrofon aktif, silakan membaca');
+ rec.onstart=()=>{recOn=true;galatNet=false;mst('🎙 Mikrofon menyala…')};rec.onaudiostart=()=>{gotAudio=true;mst('🎙 Mikrofon aktif, silakan membaca')};rec.onsoundstart=()=>mst('🔊 Suara masuk');rec.onspeechstart=()=>mst('🗣 Bacaan sedang dikenali…');rec.onspeechend=()=>mst('🎙 Mikrofon aktif, silakan membaca');
  rec.onresult=e=>{if(!lis)return;let s='',pv='';for(const r of e.results){const x=r[0].transcript;if(SOLO&&x.trim()==pv)continue;pv=x.trim();s+=x+' '}last=s;check(acc+' '+s,e.results[e.results.length-1].isFinal)};
  rec.onend=()=>{recOn=false;if(lis){acc+=' '+last;last='';setTimeout(tryStart,galatNet?800:(SOLO?250:0))}};
  rec.onerror=e=>{const c=e.error;
@@ -428,8 +440,36 @@ async function startRead(rekamSaja){
   else if(c=='no-speech'&&P==S)sepi();
   else if(c=='network'){galatNet=true;flash('📶 Sinyal kurang baik, aku tetap mendengarkan…')}};
  try{rec.start()}catch(e){}
- clearTimeout(audT);audT=setTimeout(()=>{if(lis&&!gotAudio)mst('⚠️ Mikrofon belum menerima suara. Tutup aplikasi lain yang memakai mikrofon, lalu coba lagi.')},4500);clearInterval(wd);wd=setInterval(()=>{if(lis&&!recOn)tryStart()},2500);                            // penjaga: pengenalan selalu menyala selama membaca
+ try{navigator.permissions.query({name:'microphone'}).then(st=>{if(!lis)return;if(st.state=='denied'){halt();paint();galatSuara('not-allowed')}else if(st.state=='prompt'){izinPrompt=true;mst('🎙 Pilih “Izinkan” pada kotak izin mikrofon…');st.onchange=()=>{izinPrompt=false}}}).catch(()=>{})}catch(e){}
+ clearTimeout(audT);audT=setTimeout(()=>{if(lis&&!gotAudio&&!izinPrompt)mst('⚠️ Mikrofon belum menerima suara. Tutup aplikasi lain yang memakai mikrofon, lalu coba lagi.')},4500);clearInterval(wd);wd=setInterval(()=>{if(lis&&!recOn)tryStart()},2500);                            // penjaga: pengenalan selalu menyala selama membaca
  banner(S);clearTimeout(sil);sil=setTimeout(()=>{if(lis&&P==S&&!acc.trim()&&!last.trim())sepi()},9000);$('bn').textContent='🎙 Silakan membaca… '+$('bn').textContent.replace('💡 ','');paint()}
+
+/* ===== layar tetap menyala, simpanan lokal, antrean kirim ===== */
+async function wl(on){let ok=false;try{if(on){if(navigator.wakeLock){if(!WL){WL=await navigator.wakeLock.request('screen');WL.addEventListener('release',()=>{WL=null})}ok=true}}else if(WL){await WL.release();WL=null}}catch(e){WL=null}
+ $('app').classList.toggle('wlon',ok);return ok}
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState=='hidden'){if(lis&&!recOnly)finish(false)}else if(!$('app').hidden)wl(true)});
+addEventListener('pagehide',()=>{if(lis&&!recOnly)finish(false)});
+const logKey=()=>'tk_log_'+U.id;
+function muatLog(){try{LOG=JSON.parse(localStorage.getItem(logKey())||'[]')}catch(e){LOG=[]}}
+function catat(x){LOG.push(x);try{localStorage.setItem(logKey(),JSON.stringify(LOG.slice(-3000)))}catch(e){}}
+const OUTK='tk_out',antrean=()=>{try{return JSON.parse(localStorage.getItem(OUTK)||'[]')}catch(e){return[]}},simpanAntrean=q=>{try{localStorage.setItem(OUTK,JSON.stringify(q.slice(-60)))}catch(e){}};
+function kirimAman(pay){if(!SHEET_URL)return;const au=pay.audio;
+ fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(pay),keepalive:!au}).catch(()=>{pay.audio=null;simpanAntrean(antrean().concat([pay]))})}
+let flushing=false;
+async function kirimAntrean(){if(!SHEET_URL||flushing||!navigator.onLine)return;flushing=true;const q=antrean();
+ while(q.length){try{await fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(q[0]),keepalive:true});q.shift();simpanAntrean(q)}catch(e){break}}flushing=false}
+addEventListener('online',kirimAntrean);
+/* ===== pilih ayat saat membaca ===== */
+function jumpTo(a){if(!lis||recOnly)return;S=P=PM=E[a][0];ST=ST.slice(0,S);HD=HD.slice(0,S);AD=AD.slice(0,S);
+ for(let k=a;k<A.length;k++){done[k]=0;delete ayErr[k]}ann=new Set();pend.forEach(clearTimeout);pend=new Map();skipN=lastN;located=true;
+ mark(a);flash(`🎯 Mulai dari ayat ${A[a].numberInSurah}`);paint()}
+/* cari awal bacaan di seluruh surah (murid boleh mulai dari ayat mana pun) */
+function locate(tk){if(tk.length<2)return -1;let best=-1,bs=0;const n=F.length;
+ for(let j=0;j<n-1;j++){const a=sim(tk[0],F[j].n),b=sim(tk[1],F[j+1].n);
+  if(a>=.7&&b>=.65){const sc=a+b+(tk.length>2&&j+2<n?sim(tk[2],F[j+2].n):0)-Math.abs(j-S)/(n*4);if(sc>bs){bs=sc;best=j}}}
+ return best}
+function infoSumber(){const lt=latLoading?'memuat…':(srcLatin?srcLatin+(/Tanzil/.test(srcLatin)?' (ejaan Inggris)':''):'EQuran.id');
+ pop(`<h3>📖 Sumber materi</h3><p><b>Teks Al-Qur'an &amp; tajwid:</b> ${esc(srcArab||'AlQuran.cloud (tajwid)')}</p><p><b>Transliterasi Latin:</b> ${esc(lt)}</p><p><small>Dipakai untuk pembelajaran non-komersial. Tanda seperti ā dan ḥ ditampilkan persis seperti sumbernya.</small></p>`)}
 const mst=t=>{$('mst').textContent=t};
 function tryStart(){if(!lis||recOn)return;try{rec.start()}catch(x){setTimeout(tryStart,300)}}
 function galatSuara(c){const t={
@@ -442,7 +482,7 @@ function galatSuara(c){const t={
  pop(`<h3>${t[0]}</h3><p>${t[1]}</p><p><small>Kode: ${esc(c)}</small></p>${bisa?'<p><button class="big2" data-rekam>🎙 Rekam saja (tanpa koreksi)</button></p><p><small>Mode rekam saja menyimpan suara untuk didengar guru, tanpa koreksi otomatis.</small></p>':''}`)}
 function finishRekam(){lis=false;recOnly=false;clearTimeout(sil);clearInterval(wd);const m=mr;mr=null;stream=null;
  const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-78],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
- const kirim=()=>{if(SHEET_URL)fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(pay)}).catch(()=>{})};
+ const kirim=()=>{kirimAman(pay)};
  if(m&&m.state!='inactive'){m.onstop=()=>{hidupMic(false);const b=new Blob(chunks,{type:m.mimeType});
   if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
  else{hidupMic(false);kirim()}
@@ -454,9 +494,13 @@ function flash(m){$('bn').textContent=m;flashUntil=Date.now()+2900;clearTimeout(
 function beritahu(t){SND[t]();try{navigator.vibrate&&navigator.vibrate(150)}catch(e){}flash(PSN[t][flip++%2])}   // satu getaran pendek untuk semua jenis
 function cekGalat(){const it=[];ST.forEach((x,i)=>{if(x==2||x==3)it.push([x,i])});AD.forEach((x,i)=>{if(x)it.push([4,i])});
  it.forEach(([t,i])=>{const k=t+':'+i;if(ann.has(k)||pend.has(k))return;
-  pend.set(k,setTimeout(()=>{pend.delete(k);if(lis&&(t==4?AD[i]:ST[i]==t)){ann.add(k);beritahu(t)}},250))})}
+  pend.set(k,setTimeout(()=>{pend.delete(k);if(lis&&(t==4?AD[i]:ST[i]==t)){ann.add(k);beritahu(t)}},150))})}
 function errCount(){let c=0;ST.forEach(x=>{if(x>1)c++});AD.forEach(x=>{if(x)c+=x.length});return c}
-function check(txt,final){const tk=nm(txt).split(/\s+/).filter(Boolean),n=F.length,st=[],hd=[],ad=[];let q=S,mx=S;
+function check(txt,final){let tk=nm(txt).split(/\s+/).filter(Boolean);lastN=tk.length;tk=tk.slice(skipN);const n=F.length,st=[],hd=[],ad=[];
+ if(!located){if(!tk.length)return;if(sim(tk[0],'بسم')>=.8&&tk.length<4&&!final)return;if(tk.length>=4&&sim(tk[0],'بسم')>=.8&&sim(tk[1],'الله')>=.8)tk=tk.slice(4);
+  if(!tk.length)return;if(sim(tk[0],F[S].n)>=.6)located=true;else if(tk.length>=2||final){const j=locate(tk);located=true;if(j>=0&&j!=S){S=P=PM=j;mark(F[j].a)}}else return}
+ else if(tk.length>=4&&sim(tk[0],'بسم')>=.8&&sim(tk[1],'الله')>=.8&&sim(tk[2],'الرحمن')>=.7)tk=tk.slice(4);
+ let q=S,mx=S,jj;const hop=k=>{if(k+2>=tk.length)return -1;for(let j=S;j+2<n;j++){if(j>=q-12&&j<=q+2)continue;if(sim(tk[k],F[j].n)>=.8&&sim(tk[k+1],F[j+1].n)>=.8&&sim(tk[k+2],F[j+2].n)>=.8)return j}return -1};
  // mengulang dari kata sebelumnya (setelah waqf): cocokkan ke kata dalam 12 kata terakhir, dengan kata berikutnya yang menyambung
  const ulang=k=>{const t=tk[k];for(let j=q-1;j>=Math.max(S,q-12);j--){
   if(k+1<tk.length?(sim(t,F[j].n)>=.75&&sim(tk[k+1],F[j+1].n)>=.6):(q-1-j<=3&&sim(t,F[j].n)>=.85))return j}return -1};
@@ -467,6 +511,7 @@ function check(txt,final){const tk=nm(txt).split(/\s+/).filter(Boolean),n=F.leng
   else if(q+1<n&&sim(t,F[q+1].n)>=.7){st[q]=2;st[q+1]=1;q+=2}                    // kata terlewat
   else{const j=ulang(k);
    if(j>=0){st[j]=1;delete hd[j];q=j+1}                                          // mengulang dari kata sebelumnya
+   else if((jj=hop(k))>=0){q=jj;k--}                                           // pindah ke ayat lain di surah ini
    else if(!lt){const x=Math.max(q-1,S);
     if(k+1<tk.length&&sim(tk[k+1],F[q].n)>=.6)(ad[x]=ad[x]||[]).push(t)          // kata tertambah
     else{st[q]=3;hd[q]=t;q++}}}                                                  // kata tertukar/kurang tepat
@@ -475,9 +520,9 @@ function check(txt,final){const tk=nm(txt).split(/\s+/).filter(Boolean),n=F.leng
  award(final);paint();misiUI();banner(Math.min(P,n-1));if(F[Math.min(P,n-1)].a!=cur)mark(F[Math.min(P,n-1)].a);
  if(PM>=n)finish(true)}
 function award(final){for(let a=0;a<A.length;a++){if(done[a]||E[a][0]<S)continue;const e=E[a][1];
- if(PM>e+1||(final&&PM>e)){done[a]=1;let c=0;for(let i=E[a][0];i<=e;i++){if(ST[i]>1)c++;if(AD[i])c+=AD[i].length}
+ if(PM>e+1||(final&&PM>e)){const L=e-E[a][0]+1;let cv=0;for(let i=E[a][0];i<=e;i++)if(ST[i])cv++;if(cv<L*.6)continue;done[a]=1;let c=0;for(let i=E[a][0];i<=e;i++){if(ST[i]>1)c++;if(AD[i])c+=AD[i].length}
   const pk=mode=='h'&&peek>0;peek=0;const ok=c==0&&!pk;ayErr[a]=c;
-  AL.push({surah:sur,ayat:A[a].numberInSurah,mode:mode=='h'?'Hafalan':'Tilawah',salah:c,intip:pk?1:0});
+  AL.push({surah:sur,ayat:A[a].numberInSurah,mode:mode=='h'?'Hafalan':'Tilawah',salah:c,intip:pk?1:0});catat({d:hariIni(),surah:sur,ayat:A[a].numberInSurah,salah:c,intip:pk?1:0});
   if(ok){sesStar++;chime();star();flash('✨ Masyaallah, bagus! ⭐')}
   else{tone(520,.18);flash(pk?'👀 Ayat ini memakai Intip. Coba tanpa Intip untuk meraih ⭐':'🌿 Alhamdulillah, ayat selesai. Coba lagi untuk meraih ⭐')}}}}
 
@@ -494,14 +539,16 @@ function finish(auto){if(!lis)return;if(recOnly)return finishRekam();lis=false;c
  const a1=ay(S),a2=ay(Math.min(PM,F.length)-1);
  const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-78],
   ayat:a1==a2?a1:a1+'-'+a2,kelancaran_persen:Math.round(100*benar/n),jumlah_salah:bad,bintang:sesStar,durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:kes,ayat_detail:AL.slice(alIdx),audio:null};sentTotal+=AL.length-alIdx;alIdx=AL.length;
- const kirim=()=>{if(SHEET_URL)fetch(SHEET_URL,{method:'POST',mode:'no-cors',body:JSON.stringify(pay)}).catch(()=>{});setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)};
+ const kirim=()=>{kirimAman(pay);setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)};
  if(m&&m.state!='inactive'){m.onstop=()=>{lepas();const b=new Blob(chunks,{type:m.mimeType});
   if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
  else{lepas();kirim()}
  if(auto)pop(`<h3>🎉 Alhamdulillah, selesai!</h3><p>Kamu mendapat <b>⭐ ${sesStar}</b> bintang. Kelancaran bacaan ${Math.round(100*benar/n)}%.</p><p>Tekan 📝 Catatan untuk melihat catatan bacaanmu.</p>`)}
 
 /* ===== kontrol umum ===== */
-$('mic').onclick=()=>{$('hint').hidden=1;if(lis)return finish(false);if(mode=='h')return startRead();$('menu').hidden=!$('menu').hidden};
+$('mic').onclick=async()=>{$('hint').hidden=1;if(lis)return finish(false);
+ if(!micOK){if(izinBusy)return;izinBusy=true;const ok=await izinMic();izinBusy=false;if(!ok)return galatSuara('not-allowed')}
+ if(mode=='h')return startRead();$('menu').hidden=!$('menu').hidden};
 $('m1').onclick=()=>{$('menu').hidden=1;startSim()};
 $('m2').onclick=()=>{$('menu').hidden=1;startRead()};
 $('t1').onclick=()=>tab('t');$('t2').onclick=()=>tab('h');
@@ -520,8 +567,9 @@ async function muatRiwayat(){if(!SHEET_URL||!U)return;
   if(!inited){inited=true;srvRows=d.baris;sentTotal=0;baseM=d.bintang_membaca;baseH=d.bintang_menghafal}
   else if(d.baris>=srvRows+sentTotal){AL.splice(0,alIdx);alIdx=0;sentTotal=0;srvRows=d.baris;baseM=d.bintang_membaca;baseH=d.bintang_menghafal;tries=0}
   else if(tries++<4)setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)}catch(e){}}
-function tujuanAwal(){const r=HS&&HS.terakhir;
+function tujuanAwal(){const r=HS&&HS.terakhir,l=LOG.length?LOG[LOG.length-1]:null;
  if(misi)return{s:misi.surah,a:misi.awal};
+ if(l)return{s:l.surah,a:(+l.ayat||0)+1};
  if(r&&r.surah>=78)return{s:r.surah,a:(+r.ayat||0)+1};
  return{s:78,a:0}}
 const mm=()=>misi||autoM;
@@ -543,11 +591,14 @@ const MOT={
  surah:['Alhamdulillah, kamu sudah menyelesaikan {n} surah. Barakallahu fiik! 🌟']};
 function statistik(){const H=HS||{},key=r=>r.surah+':'+r.ayat,hari=new Set((H.hari_ini||[]).map(key)),mg=new Set(H.kunci_minggu||[]),bl=new Set(H.kunci_bulan||[]),all=new Set(H.semua||[]);
  AL.forEach(r=>{const k=key(r);hari.add(k);mg.add(k);bl.add(k);all.add(k)});
+ const hi=hariIni(),mn=new Date(hi+'T00:00:00');mn.setDate(mn.getDate()-(mn.getDay()+6)%7);
+ LOG.forEach(r=>{const k=key(r);all.add(k);if(r.d==hi)hari.add(k);if(new Date(r.d+'T00:00:00')>=mn)mg.add(k);if(r.d.slice(0,7)==hi.slice(0,7))bl.add(k)});
+ const ds=new Set(LOG.map(r=>r.d)),tg=i=>new Date(Date.now()-i*864e5).toLocaleDateString('sv-SE',{timeZone:'Asia/Jakarta'});let ls=0;for(let i=ds.has(hi)?0:1;ls<400;i++){if(ds.has(tg(i)))ls++;else break}
  const per={};all.forEach(k=>{const s=+k.split(':')[0];per[s]=(per[s]||0)+1});
  let sel=0;Object.keys(per).forEach(s=>{if(JML[s-78]&&per[s]>=JML[s-78])sel++});
  const bm=bM(),bh=bH(),pend=AL.length>0;
- const st=H.membaca_hari_ini?(H.streak_aktif||0):(H.streak_kemarin||0)+(pend?1:0);
- const t7=(H.tujuh_hari||[]).map(x=>({tgl:x.tgl,n:x.n}));if(t7.length)t7[t7.length-1].n=Math.max(t7[t7.length-1].n,hari.size);
+ const st=Math.max(H.membaca_hari_ini?(H.streak_aktif||0):(H.streak_kemarin||0)+(pend?1:0),ls);
+ const sv={};(H.tujuh_hari||[]).forEach(x=>sv[x.tgl]=x.n);const t7=[6,5,4,3,2,1,0].map(i=>{const d=tg(i);return{tgl:d,n:Math.max(sv[d]||0,new Set(LOG.filter(r=>r.d==d).map(key)).size)}});t7[6].n=Math.max(t7[6].n,hari.size);
  const kl=H.kelas?{nama:H.kelas.nama,x:H.kelas.bintang_minggu+AL.filter(x=>x.salah==0&&!x.intip).length,y:H.kelas.target}:null;
  const salahHariIni=[...(H.hari_ini||[]),...AL].filter(r=>r.salah>0).length;
  return{bm,bh,tot:bm+bh,hari:hari.size,minggu:mg.size,bulan:bl.size,dibaca:Object.keys(per).length,sel,st,best:Math.max(H.streak_terbaik||0,st),t7,kl,salahHariIni,total:hari.size}}
@@ -560,6 +611,7 @@ function motiv(s){const pilih=a=>a[Math.floor(Date.now()/864e5)%a.length],isi=t=
 $('cat').onclick=()=>{const s=statistik(),nh=['Ahd','Sen','Sel','Rab','Kam','Jum','Sab'],mx=Math.max(1,...s.t7.map(x=>x.n));
  pop(`<h3>📚 Riwayatku</h3>
  <p class="ket">1 ⭐ = 1 ayat dibaca dengan baik dan benar</p>
+ ${SHEET_URL?'':'<p class="ket">ℹ️ Sheet belum terhubung: catatan tersimpan di HP ini saja.</p>'}
  <div class="rw"><div class="kt">⭐ Bintang Membaca<b>${s.bm}</b></div><div class="kt">⭐ Bintang Menghafal<b>${s.bh}</b></div></div>
  <p>📖 <b>Ayat dibaca</b><br>Hari ini <b>${s.hari}</b> · Minggu ini <b>${s.minggu}</b> · Bulan ini <b>${s.bulan}</b></p>
  <div class="bar" aria-label="Ayat dibaca 7 hari terakhir">${s.t7.map(x=>`<div><small>${x.n}</small><i style="height:${Math.round(x.n/mx*46)+2}px"></i>${nh[new Date(x.tgl+'T00:00:00').getDay()]}</div>`).join('')}</div>
@@ -578,9 +630,9 @@ function kartu(i,judul,l1,l2){const a=F[i].a,r=F[i].r&&T[F[i].r],ln=l=>l?`<div c
  return`<div class="sheet"><span class="bd">${sur}:${A[a].numberInSurah}</span><b>${judul}</b>${ln(l1)}${ln(l2)}${r?`<small>Hukum tajwid: ${r[0]}. ${r[1]}</small>`:''}
  <div class="ac"><button data-d="${a}">🔊 Dengarkan yang benar</button><button data-c="${a}">🎙 Coba lagi ayat ini</button></div></div>`}
 $('note').onclick=()=>{const k=[];
- ST.forEach((x,i)=>{if(x==3)k.push([i,kartu(i,'Kata kurang tepat',['Seharusnya',frasa(i,'benar')],['Terdengar',frasa(i,'ganti',HD[i])])]);
+ ST.forEach((x,i)=>{if(x==3)k.push([i,kartu(i,'Kata kurang tepat',['Seharusnya',frasa(i,'benar')],['Terbaca',frasa(i,'ganti',HD[i])])]);
   else if(x==2)k.push([i,kartu(i,'Ada yang terlewat',['Seharusnya',frasa(i,'salah')])])});
- AD.forEach((x,i)=>{if(x)k.push([i,kartu(i,'Ada kata tambahan',['Seharusnya',frasa(i,'biasa')],['Terdengar',frasa(i,'tambah',x.join(' '))])])});
+ AD.forEach((x,i)=>{if(x)k.push([i,kartu(i,'Ada kata tambahan',['Seharusnya',frasa(i,'biasa')],['Terbaca',frasa(i,'tambah',x.join(' '))])])});
  k.sort((a,b)=>a[0]-b[0]);
  pop(`<h3>📝 Catatan Bacaan</h3>${k.length?'<p class="lg">🟡 terlewat · 🟠 kurang tepat · 🟣 tambahan</p>'+k.map(x=>x[1]).join('')+'<p>Tidak apa-apa, belajar itu butuh proses. Bismillah, coba lagi ya, insya Allah bisa! 💪</p>':PM>S?'<p>Hebat! Bacaanmu lancar sekali 🌟</p>':'<p>Belum ada catatan. Ayo mulai membaca dengan tombol 🎙!</p>'}${kataSec()}`)};
 function kataSec(){const k=(HS&&HS.kata)||[];return k.length?`<b>Kata yang sering salah (7 hari)</b><ul>${k.map(x=>`<li><span class="ar">${esc(x.kata)}</span> × ${x.n}</li>`).join('')}</ul>`:''}
@@ -602,8 +654,8 @@ zoom(0,1);$('zm1').onclick=()=>zoom(-1);$('zm2').onclick=()=>zoom(1);addEventLis
 $('stage').onscroll=()=>{const s=$('stage').scrollTop,a=$('app');if(s>80)a.classList.add('mini');else if(s<10)a.classList.remove('mini')};
 
 /* ===== transliterasi Latin per ayat dan sumber teks ===== */
-function sumber(){const lt=latLoading?'memuat…':(srcLatin?srcLatin+(/Tanzil/.test(srcLatin)?' (ejaan Inggris)':''):'tidak tersedia');
- $('bsrc').innerHTML=`📖 Teks Al-Qur'an: ${esc(srcArab)}<br>🔤 Transliterasi: ${esc(lt)} · untuk pembelajaran non-komersial`}
+function sumber(){}
+$('bsrc').onclick=infoSumber;$('srcnote').onclick=infoSumber;
 function renderLatin(){if(!AY.length)return;
  document.querySelectorAll('.lt').forEach(el=>{const i=+el.dataset.t,on=latOn.has(i);el.classList.toggle('on',on);
   el.textContent=on?(LT[i]||(latLoading?'Memuat transliterasi…':'Transliterasi belum tersedia untuk ayat ini.')):'';
