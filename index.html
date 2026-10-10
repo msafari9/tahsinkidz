@@ -271,7 +271,7 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 <div id="pop" hidden><div><div id="pb"></div><p style="text-align:center"><button class="big" onclick="$('pop').hidden=1">Tutup</button></p></div></div>
 
 <script>
-const SHEET_URL='https://script.google.com/macros/s/AKfycbxoWCWDZZ4wXK6C4RPoNbqfFGOTfM4DKyZ2fxMKqMEdXYz1GDV7mKuNHKL3zHLMYQR4HQ/exec'; // tempel URL Web App Apps Script (…/exec)
+const SHEET_URL=''; // tempel URL Web App Apps Script (…/exec)
 const $=i=>document.getElementById(i);
 const NAMA="An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infithar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,Ath-Thariq,Al-A'la,Al-Ghasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Adh-Dhuha,Al-Insyirah,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takatsur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kautsar,Al-Kafirun,An-Nashr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
 const T={};`h|Hamzah Wasal|Tidak dibaca jika disambung|#8a9a97
@@ -382,7 +382,7 @@ $('stage').onclick=e=>{const lb=e.target.closest('.lbtn');if(lb){if(mode=='h')re
  if(s)banner(+s.dataset.i);
  if(sub=='s'){playAyah(a);return}
  if(!lis)mark(a,false);
- if(s&&ST[+s.dataset.i]>1){const i=+s.dataset.i;pop(`<p>Terdengar: <b class="ar">${HD[i]||'(terlewat)'}</b></p><p>Seharusnya: <b class="ar">${F[i].p}</b></p><p>Bismillah, coba lagi ya, insya Allah bisa! 💪</p>`)}};
+ if(s&&ST[+s.dataset.i]>1){const i=+s.dataset.i;pop(`<p>Terbaca: <b class="ar">${HD[i]||'(terlewat)'}</b></p><p>Seharusnya: <b class="ar">${F[i].p}</b></p><p>Bismillah, coba lagi ya, insya Allah bisa! 💪</p>`)}};
 
 /* ===== MENYIMAK (player) ===== */
 let rate=1,lm=0;const LM=['Mati','Ayat','Surah'];
