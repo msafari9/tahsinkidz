@@ -227,6 +227,7 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 button.no{font:inherit;color:inherit;background:transparent;border:2px solid transparent;border-radius:14px;padding:2px 6px;min-height:38px;min-width:46px;cursor:pointer;vertical-align:middle;-webkit-tap-highlight-color:transparent}
 .ay.now button.no{background:#fff;border-color:var(--m)}
 #app.wlon #who::after{content:' · 🔆'}
+#syn{font-size:.8rem;margin-left:4px;font-weight:700}
 </style></head><body>
 
 <section id="home">
@@ -256,7 +257,7 @@ button.no{font:inherit;color:inherit;background:transparent;border:2px solid tra
 <main id="app" hidden>
  <header>
   <div class="r"><b>❇️ TahsinKidz.ai</b><span id="who"></span></div>
-  <div class="r"><select id="sel" aria-label="Pilih surah"></select><span><button id="pv" aria-label="Ayat sebelumnya">‹</button> <span id="ay"></span> <button id="nx" aria-label="Ayat berikutnya">›</button></span><b id="st">⭐ 0</b></div>
+  <div class="r"><select id="sel" aria-label="Pilih surah"></select><span><button id="pv" aria-label="Ayat sebelumnya">‹</button> <span id="ay"></span> <button id="nx" aria-label="Ayat berikutnya">›</button></span><b id="st">⭐ 0</b><span id="syn" aria-live="polite"></span></div>
  </header>
  <nav class="tabs"><button id="t1" class="on">🎧 Sima'an & Tilawah</button><button id="t2">🧠 Hafalan</button></nav>
  <div id="ms" hidden role="button" tabindex="0"></div>
@@ -305,9 +306,9 @@ function sim(a,b){if(a==b)return 1;const m=a.length,n=b.length;if(!m||!n)return 
 
 // state: A=ayat, F=semua kata (berurutan antar-ayat), E=[indeks kata pertama, terakhir] tiap ayat
 let U,sur=78,A=[],F=[],E=[],SP=[],AY=[],mode='t',sub='',lis=false,peek=0,pkOn=false,fin=false,cur=0,S=0,P=0,ST=[],HD=[],AD=[],done=[],sesStar=0,AC;
-let rec,mr,chunks=[],stream,acc='',last='',t0=0,sil,baseM=0,baseH=0,AL=[],alIdx=0,srvRows=0,sentTotal=0,tries=0,inited=false,HS=null,misi=null,autoM=null,ayErr=[];
+let rec,mr,chunks=[],stream,acc='',last='',t0=0,sil,baseM=0,baseH=0,conf=new Set(),synFail=false,seq=0,KS=Date.now().toString(36)+Math.random().toString(36).slice(2,6),AL=[],alIdx=0,srvRows=0,sentTotal=0,tries=0,inited=false,HS=null,misi=null,autoM=null,ayErr=[];
 const JML=[40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];   // jumlah ayat surah 78-114
-const bM=()=>baseM+AL.filter(x=>x.mode=='Tilawah'&&x.salah==0).length,bH=()=>baseH+AL.filter(x=>x.mode=='Hafalan'&&x.salah==0&&!x.intip).length;
+const pendAL=()=>AL.filter(x=>!conf.has(x.kode)),bM=()=>baseM+pendAL().filter(x=>x.mode=='Tilawah'&&x.salah==0&&!x.intip).length,bH=()=>baseH+pendAL().filter(x=>x.mode=='Hafalan'&&x.salah==0&&!x.intip).length;
 const bintang=()=>bM()+bH();
 let ann=new Set(),pend=new Map(),flashUntil=0,flashT,flip=0,tanpaWarna=false;
 let MSTR=null,recOn=false,wd,galatNet=false,PM=0;
@@ -383,7 +384,7 @@ const unit=i=>F[i]&&F[i].k?[i,i+1]:F[i-1]&&F[i-1].k?[i-1,i]:[i];
 function paint(){const cu=new Set(lis&&F.length?unit(Math.min(P,F.length-1)):[]);
  SP.forEach((s,i)=>{const o=ST[i]==1;
   s.className='w'+(o?' ok':'')+(ST[i]==2?' lw':'')+(ST[i]==3?' sl':'')+(AD[i]?' bl':'')+(cu.has(i)?' cur':'')+(mode=='h'&&!o&&ST[i]!=2&&ST[i]!=3&&!pkOn&&!fin?' hid':'')});
- $('app').classList.toggle('sim',!$('pl').hidden);$('st').textContent='⭐ '+bintang();$('mic').className=lis?'on':'';$('mic').textContent=lis?'⏹':'🎙';$('mst').hidden=!lis||recOnly}
+ $('app').classList.toggle('sim',!$('pl').hidden);$('st').textContent='⭐ '+bintang();synUI();$('mic').className=lis?'on':'';$('mic').textContent=lis?'⏹':'🎙';$('mst').hidden=!lis||recOnly}
 function mark(i,sc=true){cur=i;$('app').classList.toggle('sim',!$('pl').hidden);AY.forEach((e,k)=>e.classList.toggle('now',k==i));
  $('ay').textContent=`Ayat ${A[i].numberInSurah}/${A.length}`;if(sc)AY[i].scrollIntoView({block:'center'})}
 function banner(i){if(Date.now()<flashUntil)return;const r=F[i]&&F[i].r;$('bn').textContent=r&&T[r]?`💡 ${T[r][0]}: ${T[r][1]}`:'💡 Baca pelan-pelan dan tartil, ya!'}
@@ -481,7 +482,7 @@ function galatSuara(c){const t={
  const bisa=c=='service-not-allowed'||c=='language-not-supported'||c=='no-sr';
  pop(`<h3>${t[0]}</h3><p>${t[1]}</p><p><small>Kode: ${esc(c)}</small></p>${bisa?'<p><button class="big2" data-rekam>🎙 Rekam saja (tanpa koreksi)</button></p><p><small>Mode rekam saja menyimpan suara untuk didengar guru, tanpa koreksi otomatis.</small></p>':''}`)}
 function finishRekam(){lis=false;recOnly=false;clearTimeout(sil);clearInterval(wd);const m=mr;mr=null;stream=null;
- const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-78],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
+ const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-78],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
  const kirim=()=>{kirimAman(pay)};
  if(m&&m.state!='inactive'){m.onstop=()=>{hidupMic(false);const b=new Blob(chunks,{type:m.mimeType});
   if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
@@ -522,7 +523,7 @@ function check(txt,final){let tk=nm(txt).split(/\s+/).filter(Boolean);lastN=tk.l
 function award(final){for(let a=0;a<A.length;a++){if(done[a]||E[a][0]<S)continue;const e=E[a][1];
  if(PM>e+1||(final&&PM>e)){const L=e-E[a][0]+1;let cv=0;for(let i=E[a][0];i<=e;i++)if(ST[i])cv++;if(cv<L*.6)continue;done[a]=1;let c=0;for(let i=E[a][0];i<=e;i++){if(ST[i]>1)c++;if(AD[i])c+=AD[i].length}
   const pk=mode=='h'&&peek>0;peek=0;const ok=c==0&&!pk;ayErr[a]=c;
-  AL.push({surah:sur,ayat:A[a].numberInSurah,mode:mode=='h'?'Hafalan':'Tilawah',salah:c,intip:pk?1:0});catat({d:hariIni(),surah:sur,ayat:A[a].numberInSurah,salah:c,intip:pk?1:0});
+  AL.push({surah:sur,ayat:A[a].numberInSurah,mode:mode=='h'?'Hafalan':'Tilawah',salah:c,intip:pk?1:0,kode:U.id+'_'+KS+'_'+(++seq)});catat({d:hariIni(),surah:sur,ayat:A[a].numberInSurah,salah:c,intip:pk?1:0});
   if(ok){sesStar++;chime();star();flash('✨ Masyaallah, bagus! ⭐')}
   else{tone(520,.18);flash(pk?'👀 Ayat ini memakai Intip. Coba tanpa Intip untuk meraih ⭐':'🌿 Alhamdulillah, ayat selesai. Coba lagi untuk meraih ⭐')}}}}
 
@@ -538,8 +539,8 @@ function finish(auto){if(!lis)return;if(recOnly)return finishRekam();lis=false;c
  AD.forEach((x,i)=>{if(x)x.forEach(t=>kes.push({ayat:ay(i),kata_seharusnya:'',kata_terbaca:t,jenis:'tertambah',hukum_tajwid:''}))});
  const a1=ay(S),a2=ay(Math.min(PM,F.length)-1);
  const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-78],
-  ayat:a1==a2?a1:a1+'-'+a2,kelancaran_persen:Math.round(100*benar/n),jumlah_salah:bad,bintang:sesStar,durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:kes,ayat_detail:AL.slice(alIdx),audio:null};sentTotal+=AL.length-alIdx;alIdx=AL.length;
- const kirim=()=>{kirimAman(pay);setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)};
+  ayat:a1==a2?a1:a1+'-'+a2,kelancaran_persen:Math.round(100*benar/n),jumlah_salah:bad,bintang:sesStar,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:kes,ayat_detail:AL.slice(alIdx),audio:null};sentTotal+=AL.length-alIdx;alIdx=AL.length;
+ const kirim=()=>{kirimAman(pay);tunggu()};
  if(m&&m.state!='inactive'){m.onstop=()=>{lepas();const b=new Blob(chunks,{type:m.mimeType});
   if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
  else{lepas();kirim()}
@@ -563,10 +564,17 @@ const hariIni=()=>new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Jakarta'
 const esc=s=>String(s).replace(/[&<>]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;'}[c]));
 async function muatRiwayat(){if(!SHEET_URL||!U)return;
  try{const d=await(await fetch(`${SHEET_URL}?id=${encodeURIComponent(U.id)}&kelas=${encodeURIComponent(U.kelas)}`)).json();
-  if(!d.ok)return;HS=d;if(d.misi)misi=d.misi;
-  if(!inited){inited=true;srvRows=d.baris;sentTotal=0;baseM=d.bintang_membaca;baseH=d.bintang_menghafal}
-  else if(d.baris>=srvRows+sentTotal){AL.splice(0,alIdx);alIdx=0;sentTotal=0;srvRows=d.baris;baseM=d.bintang_membaca;baseH=d.bintang_menghafal;tries=0}
-  else if(tries++<4)setTimeout(()=>muatRiwayat().then(()=>{misiUI();paint()}),8000)}catch(e){}}
+  if(!d.ok)throw 0;HS=d;if(d.misi)misi=d.misi;
+  baseM=d.bintang_membaca;baseH=d.bintang_menghafal;conf=new Set(d.kode_terbaru||[]);synFail=!d.kode_terbaru;
+  for(let i=Math.min(alIdx,AL.length)-1;i>=0;i--)if(AL[i].kode&&conf.has(AL[i].kode)){AL.splice(i,1);alIdx--}}catch(e){synFail=true}}
+/* sinkron dengan Sheet: bintang di aplikasi = bintang di Sheet + ayat baru yang belum dikonfirmasi server */
+function synUI(){const pn=pendAL().length;$('syn').textContent=!SHEET_URL?'':synFail?'⚠️':pn?'⏳':'✓';
+ $('syn').title=!SHEET_URL?'':synFail?'Belum tersambung ke Sheet (atau Apps Script belum versi terbaru)':pn?pn+' ayat menunggu dikirim ke Sheet':'Tersinkron dengan Sheet'}
+const sinkron=()=>muatRiwayat().then(()=>{misiUI();paint()});
+function tunggu(){let n=0;const w=[3,6,12,20,30,45],t=()=>sinkron().then(()=>{if(pendAL().length&&n<w.length)setTimeout(t,w[n++]*1000)});setTimeout(t,w[n++]*1000)}
+setInterval(()=>{if(U&&!$('app').hidden&&document.visibilityState=='visible'&&!lis)sinkron()},60000);
+document.addEventListener('visibilitychange',()=>{if(document.visibilityState=='visible'&&U&&!$('app').hidden)sinkron()});
+addEventListener('online',()=>{kirimAntrean().then(()=>{if(U)sinkron()})});
 function tujuanAwal(){const r=HS&&HS.terakhir,l=LOG.length?LOG[LOG.length-1]:null;
  if(misi)return{s:misi.surah,a:misi.awal};
  if(l)return{s:l.surah,a:(+l.ayat||0)+1};
@@ -599,7 +607,7 @@ function statistik(){const H=HS||{},key=r=>r.surah+':'+r.ayat,hari=new Set((H.ha
  const bm=bM(),bh=bH(),pend=AL.length>0;
  const st=Math.max(H.membaca_hari_ini?(H.streak_aktif||0):(H.streak_kemarin||0)+(pend?1:0),ls);
  const sv={};(H.tujuh_hari||[]).forEach(x=>sv[x.tgl]=x.n);const t7=[6,5,4,3,2,1,0].map(i=>{const d=tg(i);return{tgl:d,n:Math.max(sv[d]||0,new Set(LOG.filter(r=>r.d==d).map(key)).size)}});t7[6].n=Math.max(t7[6].n,hari.size);
- const kl=H.kelas?{nama:H.kelas.nama,x:H.kelas.bintang_minggu+AL.filter(x=>x.salah==0&&!x.intip).length,y:H.kelas.target}:null;
+ const kl=H.kelas?{nama:H.kelas.nama,x:H.kelas.bintang_minggu+pendAL().filter(x=>x.salah==0&&!x.intip).length,y:H.kelas.target}:null;
  const salahHariIni=[...(H.hari_ini||[]),...AL].filter(r=>r.salah>0).length;
  return{bm,bh,tot:bm+bh,hari:hari.size,minggu:mg.size,bulan:bl.size,dibaca:Object.keys(per).length,sel,st,best:Math.max(H.streak_terbaik||0,st),t7,kl,salahHariIni,total:hari.size}}
 function motiv(s){const pilih=a=>a[Math.floor(Date.now()/864e5)%a.length],isi=t=>t.replace('{n}',t.includes('hari')?s.st:s.sel);
@@ -613,6 +621,7 @@ $('cat').onclick=()=>{const s=statistik(),nh=['Ahd','Sen','Sel','Rab','Kam','Jum
  <p class="ket">1 ⭐ = 1 ayat dibaca dengan baik dan benar</p>
  ${SHEET_URL?'':'<p class="ket">ℹ️ Sheet belum terhubung: catatan tersimpan di HP ini saja.</p>'}
  <div class="rw"><div class="kt">⭐ Bintang Membaca<b>${s.bm}</b></div><div class="kt">⭐ Bintang Menghafal<b>${s.bh}</b></div></div>
+ <div class="kt" style="margin-top:6px">🌟 Total Bintang<b>${s.tot}</b></div>
  <p>📖 <b>Ayat dibaca</b><br>Hari ini <b>${s.hari}</b> · Minggu ini <b>${s.minggu}</b> · Bulan ini <b>${s.bulan}</b></p>
  <div class="bar" aria-label="Ayat dibaca 7 hari terakhir">${s.t7.map(x=>`<div><small>${x.n}</small><i style="height:${Math.round(x.n/mx*46)+2}px"></i>${nh[new Date(x.tgl+'T00:00:00').getDay()]}</div>`).join('')}</div>
  <p>🕌 <b>Surah dibaca</b>: ${s.dibaca} dari 37 surah Juz 30 (${s.sel} surah selesai)</p>
