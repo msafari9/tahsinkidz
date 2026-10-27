@@ -140,13 +140,13 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 #pop.doa .big{display:none}
 .dock{padding:0 clamp(6px,2.2vw,18px)}
 .dock .gap{display:block;width:calc(var(--mic)*.95);flex:none;height:1px}
-#note,#cat,#zm1,#zm2{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:clamp(46px,14.2vw,60px);flex:none;height:calc(var(--dk) - 12px);padding:0;border:0;border-radius:16px;background:transparent;color:var(--md);font-weight:800;font-size:.66rem;letter-spacing:-.1px;line-height:1.05}
-#note span,#cat span,#zm1 span,#zm2 span{text-align:center}
-#zm1:active,#zm2:active{background:#e6f6f2}
+#note,#cat,#zm,#gear{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:2px;width:clamp(46px,14.2vw,60px);flex:none;height:calc(var(--dk) - 12px);padding:0;border:0;border-radius:16px;background:transparent;color:var(--md);font-weight:800;font-size:.66rem;letter-spacing:-.1px;line-height:1.05}
+#note span,#cat span,#zm span,#gear span{text-align:center}
+#zm:active,#gear:active{background:#e6f6f2}
 .ic.az{width:30px;height:30px;border:2px solid var(--m);border-radius:50%;display:grid;place-items:center;font-size:.85rem;font-weight:800;line-height:1}
 .tool:disabled{opacity:.35}
 @media(max-width:400px){:root{--mic:88px}}
-@media(max-width:350px){:root{--mic:80px}#note,#cat,#zm1,#zm2{font-size:.58rem}}
+@media(max-width:350px){:root{--mic:80px}#note,#cat,#zm,#gear{font-size:.58rem}}
 @media(max-height:700px){:root{--mic:76px}}
 @media(max-height:520px){:root{--mic:56px}.tool span{display:none}.dock .gap{width:calc(var(--mic)*.9)}}
 .ket{background:#fff3d6;border-left:5px solid var(--g);padding:6px 10px;border-radius:8px;font-weight:700;margin:6px 0}
@@ -228,6 +228,22 @@ button.no{font:inherit;color:inherit;background:transparent;border:2px solid tra
 .ay.now button.no{background:#fff;border-color:var(--m)}
 #app.wlon #who::after{content:' · 🔆'}
 #syn{font-size:.8rem;margin-left:4px;font-weight:700}
+#zpop{position:absolute;left:clamp(10px,5vw,26px);bottom:calc(100% + 6px);display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #cfe9e2;border-radius:26px;padding:6px 10px;box-shadow:0 6px 18px #0b6e5f33;z-index:7}
+#zpop[hidden]{display:none}#zpop b{min-width:46px;text-align:center;color:var(--md)}
+#zpop #zm1,#zpop #zm2{width:44px;height:44px;border-radius:50%;border:2px solid var(--m);background:#fff;color:var(--md);font-weight:800;font-size:1rem;padding:0;display:grid;place-items:center}
+.rd{display:flex;gap:10px;align-items:flex-start;padding:10px;border:2px solid #cfe9e2;border-radius:12px;margin:8px 0;cursor:pointer}.rd input{width:22px;height:22px;margin-top:3px;accent-color:#0B6B57;flex:none}.rd small{color:#4a5b57}
+.lt{font-size:max(13px,calc(15px*(.4 + .6*var(--z,1))))}
+button.no{font-size:.7em;line-height:1.25;min-height:36px;padding:2px 6px}
+/* dock seimbang: empat tombol sama besar, mikrofon lebih besar */
+:root{--dk:max(66px,calc(var(--mic)*.72))}
+#note,#cat,#zm,#gear{justify-content:flex-start;gap:1px;padding:5px 0 0;width:clamp(48px,14.4vw,62px);height:calc(var(--dk) - 8px);font-size:.62rem;line-height:1.1}
+#note .ic,#cat .ic,#zm .ic,#gear .ic{width:34px;height:34px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;line-height:1;flex:none}
+#zm .ic.az{width:30px;height:30px;margin:2px 0;font-size:.95rem}
+#note span,#cat span,#zm span,#gear span{display:block;min-height:2.2em;text-align:center}
+@media(max-width:350px){#note,#cat,#zm,#gear{font-size:.56rem}}
+header select#sel{font-size:.84rem;padding:6px 4px 6px 6px;max-width:150px;text-overflow:clip}
+@media(max-width:350px){header select#sel{font-size:.76rem;max-width:118px}}
+@media(max-width:400px){#ay .aw{display:none}}
 </style></head><body>
 
 <section id="home">
@@ -241,10 +257,10 @@ button.no{font:inherit;color:inherit;background:transparent;border:2px solid tra
   </div>
   <div class="card">
    <label class="fld"><span class="lbl">Nama lengkap</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><input id="fn" placeholder="Nama lengkap" aria-label="Nama lengkap" autocomplete="off"></span></label>
-   <label class="fld"><span class="lbl">Kelas</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select></span></label>
+   <label class="fld"><span class="lbl">Kelas</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>3A</option><option>3B</option><option>3C</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select></span></label>
    <label class="fld"><span class="lbl">Nomor absen</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9.5 8.5l-1 7M15.5 8.5l-1 7M6.5 10.5h11M6 13.5h11"/></svg><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Nomor absen" aria-label="Nomor absen" autocomplete="off"></span></label>
   </div>
-  <button id="srcnote" type="button">📖 Teks Al-Qur'an: AlQuran.cloud · Transliterasi: EQuran.id <b>ⓘ</b></button>
+  <button id="srcnote" type="button">📖 Teks Al-Qur'an dan/atau transliterasi: AlQuran.cloud dan/atau EQuran.id <b>ⓘ</b></button>
  </div>
  <svg class="mosque" viewBox="0 0 400 80" preserveAspectRatio="xMidYMax meet" aria-hidden="true"><g fill="#0b6e5f" opacity=".17"><path d="M150 66c0-26 20-40 50-52 30 12 50 26 50 52z"/><path d="M198 14h4V4h-4z"/><path d="M40 66c0-14 10-22 24-28 14 6 24 14 24 28zM312 66c0-14 10-22 24-28 14 6 24 14 24 28z"/><path d="M96 66V26l7-16 7 16v40zM290 66V26l7-16 7 16v40z"/><path d="M0 66h400v14H0z"/></g><path d="M194 3a4 4 0 1 0 5 5 3.2 3.2 0 1 1-5-5z" fill="#f5b82e"/></svg>
  <div class="bot">
@@ -272,7 +288,8 @@ button.no{font:inherit;color:inherit;background:transparent;border:2px solid tra
   <div class="c2"><button id="bk" aria-label="Mundur 5 detik">⏪ 5</button><span class="eq" id="eq"><i></i><i></i><i></i><i></i></span><button id="fw" aria-label="Maju 5 detik">5 ⏩</button><span class="seg"><button id="s75">0,75x</button><button id="s10" class="on">1,00x</button></span><button id="lp">🔂 Ulang: Mati</button></div>
  </div>
  <footer>
-  <div class="dock"><button id="note" class="tool"><b class="ic">📝</b><span>Catatan</span></button><button id="zm1" class="tool" aria-label="Perkecil huruf"><b class="ic az">A−</b><span>Perkecil</span></button><i class="gap"></i><button id="zm2" class="tool" aria-label="Perbesar huruf"><b class="ic az">A+</b><span>Perbesar</span></button><button id="cat" class="tool" aria-label="Riwayatku"><b class="ic">📚</b><span>Riwayatku</span></button></div>
+  <div class="dock"><button id="note" class="tool"><b class="ic">📝</b><span>Catatan</span></button><button id="zm" class="tool" aria-label="Perbesar atau perkecil huruf"><b class="ic az">Aa</b><span>Perbesar/<br>Perkecil</span></button><i class="gap"></i><button id="cat" class="tool" aria-label="Riwayatku"><b class="ic">📚</b><span>Riwayatku</span></button><button id="gear" class="tool" aria-label="Pengaturan"><b class="ic">⚙️</b><span>Setelan</span></button></div>
+  <div id="zpop" hidden><button id="zm1" class="tool" aria-label="Perkecil huruf">A−</button><b id="zv">1×</b><button id="zm2" class="tool" aria-label="Perbesar huruf">A+</button></div>
   <div id="menu" hidden><button id="m1">🎧 Menyimak</button><button id="m2">📖 Membaca</button></div><div id="hint">Tekan aku, yuk! 👇</div><button id="mic" aria-label="Mikrofon">🎙</button>
  </footer>
 </main>
@@ -281,7 +298,7 @@ button.no{font:inherit;color:inherit;background:transparent;border:2px solid tra
 <script>
 const SHEET_URL='https://script.google.com/macros/s/AKfycbxoWCWDZZ4wXK6C4RPoNbqfFGOTfM4DKyZ2fxMKqMEdXYz1GDV7mKuNHKL3zHLMYQR4HQ/exec'; // tempel URL Web App Apps Script (…/exec)
 const $=i=>document.getElementById(i);
-const NAMA="An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infithar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,Ath-Thariq,Al-A'la,Al-Ghasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Adh-Dhuha,Al-Insyirah,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takatsur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kautsar,Al-Kafirun,An-Nashr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
+const NAMA="Al-Fatihah,Al-Baqarah,Ali 'Imran,An-Nisa',Al-Ma'idah,Al-An'am,Al-A'raf,Al-Anfal,At-Taubah,Yunus,Hud,Yusuf,Ar-Ra'd,Ibrahim,Al-Hijr,An-Nahl,Al-Isra',Al-Kahf,Maryam,Taha,Al-Anbiya',Al-Hajj,Al-Mu'minun,An-Nur,Al-Furqan,Asy-Syu'ara',An-Naml,Al-Qasas,Al-'Ankabut,Ar-Rum,Luqman,As-Sajdah,Al-Ahzab,Saba',Fatir,Yasin,As-Saffat,Sad,Az-Zumar,Gafir,Fussilat,Asy-Syura,Az-Zukhruf,Ad-Dukhan,Al-Jasiyah,Al-Ahqaf,Muhammad,Al-Fath,Al-Hujurat,Qaf,Az-Zariyat,At-Tur,An-Najm,Al-Qamar,Ar-Rahman,Al-Waqi'ah,Al-Hadid,Al-Mujadalah,Al-Hasyr,Al-Mumtahanah,As-Saff,Al-Jumu'ah,Al-Munafiqun,At-Tagabun,At-Talaq,At-Tahrim,Al-Mulk,Al-Qalam,Al-Haqqah,Al-Ma'arij,Nuh,Al-Jinn,Al-Muzzammil,Al-Muddassir,Al-Qiyamah,Al-Insan,Al-Mursalat,An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infithar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,Ath-Thariq,Al-A'la,Al-Ghasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Adh-Dhuha,Al-Insyirah,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takatsur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kautsar,Al-Kafirun,An-Nashr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
 const T={};`h|Hamzah Wasal|Tidak dibaca jika disambung|#8a9a97
 s|Huruf Tidak Dibaca|Huruf ini tidak dibaca|#8a9a97
 l|Lam Syamsiyah|Lam tidak dibaca, huruf sesudahnya bertasydid|#8a9a97
@@ -307,7 +324,8 @@ function sim(a,b){if(a==b)return 1;const m=a.length,n=b.length;if(!m||!n)return 
 // state: A=ayat, F=semua kata (berurutan antar-ayat), E=[indeks kata pertama, terakhir] tiap ayat
 let U,sur=78,A=[],F=[],E=[],SP=[],AY=[],mode='t',sub='',lis=false,peek=0,pkOn=false,fin=false,cur=0,S=0,P=0,ST=[],HD=[],AD=[],done=[],sesStar=0,AC;
 let rec,mr,chunks=[],stream,acc='',last='',t0=0,sil,baseM=0,baseH=0,conf=new Set(),synFail=false,seq=0,KS=Date.now().toString(36)+Math.random().toString(36).slice(2,6),AL=[],alIdx=0,srvRows=0,sentTotal=0,tries=0,inited=false,HS=null,misi=null,autoM=null,ayErr=[];
-const JML=[40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];   // jumlah ayat surah 78-114
+const JML=[7,286,200,176,120,165,206,75,129,109,123,111,43,52,99,128,111,110,98,135,112,78,118,64,77,227,93,88,69,60,34,30,73,54,45,83,182,88,75,85,54,53,89,59,37,35,38,29,18,45,60,49,62,55,78,96,29,22,24,13,14,11,11,18,12,12,30,52,52,44,28,28,20,56,40,31,50,40,46,42,29,19,36,25,22,17,19,26,30,20,15,21,11,8,8,19,5,8,8,11,11,8,3,9,5,4,7,3,6,3,5,4,5,6];   // jumlah ayat 114 surah
+const GN=[0];JML.forEach((v,i)=>GN.push(GN[i]+v));   // nomor ayat global = GN[surah-1] + nomor ayat
 const pendAL=()=>AL.filter(x=>!conf.has(x.kode)),bM=()=>baseM+pendAL().filter(x=>x.mode=='Tilawah'&&x.salah==0&&!x.intip).length,bH=()=>baseH+pendAL().filter(x=>x.mode=='Hafalan'&&x.salah==0&&!x.intip).length;
 const bintang=()=>bM()+bH();
 let ann=new Set(),pend=new Map(),flashUntil=0,flashT,flip=0,tanpaWarna=false;
@@ -335,7 +353,7 @@ let doaT;function tutupDoa(){const p=$('pop');if(p.classList.contains('doa')){p.
 function popDoa(){pop('<div style="text-align:center"><div style="font-size:2.4rem">🤲</div><h3>Awali dengan berdoa terlebih dahulu</h3></div>');$('pop').classList.add('doa');clearTimeout(doaT);doaT=setTimeout(tutupDoa,3000)}
 $('pop').addEventListener('click',()=>{if($('pop').classList.contains('doa'))tutupDoa()});
 
-$('sel').innerHTML=NAMA.map((n,i)=>`<option value="${78+i}">${78+i}. ${n}</option>`).join('');
+$('sel').innerHTML=NAMA.map((n,i)=>`<option value="${1+i}">${1+i}. ${n}</option>`).join('');
 $('fa').oninput=()=>{$('fa').value=$('fa').value.replace(/\D/g,'').slice(0,2)};
 $('fa').onblur=()=>{const v=parseInt($('fa').value,10);$('fa').value=v>=1?String(v).padStart(2,'0'):''};
 $('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseInt($('fa').value,10);
@@ -343,18 +361,19 @@ $('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseIn
  const ab=String(a).padStart(2,'0');U={nama:n,kelas:k,absen:ab,id:k+'-'+ab};muatLog();kirimAntrean();wl(true);AC=new(window.AudioContext||window.webkitAudioContext)();
  $('who').textContent=`👤 ${n} · ${k} · Absen ${ab}`;$('home').hidden=1;$('app').hidden=0;setTimeout(()=>{$('hint').hidden=1},12000);
  await muatRiwayat();const t=tujuanAwal();$('sel').value=t.s;await load(t.s);
- if(t.a>A.length){t.s=t.s<114?t.s+1:78;t.a=1;$('sel').value=t.s;await load(t.s)}   // setelah ayat terakhir: surah berikutnya, atau kembali ke An-Naba'
+ if(t.a>A.length){t.s=t.s<114?t.s+1:1;t.a=1;$('sel').value=t.s;await load(t.s)}   // setelah ayat terakhir: surah berikutnya, atau kembali ke An-Naba'
  autoM=misi?null:{surah:t.s,awal:Math.max(1,t.a||1),akhir:Math.max(1,t.a||1)+4,auto:1};
  if(t.a)mark(Math.min(t.a,A.length)-1);misiUI();
  popDoa()};
 $('sel').onchange=e=>load(+e.target.value);
 
-async function load(n){halt();sub='';$('pl').hidden=1;sur=n;$('stage').textContent='Memuat ayat…';let d=null,ed0='';
- try{const c=JSON.parse(localStorage.getItem('tk_s1_'+n)||'null');if(c&&c.ed=='quran-tajweed'&&c.ayahs&&c.ayahs.length)d={ayahs:c.ayahs}}catch(e){}   // teks tersimpan di perangkat: cepat dan tahan sinyal lemah
+async function load(n){halt();sub='';$('pl').hidden=1;sur=n;$('stage').textContent='Memuat ayat…';let d=null,ed0='';const eq=SRCK()=='equran';if(eq){const q=await muatEquran(n);if(q){d={ayahs:q};ed0='equran'}}
+ if(!d)try{const c=JSON.parse(localStorage.getItem('tk_s1_'+n)||'null');if(c&&c.ed=='quran-tajweed'&&c.ayahs&&c.ayahs.length)d={ayahs:c.ayahs}}catch(e){}   // teks tersimpan di perangkat: cepat dan tahan sinyal lemah
  if(!d)for(const ed of['quran-tajweed','quran-uthmani']){try{d=(await(await fetch(`https://api.alquran.cloud/v1/surah/${n}/${ed}`)).json()).data;if(d&&ed=='quran-tajweed'&&d.ayahs.some(a=>parseAyah(a.text).some(x=>/[\d\[\]]/.test(x.p)))){d=null;tanpaWarna=true;continue}if(d){ed0=ed;break}}catch(e){}}
  if(!d){$('stage').textContent='Ayat belum bisa dimuat. Periksa internet lalu muat ulang.';return}
  if(ed0=='quran-tajweed'){try{localStorage.setItem('tk_s1_'+n,JSON.stringify({ed:ed0,ayahs:d.ayahs.map(a=>({number:a.number,numberInSurah:a.numberInSurah,text:a.text}))}))}catch(e){}}
- srcArab=(!ed0||ed0=='quran-tajweed')?'AlQuran.cloud (tajwid)':'AlQuran.cloud (teks polos)';latOn.clear();LT=[];srcLatin='';A=d.ayahs;build();zoom(0,1);sumber();muatLatin(n);if(tanpaWarna){tanpaWarna=false;$('bn').textContent='ℹ️ Teks polos dipakai agar ayat tetap sempurna.'}
+ srcArab=ed0=='equran'?'EQuran.id (teks Arab tanpa warna tajwid)':(!ed0||ed0=='quran-tajweed')?'AlQuran.cloud (tajwid)':'AlQuran.cloud (teks polos)';latOn.clear();LT=[];srcLatin='';A=d.ayahs;build();zoom(0,1);sumber();muatLatin(n);if(tanpaWarna){tanpaWarna=false;$('bn').textContent='ℹ️ Teks polos dipakai agar ayat tetap sempurna.'}
+ if(ed0=='equran')$('bn').textContent='ℹ️ Sumber EQuran.id: teks Arab tanpa warna tajwid.';else if(eq)$('bn').textContent='ℹ️ EQuran.id belum bisa dimuat, dipakai AlQuran.cloud.';
  try{if(!localStorage.getItem('tk_lh')){localStorage.setItem('tk_lh',1);flash('🔤 Ketuk tombol “Ab” di ujung ayat untuk melihat bacaan Latin')}}catch(e){}}
 
 const AR=n=>String(n).replace(/\d/g,d=>'٠١٢٣٤٥٦٧٨٩'[d]);
@@ -386,7 +405,7 @@ function paint(){const cu=new Set(lis&&F.length?unit(Math.min(P,F.length-1)):[])
   s.className='w'+(o?' ok':'')+(ST[i]==2?' lw':'')+(ST[i]==3?' sl':'')+(AD[i]?' bl':'')+(cu.has(i)?' cur':'')+(mode=='h'&&!o&&ST[i]!=2&&ST[i]!=3&&!pkOn&&!fin?' hid':'')});
  $('app').classList.toggle('sim',!$('pl').hidden);$('st').textContent='⭐ '+bintang();synUI();$('mic').className=lis?'on':'';$('mic').textContent=lis?'⏹':'🎙';$('mst').hidden=!lis||recOnly}
 function mark(i,sc=true){cur=i;$('app').classList.toggle('sim',!$('pl').hidden);AY.forEach((e,k)=>e.classList.toggle('now',k==i));
- $('ay').textContent=`Ayat ${A[i].numberInSurah}/${A.length}`;if(sc)AY[i].scrollIntoView({block:'center'})}
+ $('ay').innerHTML=`<span class="aw">Ayat </span>${A[i].numberInSurah}/${A.length}`;if(sc)AY[i].scrollIntoView({block:'center'})}
 function banner(i){if(Date.now()<flashUntil)return;const r=F[i]&&F[i].r;$('bn').textContent=r&&T[r]?`💡 ${T[r][0]}: ${T[r][1]}`:'💡 Baca pelan-pelan dan tartil, ya!'}
 
 $('stage').onclick=e=>{const lb=e.target.closest('.lbtn');if(lb){if(mode=='h')return;const i=+lb.dataset.l;latOn.has(i)?latOn.delete(i):latOn.add(i);renderLatin();return}
@@ -401,8 +420,8 @@ $('stage').onclick=e=>{const lb=e.target.closest('.lbtn');if(lb){if(mode=='h')re
 let rate=1,lm=0;const LM=['Mati','Ayat','Surah'];
 function playAyah(i){mark(i);aud.src=SRC(i);aud.playbackRate=rate;aud.defaultPlaybackRate=rate;
  aud.play().catch(()=>pop('<p>Audio belum bisa diputar. Periksa internet.</p>'));
- $('nt').textContent=`${NAMA[sur-78]} · Ayat ${A[i].numberInSurah} dari ${A.length} · Mishary Alafasy`;$('bn').textContent=`🎧 Menyimak ayat ${A[i].numberInSurah}`;
- try{navigator.mediaSession.metadata=new MediaMetadata({title:`${NAMA[sur-78]} ayat ${A[i].numberInSurah}`,artist:'Mishary Alafasy',album:'TahsinKidz.ai'})}catch(e){}}
+ $('nt').textContent=`${NAMA[sur-1]} · Ayat ${A[i].numberInSurah} dari ${A.length} · Mishary Alafasy`;$('bn').textContent=`🎧 Menyimak ayat ${A[i].numberInSurah}`;
+ try{navigator.mediaSession.metadata=new MediaMetadata({title:`${NAMA[sur-1]} ayat ${A[i].numberInSurah}`,artist:'Mishary Alafasy',album:'TahsinKidz.ai'})}catch(e){}}
 function startSim(){halt();resetRead();sub='s';$('pl').hidden=0;playAyah(cur)}
 aud.onplay=()=>{$('pp').textContent='⏸';$('eq').classList.add('on')};
 aud.onpause=()=>{$('pp').textContent='▶';$('eq').classList.remove('on')};
@@ -482,7 +501,7 @@ function galatSuara(c){const t={
  const bisa=c=='service-not-allowed'||c=='language-not-supported'||c=='no-sr';
  pop(`<h3>${t[0]}</h3><p>${t[1]}</p><p><small>Kode: ${esc(c)}</small></p>${bisa?'<p><button class="big2" data-rekam>🎙 Rekam saja (tanpa koreksi)</button></p><p><small>Mode rekam saja menyimpan suara untuk didengar guru, tanpa koreksi otomatis.</small></p>':''}`)}
 function finishRekam(){lis=false;recOnly=false;clearTimeout(sil);clearInterval(wd);const m=mr;mr=null;stream=null;
- const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-78],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
+ const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-1],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
  const kirim=()=>{kirimAman(pay)};
  if(m&&m.state!='inactive'){m.onstop=()=>{hidupMic(false);const b=new Blob(chunks,{type:m.mimeType});
   if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
@@ -501,7 +520,7 @@ function check(txt,final){let tk=nm(txt).split(/\s+/).filter(Boolean);lastN=tk.l
  if(!located){if(!tk.length)return;if(sim(tk[0],'بسم')>=.8&&tk.length<4&&!final)return;if(tk.length>=4&&sim(tk[0],'بسم')>=.8&&sim(tk[1],'الله')>=.8)tk=tk.slice(4);
   if(!tk.length)return;if(sim(tk[0],F[S].n)>=.6)located=true;else if(tk.length>=2||final){const j=locate(tk);located=true;if(j>=0&&j!=S){S=P=PM=j;mark(F[j].a)}}else return}
  else if(tk.length>=4&&sim(tk[0],'بسم')>=.8&&sim(tk[1],'الله')>=.8&&sim(tk[2],'الرحمن')>=.7)tk=tk.slice(4);
- let q=S,mx=S,jj;const hop=k=>{if(k+2>=tk.length)return -1;for(let j=S;j+2<n;j++){if(j>=q-12&&j<=q+2)continue;if(sim(tk[k],F[j].n)>=.8&&sim(tk[k+1],F[j+1].n)>=.8&&sim(tk[k+2],F[j+2].n)>=.8)return j}return -1};
+ let q=S,mx=S,jj;const hop=k=>{if(k+2>=tk.length)return -1;for(let j=Math.max(S,q-150),je=Math.min(n-3,q+400);j<=je;j++){if(j>=q-12&&j<=q+2)continue;if(sim(tk[k],F[j].n)>=.8&&sim(tk[k+1],F[j+1].n)>=.8&&sim(tk[k+2],F[j+2].n)>=.8)return j}return -1};
  // mengulang dari kata sebelumnya (setelah waqf): cocokkan ke kata dalam 12 kata terakhir, dengan kata berikutnya yang menyambung
  const ulang=k=>{const t=tk[k];for(let j=q-1;j>=Math.max(S,q-12);j--){
   if(k+1<tk.length?(sim(t,F[j].n)>=.75&&sim(tk[k+1],F[j+1].n)>=.6):(q-1-j<=3&&sim(t,F[j].n)>=.85))return j}return -1};
@@ -538,7 +557,7 @@ function finish(auto){if(!lis)return;if(recOnly)return finishRekam();lis=false;c
  ST.forEach((x,i)=>{if(x>1)kes.push({ayat:ay(i),kata_seharusnya:F[i].p,kata_terbaca:HD[i]||'',jenis:x==2?'terlewat':'tertukar',hukum_tajwid:F[i].r&&T[F[i].r]?T[F[i].r][0]:''})});
  AD.forEach((x,i)=>{if(x)x.forEach(t=>kes.push({ayat:ay(i),kata_seharusnya:'',kata_terbaca:t,jenis:'tertambah',hukum_tajwid:''}))});
  const a1=ay(S),a2=ay(Math.min(PM,F.length)-1);
- const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-78],
+ const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-1],
   ayat:a1==a2?a1:a1+'-'+a2,kelancaran_persen:Math.round(100*benar/n),jumlah_salah:bad,bintang:sesStar,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:kes,ayat_detail:AL.slice(alIdx),audio:null};sentTotal+=AL.length-alIdx;alIdx=AL.length;
  const kirim=()=>{kirimAman(pay);tunggu()};
  if(m&&m.state!='inactive'){m.onstop=()=>{lepas();const b=new Blob(chunks,{type:m.mimeType});
@@ -578,7 +597,7 @@ addEventListener('online',()=>{kirimAntrean().then(()=>{if(U)sinkron()})});
 function tujuanAwal(){const r=HS&&HS.terakhir,l=LOG.length?LOG[LOG.length-1]:null;
  if(misi)return{s:misi.surah,a:misi.awal};
  if(l)return{s:l.surah,a:(+l.ayat||0)+1};
- if(r&&r.surah>=78)return{s:r.surah,a:(+r.ayat||0)+1};
+ if(r&&r.surah>=1)return{s:r.surah,a:(+r.ayat||0)+1};
  return{s:78,a:0}}
 const mm=()=>misi||autoM;
 const rng=m=>[m.awal,sur==m.surah&&A.length?Math.min(m.akhir,A.length):m.akhir];
@@ -588,7 +607,7 @@ function misiProg(){const m=mm(),[a0,a1]=rng(m),got=new Set();
  let n=0;for(let i=a0;i<=a1;i++)if(got.has(i))n++;return{n,t:a1-a0+1}}
 function misiUI(){const m=mm(),e=$('ms');if(!m||!U){e.hidden=1;return}
  const [a0,a1]=rng(m);if(a1<a0){e.hidden=1;return}const p=misiProg(),ok=p.n>=p.t&&p.t>0;e.hidden=0;e.className=ok?'sel':'';
- e.textContent=ok?`✅ Misi selesai! ${NAMA[m.surah-78]} ayat ${a0}-${a1}. Alhamdulillah!`:`🎯 Misi hari ini${m.auto?' (otomatis)':''}: ${NAMA[m.surah-78]} ayat ${a0}-${a1} · ${p.n}/${p.t} ayat${m.target?' · ⭐ target '+m.target:''}`}
+ e.textContent=ok?`✅ Misi selesai! ${NAMA[m.surah-1]} ayat ${a0}-${a1}. Alhamdulillah!`:`🎯 Misi hari ini${m.auto?' (otomatis)':''}: ${NAMA[m.surah-1]} ayat ${a0}-${a1} · ${p.n}/${p.t} ayat${m.target?' · ⭐ target '+m.target:''}`}
 $('ms').onclick=async()=>{const m=mm();if(!m||lis)return;if(sur!=m.surah){$('sel').value=m.surah;await load(m.surah)}mark(Math.min(m.awal,A.length)-1)};
 const MED=[['🥉','Perunggu','50 ⭐',s=>s.tot>=50],['🥈','Perak','150 ⭐',s=>s.tot>=150],['🥇','Emas','300 ⭐',s=>s.tot>=300],['🏅','Rajin','7 hari berturut-turut',s=>s.best>=7],['📖','Pembaca Surah','selesaikan 1 surah',s=>s.sel>=1],['🧠','Penghafal','10 ⭐ menghafal',s=>s.bh>=10]];
 const MOT={
@@ -603,7 +622,7 @@ function statistik(){const H=HS||{},key=r=>r.surah+':'+r.ayat,hari=new Set((H.ha
  LOG.forEach(r=>{const k=key(r);all.add(k);if(r.d==hi)hari.add(k);if(new Date(r.d+'T00:00:00')>=mn)mg.add(k);if(r.d.slice(0,7)==hi.slice(0,7))bl.add(k)});
  const ds=new Set(LOG.map(r=>r.d)),tg=i=>new Date(Date.now()-i*864e5).toLocaleDateString('sv-SE',{timeZone:'Asia/Jakarta'});let ls=0;for(let i=ds.has(hi)?0:1;ls<400;i++){if(ds.has(tg(i)))ls++;else break}
  const per={};all.forEach(k=>{const s=+k.split(':')[0];per[s]=(per[s]||0)+1});
- let sel=0;Object.keys(per).forEach(s=>{if(JML[s-78]&&per[s]>=JML[s-78])sel++});
+ let sel=0;Object.keys(per).forEach(s=>{if(JML[s-1]&&per[s]>=JML[s-1])sel++});
  const bm=bM(),bh=bH(),pend=AL.length>0;
  const st=Math.max(H.membaca_hari_ini?(H.streak_aktif||0):(H.streak_kemarin||0)+(pend?1:0),ls);
  const sv={};(H.tujuh_hari||[]).forEach(x=>sv[x.tgl]=x.n);const t7=[6,5,4,3,2,1,0].map(i=>{const d=tg(i);return{tgl:d,n:Math.max(sv[d]||0,new Set(LOG.filter(r=>r.d==d).map(key)).size)}});t7[6].n=Math.max(t7[6].n,hari.size);
@@ -656,10 +675,13 @@ let zi=1;const ZS=[.75,1,1.25,1.5,1.75,2,2.5,3],fz=z=>String(z).replace('.',',')
 function maxFit(){const sc=$('stage');if(!SP.length||!sc.clientWidth)return ZS.length-1;const w=Math.max(...SP.map(s=>s.offsetWidth))/ZS[zi],av=sc.clientWidth-34;let k=0;ZS.forEach((v,i)=>{if(w*v<=av)k=i});return k}
 function zoom(d,diam){zi=Math.max(0,Math.min(ZS.length-1,zi+d));const set=()=>document.documentElement.style.setProperty('--z',ZS[zi]);set();
  let mx=maxFit();if(zi>mx){zi=Math.max(0,mx);set();mx=maxFit()}
- $('zm1').disabled=zi<=0;$('zm2').disabled=zi>=mx;try{localStorage.setItem('tk_z2',zi)}catch(e){}
+ $('zm1').disabled=zi<=0;$('zm2').disabled=zi>=mx;try{localStorage.setItem('tk_z2',zi)}catch(e){}$('zv').textContent=fz(ZS[zi]);
  if(d&&!diam)flash('🔠 Ukuran huruf: '+fz(ZS[zi]))}
 try{const v=localStorage.getItem('tk_z2');if(v!==null&&+v>=0&&+v<ZS.length)zi=+v}catch(e){}
-zoom(0,1);$('zm1').onclick=()=>zoom(-1);$('zm2').onclick=()=>zoom(1);addEventListener('resize',()=>zoom(0,1));
+let zt;const zshow=()=>{$('zpop').hidden=false;clearTimeout(zt);zt=setTimeout(()=>{$('zpop').hidden=true},4500)};
+zoom(0,1);$('zm').onclick=()=>{if($('zpop').hidden)zshow();else $('zpop').hidden=true};$('zm1').onclick=()=>{zoom(-1);zshow()};$('zm2').onclick=()=>{zoom(1);zshow()};addEventListener('resize',()=>zoom(0,1));
+document.addEventListener('click',e=>{if(!e.target.closest('#zpop,#zm'))$('zpop').hidden=true});
+$('gear').onclick=setelan;
 $('stage').onscroll=()=>{const s=$('stage').scrollTop,a=$('app');if(s>80)a.classList.add('mini');else if(s<10)a.classList.remove('mini')};
 
 /* ===== transliterasi Latin per ayat dan sumber teks ===== */
@@ -672,6 +694,16 @@ function renderLatin(){if(!AY.length)return;
  $('lg').classList.toggle('on',latOn.size>0)}
 $('lg').onclick=()=>{if(mode=='h'||!A.length)return;if(latOn.size<A.length)A.forEach((a,i)=>latOn.add(i));else latOn.clear();renderLatin()};
 // Teks Latin dipakai persis seperti sumbernya (tanda ā, ḥ, dan lainnya tidak diubah). Utama: EQuran.id; cadangan: AlQuran.cloud (Tanzil).
+const SRCK=()=>{try{return localStorage.getItem('tk_src')||'cloud'}catch(e){return'cloud'}};
+async function muatEquran(n){let c=null;try{c=JSON.parse(localStorage.getItem('tk_e1_'+n)||'null')}catch(e){}
+ if(!c||!c.a||!c.a.length){c=null;try{const j=await(await fetch(`https://equran.id/api/v2/surat/${n}`)).json(),ay=j&&j.data&&j.data.ayat;
+  if(ay&&ay.length){c={a:ay.map(x=>({n:+x.nomorAyat,t:String(x.teksArab||''),l:String(x.teksLatin||'')}))};try{localStorage.setItem('tk_e1_'+n,JSON.stringify(c))}catch(e){}}}catch(e){}}
+ if(!c)return null;
+ try{if(!localStorage.getItem('tk_l1_'+n)){const L=[];c.a.forEach(x=>L[x.n-1]=x.l);localStorage.setItem('tk_l1_'+n,JSON.stringify({s:'EQuran.id',t:L}))}}catch(e){}
+ return c.a.map(x=>({number:GN[n-1]+x.n,numberInSurah:x.n,text:x.t}))}
+function setelan(){const v=SRCK();
+ pop(`<h3>⚙️ Pengaturan</h3><p><b>Sumber teks Al-Qur'an</b></p><label class="rd"><input type="radio" name="src" value="cloud" ${v=='cloud'?'checked':''}><span><b>Al-Qur'an Tajwid</b><br><small>Teks Arab dari AlQuran.cloud, dengan warna tajwid.</small></span></label><label class="rd"><input type="radio" name="src" value="equran" ${v=='equran'?'checked':''}><span><b>Al-Qur'an Indonesia</b><br><small>Teks Arab dari EQuran.id (tanpa warna tajwid).</small></span></label><p><small>Transliterasi Latin: EQuran.id (cadangan: AlQuran.cloud). Pilihan disimpan di perangkat ini.</small></p>`);
+ document.querySelectorAll('#pb input[name=src]').forEach(x=>x.onchange=()=>{try{localStorage.setItem('tk_src',x.value)}catch(e){}$('pop').hidden=1;load(sur)})}
 async function muatLatin(n){latLoading=true;sumber();let L=[],s='';
  try{const c=JSON.parse(localStorage.getItem('tk_l1_'+n)||'null');if(c&&c.t&&c.t.length){L=c.t;s=c.s}}catch(e){}
  if(!s){
