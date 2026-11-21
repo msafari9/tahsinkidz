@@ -226,7 +226,6 @@ footer{display:block;position:relative;padding:calc(var(--mic)*.34) 14px calc(8p
 .ay.now{background:#ffe9a3;box-shadow:0 0 0 3px #ffd95a}
 button.no{font:inherit;color:inherit;background:transparent;border:2px solid transparent;border-radius:14px;padding:2px 6px;min-height:38px;min-width:46px;cursor:pointer;vertical-align:middle;-webkit-tap-highlight-color:transparent}
 .ay.now button.no{background:#fff;border-color:var(--m)}
-#app.wlon #who::after{content:' · 🔆'}
 #syn{font-size:.8rem;margin-left:4px;font-weight:700}
 #zpop{position:absolute;left:clamp(10px,5vw,26px);bottom:calc(100% + 6px);display:flex;align-items:center;gap:10px;background:#fff;border:1px solid #cfe9e2;border-radius:26px;padding:6px 10px;box-shadow:0 6px 18px #0b6e5f33;z-index:7}
 #zpop[hidden]{display:none}#zpop b{min-width:46px;text-align:center;color:var(--md)}
@@ -244,6 +243,32 @@ button.no{font-size:.7em;line-height:1.25;min-height:36px;padding:2px 6px}
 header select#sel{font-size:.84rem;padding:6px 4px 6px 6px;max-width:150px;text-overflow:clip}
 @media(max-width:350px){header select#sel{font-size:.76rem;max-width:118px}}
 @media(max-width:400px){#ay .aw{display:none}}
+/* formulir 3 kolom: kelas, rombel, absen */
+.g3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}.fld[hidden]{display:none}
+#home .g3 .in input,#home .g3 .in select{padding:0 4px 0 28px;font-size:max(15px,.95rem);border-radius:12px;text-overflow:ellipsis}
+#home .g3 .in select{background-position:right 6px center}
+.g3 .in svg{left:6px;width:17px;height:17px;margin-top:-8.5px}#home .g3 .lbl{margin-left:2px;white-space:nowrap}
+/* identitas murid: teks berjalan bila tidak muat */
+#who.mq{text-align:left;text-overflow:clip;-webkit-mask-image:linear-gradient(90deg,#000 calc(100% - 16px),transparent);mask-image:linear-gradient(90deg,#000 calc(100% - 16px),transparent)}
+#who.mq #whot{display:inline-block;animation:whomq var(--wt,8s) ease-in-out infinite alternate}
+@keyframes whomq{0%,14%{transform:translateX(0)}86%,100%{transform:translateX(var(--wd,0px))}}
+@media(prefers-reduced-motion:reduce){#who.mq #whot{animation:none}#who.mq{text-overflow:ellipsis}}
+/* Tanya AI */
+#aib{flex:none;width:58px;border-radius:12px;border:2px solid var(--m);background:linear-gradient(160deg,#14a98a,#0b6b57);color:#fff;font-weight:800;line-height:1.05;padding:2px;cursor:pointer;display:flex;flex-direction:column;align-items:center;justify-content:center}
+#aib b{font-size:1.05rem}#aib small{font-size:.58rem}#aib svg{color:#ffd95a}
+#aiq{position:fixed;inset:0;z-index:30;background:#0b3d3399;display:flex;align-items:flex-start;justify-content:center;padding:4vh 12px 12px;overflow:auto}
+#aiq[hidden]{display:none}.aic{background:#fff;border-radius:20px;border:2px solid var(--m);box-shadow:0 14px 34px #0b6e5f55;width:100%;max-width:440px;padding:12px 14px 14px;text-align:left;color:var(--t)}
+.aih{display:flex;justify-content:space-between;align-items:center}.aih b{color:var(--md);font-size:1.1rem}
+#aix{width:40px;height:40px;border-radius:50%;border:2px solid #cfe9e2;background:#fff;font-size:1.1rem;color:var(--md);cursor:pointer}
+.aik{margin:4px 0 8px;font-size:.82rem;color:#4a5b57}.aich{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:8px}
+.aich button{padding:6px 10px;border-radius:14px;border:2px solid #cfe9e2;background:#e8f7f3;color:var(--md);font-weight:700;font-size:.78rem;cursor:pointer}
+#aiqt{display:block;width:100%;box-sizing:border-box;padding:10px 12px;border:2px solid #b9e6dd;border-radius:14px;font:inherit;font-size:max(16px,1rem);resize:vertical;margin-bottom:8px;background:#f8fdfc;color:var(--t)}
+#aikirim{width:100%;padding:12px;font-size:1rem;box-shadow:0 4px 0 #08463d}#aikirim:disabled{opacity:.6}
+#aijw{margin-top:10px;font-size:.95rem;line-height:1.5}#aijw p{margin:6px 0}.aijb{background:#f4fbf8;border-left:4px solid var(--m);border-radius:10px;padding:6px 10px}
+.aiN{font-size:.76rem;color:#6b807b;margin:8px 0 0}.aitutup{display:block;width:100%;margin-top:10px;padding:11px;border-radius:14px;border:2px solid var(--m);background:#fff;color:var(--md);font-weight:800;font-size:1rem;cursor:pointer}
+#app.hf #aib{opacity:1}
+/* halaman awal: bidang yang sedang diisi tidak boleh tertutup tombol */
+#home.kb .hw{flex:none;min-height:auto}#home.kb .big{margin-top:12px;margin-bottom:12px;flex:none}
 </style></head><body>
 
 <section id="home">
@@ -257,8 +282,13 @@ header select#sel{font-size:.84rem;padding:6px 4px 6px 6px;max-width:150px;text-
   </div>
   <div class="card">
    <label class="fld"><span class="lbl">Nama lengkap</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg><input id="fn" placeholder="Nama lengkap" aria-label="Nama lengkap" autocomplete="off"></span></label>
-   <label class="fld"><span class="lbl">Kelas</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg><select id="fk" aria-label="Kelas"><option value="">Pilih kelas</option><option>3A</option><option>3B</option><option>3C</option><option>4A</option><option>4B</option><option>4C</option><option>5A</option><option>5B</option><option>5C</option><option>6A</option><option>6B</option><option>6C</option></select></span></label>
-   <label class="fld"><span class="lbl">Nomor absen</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9.5 8.5l-1 7M15.5 8.5l-1 7M6.5 10.5h11M6 13.5h11"/></svg><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Nomor absen" aria-label="Nomor absen" autocomplete="off"></span></label>
+   <div class="g3">
+   <label class="fld"><span class="lbl">Kelas</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c0 1.5 3 3 6 3s6-1.5 6-3v-4.5"/><path d="M22 9v6"/></svg><select id="fk" aria-label="Kelas"><option value="">Kelas</option><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option><option>6</option></select></span></label>
+   <label class="fld"><span class="lbl">Rombel</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="9" r="3"/><circle cx="17" cy="10" r="2.4"/><path d="M3 20c0-3.4 2.7-5.5 6-5.5s6 2.1 6 5.5M15 15.5c3 0 6 1.3 6 4.5"/></svg><select id="fr" aria-label="Rombel"><option value="-">-</option><option>A</option><option>B</option><option>C</option><option>D</option><option>E</option></select></span></label>
+   <label class="fld"><span class="lbl">No. absen</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="3"/><path d="M9.5 8.5l-1 7M15.5 8.5l-1 7M6.5 10.5h11M6 13.5h11"/></svg><input id="fa" type="text" inputmode="numeric" maxlength="2" pattern="[0-9]*" placeholder="Absen" aria-label="Nomor absen" autocomplete="off"></span></label>
+   </div>
+   <label class="fld"><span class="lbl">Sekolah</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 21h18M5 21V10l7-5 7 5v11M9 21v-6h6v6"/></svg><select id="fs" aria-label="Sekolah"><option value="d">SDN Kutowinangun 01</option><option value="l">Sekolah lainnya…</option></select></span></label>
+   <label class="fld" id="fsw" hidden><span class="lbl">Nama sekolah</span><span class="in"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20l4-1 11-11-3-3L5 16z"/></svg><input id="fsn" placeholder="Tulis nama sekolahmu" aria-label="Nama sekolah" autocomplete="off" maxlength="60"></span></label>
   </div>
   <button id="srcnote" type="button">📖 Teks Al-Qur'an dan/atau transliterasi: AlQuran.cloud dan/atau EQuran.id <b>ⓘ</b></button>
  </div>
@@ -272,12 +302,12 @@ header select#sel{font-size:.84rem;padding:6px 4px 6px 6px;max-width:150px;text-
 
 <main id="app" hidden>
  <header>
-  <div class="r"><b>❇️ TahsinKidz.ai</b><span id="who"></span></div>
+  <div class="r"><b>❇️ TahsinKidz.ai</b><span id="who"><span id="whot"></span></span></div>
   <div class="r"><select id="sel" aria-label="Pilih surah"></select><span><button id="pv" aria-label="Ayat sebelumnya">‹</button> <span id="ay"></span> <button id="nx" aria-label="Ayat berikutnya">›</button></span><b id="st">⭐ 0</b><span id="syn" aria-live="polite"></span></div>
  </header>
  <nav class="tabs"><button id="t1" class="on">🎧 Sima'an & Tilawah</button><button id="t2">🧠 Hafalan</button></nav>
  <div id="ms" hidden role="button" tabindex="0"></div>
- <div class="brow"><div class="bcol"><button id="bsrc" type="button">ⓘ Sumber teks &amp; transliterasi</button><div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div></div><button id="lg" aria-label="Tampilkan atau sembunyikan transliterasi Latin semua ayat"><b>Ab</b><small>Latin</small></button></div>
+ <div class="brow"><div class="bcol"><button id="bsrc" type="button">ⓘ Sumber teks &amp; transliterasi</button><div id="bn">💡 Ketuk kata mana saja untuk melihat hukum tajwidnya.</div></div><button id="aib" type="button" aria-label="Tanya AI"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><path d="M12 3v4M10 5h4M19 12v3M17.5 13.5h3"/></svg><b>AI</b><small>Tanya AI</small></button><button id="lg" aria-label="Tampilkan atau sembunyikan transliterasi Latin semua ayat"><b>Ab</b><small>Latin</small></button></div>
  <div id="mst" hidden role="status"></div>
  <div id="stage"></div>
  <div id="pk" hidden><button id="pkb">👀 Intip</button></div>
@@ -289,6 +319,16 @@ header select#sel{font-size:.84rem;padding:6px 4px 6px 6px;max-width:150px;text-
  </div>
  <footer>
   <div class="dock"><button id="note" class="tool"><b class="ic">📝</b><span>Catatan</span></button><button id="zm" class="tool" aria-label="Perbesar atau perkecil huruf"><b class="ic az">Aa</b><span>Perbesar/<br>Perkecil</span></button><i class="gap"></i><button id="cat" class="tool" aria-label="Riwayatku"><b class="ic">📚</b><span>Riwayatku</span></button><button id="gear" class="tool" aria-label="Pengaturan"><b class="ic">⚙️</b><span>Setelan</span></button></div>
+  <div id="aiq" hidden role="dialog" aria-modal="true" aria-label="Tanya AI"><div class="aic">
+   <div class="aih"><b>✨ Tanya AI</b><button id="aix" type="button" aria-label="Tutup">✕</button></div>
+   <p class="aik" id="aik"></p>
+   <div class="aich"><button type="button" data-q="Apa saja hukum tajwid pada ayat ini?">Hukum tajwid ayat ini</button><button type="button" data-q="Bagaimana cara membaca ayat ini dengan benar?">Cara membaca ayat ini</button></div>
+   <textarea id="aiqt" rows="3" maxlength="300" placeholder="Tulis yang belum kamu pahami atau belum kamu ketahui…" aria-label="Pertanyaanmu"></textarea>
+   <button id="aikirim" type="button" class="big">Kirim pertanyaan</button>
+   <div id="aijw" aria-live="polite"></div>
+   <p class="aiN">Jawaban AI membantu belajar. Tanyakan kepada guru bila ragu.</p>
+   <button id="aitutup" type="button" class="aitutup">Tutup</button>
+  </div></div>
   <div id="zpop" hidden><button id="zm1" class="tool" aria-label="Perkecil huruf">A−</button><b id="zv">1×</b><button id="zm2" class="tool" aria-label="Perbesar huruf">A+</button></div>
   <div id="menu" hidden><button id="m1">🎧 Menyimak</button><button id="m2">📖 Membaca</button></div><div id="hint">Tekan aku, yuk! 👇</div><button id="mic" aria-label="Mikrofon">🎙</button>
  </footer>
@@ -296,7 +336,7 @@ header select#sel{font-size:.84rem;padding:6px 4px 6px 6px;max-width:150px;text-
 <div id="pop" hidden><div><div id="pb"></div><p style="text-align:center"><button class="big" onclick="$('pop').hidden=1">Tutup</button></p></div></div>
 
 <script>
-const SHEET_URL='https://script.google.com/macros/s/AKfycbxoWCWDZZ4wXK6C4RPoNbqfFGOTfM4DKyZ2fxMKqMEdXYz1GDV7mKuNHKL3zHLMYQR4HQ/exec'; // tempel URL Web App Apps Script (…/exec)
+const SHEET_URL='https://script.google.com/macros/s/AKfycbwp8uVbZdcAwR_RIIN-9aBAVaKPNQhqo_JIXb_I5OM62ZPY7zmzepcc-iHBtpfvdEuVXg/exec'; // tempel URL Web App Apps Script (…/exec)
 const $=i=>document.getElementById(i);
 const NAMA="Al-Fatihah,Al-Baqarah,Ali 'Imran,An-Nisa',Al-Ma'idah,Al-An'am,Al-A'raf,Al-Anfal,At-Taubah,Yunus,Hud,Yusuf,Ar-Ra'd,Ibrahim,Al-Hijr,An-Nahl,Al-Isra',Al-Kahf,Maryam,Taha,Al-Anbiya',Al-Hajj,Al-Mu'minun,An-Nur,Al-Furqan,Asy-Syu'ara',An-Naml,Al-Qasas,Al-'Ankabut,Ar-Rum,Luqman,As-Sajdah,Al-Ahzab,Saba',Fatir,Yasin,As-Saffat,Sad,Az-Zumar,Gafir,Fussilat,Asy-Syura,Az-Zukhruf,Ad-Dukhan,Al-Jasiyah,Al-Ahqaf,Muhammad,Al-Fath,Al-Hujurat,Qaf,Az-Zariyat,At-Tur,An-Najm,Al-Qamar,Ar-Rahman,Al-Waqi'ah,Al-Hadid,Al-Mujadalah,Al-Hasyr,Al-Mumtahanah,As-Saff,Al-Jumu'ah,Al-Munafiqun,At-Tagabun,At-Talaq,At-Tahrim,Al-Mulk,Al-Qalam,Al-Haqqah,Al-Ma'arij,Nuh,Al-Jinn,Al-Muzzammil,Al-Muddassir,Al-Qiyamah,Al-Insan,Al-Mursalat,An-Naba',An-Nazi'at,'Abasa,At-Takwir,Al-Infithar,Al-Mutaffifin,Al-Insyiqaq,Al-Buruj,Ath-Thariq,Al-A'la,Al-Ghasyiyah,Al-Fajr,Al-Balad,Asy-Syams,Al-Lail,Adh-Dhuha,Al-Insyirah,At-Tin,Al-'Alaq,Al-Qadr,Al-Bayyinah,Az-Zalzalah,Al-'Adiyat,Al-Qari'ah,At-Takatsur,Al-'Asr,Al-Humazah,Al-Fil,Quraisy,Al-Ma'un,Al-Kautsar,Al-Kafirun,An-Nashr,Al-Lahab,Al-Ikhlas,Al-Falaq,An-Nas".split(',');
 const T={};`h|Hamzah Wasal|Tidak dibaca jika disambung|#8a9a97
@@ -331,13 +371,14 @@ const bintang=()=>bM()+bH();
 let ann=new Set(),pend=new Map(),flashUntil=0,flashT,flip=0,tanpaWarna=false;
 let MSTR=null,recOn=false,wd,galatNet=false,PM=0;
 async function ambilMic(){if(MSTR&&MSTR.getTracks().every(t=>t.readyState=='live'))return MSTR;MSTR=await navigator.mediaDevices.getUserMedia({audio:true});return MSTR}
+const SEKOLAH0='SDN Kutowinangun 01';
 const hidupMic=on=>{MSTR&&MSTR.getTracks().forEach(t=>{t.enabled=on})};
 const lepasMic=()=>{MSTR&&MSTR.getTracks().forEach(t=>t.stop());MSTR=null};
 /* izin mikrofon: diminta sekali, saat ikon 🎙 pertama kali ditekan (berlaku untuk mode membaca dan menghafal) */
 let micOK=false,izinBusy=false;
 async function izinMic(){if(micOK)return true;
  try{const ps=await navigator.permissions.query({name:'microphone'});if(ps.state=='denied')return false;if(ps.state=='granted'){micOK=true;return true}}catch(e){}
- try{await ambilMic();hidupMic(false);if(SOLO){lepasMic();await new Promise(r=>setTimeout(r,500))}micOK=true;return true}catch(e){return false}}
+ try{await ambilMic();lepasMic();if(SOLO)await new Promise(r=>setTimeout(r,500));micOK=true;return true}catch(e){return false}}
 const ANDROID=/Android/i.test(navigator.userAgent),SOLO=ANDROID;const UA=navigator.userAgent,INAPP=/FBAN|FBAV|Instagram|MicroMessenger|WhatsApp|; wv\)/i.test(UA),NOSR=INAPP?'Halaman ini terbuka di dalam aplikasi lain (misalnya WhatsApp atau Instagram). Ketuk menu <b>⋮</b> lalu pilih <b>Buka di Chrome</b>.':/Firefox|SamsungBrowser/i.test(UA)?'Browser ini belum mendukung pengenalan suara bahasa Arab. Buka halaman ini di <b>Google Chrome</b>.':'Browser ini belum mendukung pengenalan suara. Gunakan Google Chrome.';      // Android: pengenalan suara berjalan sendiri (mikrofon HP tidak bisa dipakai dua pihak)
 let izinPrompt=false,located=false,skipN=0,lastN=0,picked=false,LOG=[],WL=null,gotAudio=false,audT,recOnly=false,LT=[],latOn=new Set(),srcArab='AlQuran.cloud (tajwid)',srcLatin='',latLoading=false;
 const SR=window.SpeechRecognition||window.webkitSpeechRecognition;
@@ -356,10 +397,11 @@ $('pop').addEventListener('click',()=>{if($('pop').classList.contains('doa'))tut
 $('sel').innerHTML=NAMA.map((n,i)=>`<option value="${1+i}">${1+i}. ${n}</option>`).join('');
 $('fa').oninput=()=>{$('fa').value=$('fa').value.replace(/\D/g,'').slice(0,2)};
 $('fa').onblur=()=>{const v=parseInt($('fa').value,10);$('fa').value=v>=1?String(v).padStart(2,'0'):''};
-$('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseInt($('fa').value,10);
- if(!n||!k||!(a>=1&&a<=99)){$('hmsg').textContent='Isi nama, pilih kelas, dan isi nomor absen (1-99) dulu ya 😊';(!n?$('fn'):!k?$('fk'):$('fa')).focus();return}$('hmsg').textContent='';
- const ab=String(a).padStart(2,'0');U={nama:n,kelas:k,absen:ab,id:k+'-'+ab};muatLog();kirimAntrean();wl(true);AC=new(window.AudioContext||window.webkitAudioContext)();
- $('who').textContent=`👤 ${n} · ${k} · Absen ${ab}`;$('home').hidden=1;$('app').hidden=0;setTimeout(()=>{$('hint').hidden=1},12000);
+$('go').onclick=async()=>{const n=$('fn').value.trim(),k=$('fk').value,a=parseInt($('fa').value,10),lain=$('fs').value=='l',sk=lain?$('fsn').value.trim():SEKOLAH0;
+ if(!n||!k||!(a>=1&&a<=99)||sk.length<3){$('hmsg').textContent=(n&&k&&a>=1&&a<=99&&lain)?'Tulis nama sekolahmu dulu ya 😊':'Isi nama, kelas, nomor absen (1-99), dan sekolah dulu ya 😊';(!n?$('fn'):!k?$('fk'):!(a>=1&&a<=99)?$('fa'):$('fsn')).focus();return}$('hmsg').textContent='';
+ const rb=$('fr').value||'-',lab=k+(rb=='-'?'':rb),ab=String(a).padStart(2,'0'),slug=x=>x.toLowerCase().replace(/[^a-z0-9]+/g,'').slice(0,16)||'x';
+ U={nama:n,kelas:lab,tingkat:k,rombel:rb,absen:ab,sekolah:sk,id:(lain?slug(sk)+'|':'')+lab+'-'+ab};muatLog();kirimAntrean();wl(true);AC=new(window.AudioContext||window.webkitAudioContext)();
+ setWho();$('home').hidden=1;$('app').hidden=0;setTimeout(()=>{$('hint').hidden=1},12000);
  await muatRiwayat();const t=tujuanAwal();$('sel').value=t.s;await load(t.s);
  if(t.a>A.length){t.s=t.s<114?t.s+1:1;t.a=1;$('sel').value=t.s;await load(t.s)}   // setelah ayat terakhir: surah berikutnya, atau kembali ke An-Naba'
  autoM=misi?null:{surah:t.s,awal:Math.max(1,t.a||1),akhir:Math.max(1,t.a||1)+4,auto:1};
@@ -390,6 +432,31 @@ function parseAyah(txt){const out=[];let w={h:'',p:'',r:null},rule=null,pend='';
   else if(/^\s+$/.test(t))push(rule!=null);
   else{w.p+=t;w.h+=rule?`<i class="t${rule}">${t}</i>`:t;if(rule&&!w.r)w.r=rule}}
  push();return out}
+
+/* ===== Tanya AI: pertanyaan murid tentang bacaan dan tajwid ===== */
+function setWho(){if(!U)return;$('whot').textContent=`👤 ${U.nama} · ${U.kelas} · No. ${U.absen}`+($('app').classList.contains('wlon')?' · 🔆':'');fitWho()}
+function fitWho(){const w=$('who'),t=$('whot');w.classList.remove('mq');w.style.removeProperty('--wd');requestAnimationFrame(()=>{const d=t.getBoundingClientRect().width-w.clientWidth;if(d>2&&!(window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches)){w.style.setProperty('--wd',-(d+8)+'px');w.style.setProperty('--wt',Math.max(6,Math.round(d/20+4))+'s');w.classList.add('mq')}})}
+addEventListener('resize',()=>{if(U)fitWho()});
+const AIMAX=15;
+function aiHariIni(){const d=new Date().toLocaleDateString('sv-SE',{timeZone:'Asia/Jakarta'});let o;try{o=JSON.parse(localStorage.getItem('tk_aiq')||'null')}catch(e){}return o&&o.d==d?o:{d,n:0}}
+function aiOpen(){const n=A.length?A[Math.min(cur,A.length-1)].numberInSurah:'';$('aik').textContent=A.length?`Ayat yang sedang ditandai: ${NAMA[sur-1]} ayat ${n}`:'';$('aiq').hidden=false;$('aijw').innerHTML='';setTimeout(()=>{try{$('aiqt').focus()}catch(e){}},250)}
+function aiClose(){$('aiq').hidden=true}
+async function aiKirim(){const q=$('aiqt').value.trim(),jw=$('aijw');
+ if(q.length<3){jw.innerHTML='<p>Tulis pertanyaanmu dulu ya 😊</p>';return}
+ const h=aiHariIni();if(h.n>=AIMAX){jw.innerHTML='<p>Pertanyaanmu hari ini sudah banyak. Coba lagi besok, atau tanyakan kepada guru ya 😊</p>';return}
+ if(!SHEET_URL){jw.innerHTML='<p>Tanya AI belum tersambung.</p>';return}
+ const i=Math.min(cur,A.length-1),teks=A.length?F.slice(E[i][0],E[i][1]+1).map(w=>w.p).join(' ').slice(0,800):'';
+ $('aikirim').disabled=true;jw.innerHTML='<p class="aiN">⏳ AI sedang menjawab…</p>';
+ let j=null;try{const rs=await fetch(SHEET_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({aksi:'tanya',surah:A.length?NAMA[sur-1]:'',ayat:A.length?A[i].numberInSurah:0,teks,tanya:q})});j=await rs.json()}catch(e){j={ok:false,error:'offline'}}
+ $('aikirim').disabled=false;
+ if(j&&j.ok&&j.jawaban){try{localStorage.setItem('tk_aiq',JSON.stringify({d:h.d,n:h.n+1}))}catch(e){}jw.innerHTML='<div class="aijb">'+esc(j.jawaban).split(/\n{1,}/).filter(Boolean).map(x=>'<p>'+x+'</p>').join('')+'</div>'}
+ else{const k=!j?'kosong':(j.ok&&!j.jawaban)?'versi-lama':(j.error||'tidak-dikenal');
+  const M={'no-key':'Fitur Tanya AI belum diaktifkan oleh guru (kunci AI belum dipasang).','batas-harian':'Pertanyaan hari ini sudah banyak. Coba lagi besok ya.','offline':'Tidak ada sinyal. Coba lagi saat sinyal sudah baik.','versi-lama':'Tanya AI belum aktif: Apps Script belum versi terbaru. Guru perlu menempel kode terbaru lalu men-deploy versi baru.','bukan-sesi':'Tanya AI belum aktif: Apps Script belum versi terbaru. Guru perlu men-deploy versi baru.','izin':'Apps Script belum diberi izin akses internet. Guru perlu menjalankan ujiTanyaAI sekali dan menyetujui izin.','http-400':'Kunci AI tidak diterima. Guru perlu memeriksa GEMINI_API_KEY di Script properties.','http-401':'Kunci AI tidak diterima. Guru perlu memeriksa GEMINI_API_KEY.','http-403':'Kunci AI belum diizinkan. Guru perlu memeriksa GEMINI_API_KEY.','http-404':'Model AI tidak ditemukan. Guru perlu mengisi GEMINI_MODEL.','http-429':'Kuota AI sedang habis. Coba lagi nanti.','kosong':'AI tidak memberi jawaban. Coba ubah pertanyaanmu.'};
+  jw.innerHTML='<p>'+(M[k]||'AI belum bisa menjawab sekarang. Coba lagi sebentar lagi.')+'</p><p class="aiN">Kode: '+esc(k)+(j&&j.detail?' · '+esc(String(j.detail).slice(0,90)):'')+'</p>'}}
+$('aib').onclick=aiOpen;$('aix').onclick=aiClose;$('aitutup').onclick=aiClose;$('aikirim').onclick=aiKirim;
+$('aiq').addEventListener('click',e=>{if(e.target==$('aiq'))aiClose()});document.addEventListener('keydown',e=>{if(e.key=='Escape'&&!$('aiq').hidden)aiClose()});
+document.querySelectorAll('#aiq .aich button').forEach(b=>b.onclick=()=>{$('aiqt').value=b.dataset.q;aiKirim()});
+
 function build(){F=[];E=[];
  A.forEach((a,ai)=>{let w=parseAyah(a.text.trim());
   if(ai==0&&sur!=1&&nm(w.slice(0,4).map(x=>x.p).join(' ')).startsWith('بسم'))w=w.slice(4);
@@ -466,7 +533,7 @@ async function startRead(rekamSaja){
 
 /* ===== layar tetap menyala, simpanan lokal, antrean kirim ===== */
 async function wl(on){let ok=false;try{if(on){if(navigator.wakeLock){if(!WL){WL=await navigator.wakeLock.request('screen');WL.addEventListener('release',()=>{WL=null})}ok=true}}else if(WL){await WL.release();WL=null}}catch(e){WL=null}
- $('app').classList.toggle('wlon',ok);return ok}
+ $('app').classList.toggle('wlon',ok);if(U&&typeof setWho=='function')setWho();return ok}
 document.addEventListener('visibilitychange',()=>{if(document.visibilityState=='hidden'){if(lis&&!recOnly)finish(false)}else if(!$('app').hidden)wl(true)});
 addEventListener('pagehide',()=>{if(lis&&!recOnly)finish(false)});
 const logKey=()=>'tk_log_'+U.id;
@@ -496,16 +563,16 @@ function galatSuara(c){const t={
  'not-allowed':['Izin mikrofon belum diberikan','Ketuk gambar <b>gembok</b> di kiri alamat Chrome, pilih <b>Izin</b>, lalu ubah <b>Mikrofon</b> menjadi <b>Izinkan</b>. Muat ulang halaman, lalu coba lagi.'],
  'service-not-allowed':['Layanan suara di HP belum aktif','Izin mikrofon sudah benar, tetapi HP ini belum menyediakan layanan pengenalan suara untuk Chrome. Coba: (1) perbarui aplikasi <b>Google</b> dan <b>Layanan Ucapan oleh Google</b> di Play Store, (2) izinkan <b>Mikrofon</b> untuk aplikasi Google di Pengaturan HP, (3) pastikan input suara bawaan HP adalah Google.'],
  'language-not-supported':['Bahasa Arab belum didukung','HP ini belum mendukung pengenalan suara bahasa Arab. Perbarui aplikasi Google lalu coba lagi.'],
- 'audio-capture':['Mikrofon tidak terdeteksi','Mikrofon sedang dipakai aplikasi lain atau tidak terbaca. Tutup aplikasi lain yang memakai mikrofon, lalu coba lagi.'],
+ 'audio-capture':['Mikrofon tidak terdeteksi','Mikrofon sedang dipakai aplikasi lain (misalnya perekam layar) atau tidak terbaca. TahsinKidz.AI diprioritaskan: jeda dulu perekaman suara di aplikasi lain, lalu ketuk 🎙 lagi.'],
  'no-sr':['Pengenalan suara belum didukung',NOSR]}[c]||['Pengenalan suara bermasalah','Coba lagi sebentar lagi.'];
  const bisa=c=='service-not-allowed'||c=='language-not-supported'||c=='no-sr';
  pop(`<h3>${t[0]}</h3><p>${t[1]}</p><p><small>Kode: ${esc(c)}</small></p>${bisa?'<p><button class="big2" data-rekam>🎙 Rekam saja (tanpa koreksi)</button></p><p><small>Mode rekam saja menyimpan suara untuk didengar guru, tanpa koreksi otomatis.</small></p>':''}`)}
 function finishRekam(){lis=false;recOnly=false;clearTimeout(sil);clearInterval(wd);const m=mr;mr=null;stream=null;
- const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:'Rekam',surah:NAMA[sur-1],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
+ const pay={sesi:{id_siswa:U.id,nama:U.nama,kelas:U.kelas,absen:U.absen,sekolah:U.sekolah,rombel:U.rombel,tingkat:U.tingkat,mode:'Rekam',surah:NAMA[sur-1],ayat:String(A[F[S].a].numberInSurah),kelancaran_persen:0,jumlah_salah:0,bintang:0,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:[],ayat_detail:[],audio:null};
  const kirim=()=>{kirimAman(pay)};
- if(m&&m.state!='inactive'){m.onstop=()=>{hidupMic(false);const b=new Blob(chunks,{type:m.mimeType});
+ if(m&&m.state!='inactive'){m.onstop=()=>{lepasMic();const b=new Blob(chunks,{type:m.mimeType});
   if(SHEET_URL&&b.size<8e6){const fr=new FileReader();fr.onload=()=>{pay.audio={base64:fr.result.split(',')[1],mime:b.type};kirim()};fr.readAsDataURL(b)}else kirim()};m.stop()}
- else{hidupMic(false);kirim()}
+ else{lepasMic();kirim()}
  paint();flash('✅ Rekaman tersimpan. Barakallahu fiik!')}
 
 const PSN={2:['🟡 Maaf, ada yang terlewat 🌿','🟡 Maaf, ada kata terlewat. Pelan-pelan saja ya'],3:['🟠 Maaf, kata kurang tepat 🌿','🟠 Hampir tepat! Bismillah, coba lagi ya'],4:['🟣 Maaf, ada kata tambahan 🌿','🟣 Maaf, ada tambahan. Tenang, pelan-pelan ya']};
@@ -546,18 +613,18 @@ function award(final){for(let a=0;a<A.length;a++){if(done[a]||E[a][0]<S)continue
   if(ok){sesStar++;chime();star();flash('✨ Masyaallah, bagus! ⭐')}
   else{tone(520,.18);flash(pk?'👀 Ayat ini memakai Intip. Coba tanpa Intip untuk meraih ⭐':'🌿 Alhamdulillah, ayat selesai. Coba lagi untuk meraih ⭐')}}}}
 
-function halt(){lis=false;recOnly=false;clearTimeout(sil);try{rec&&rec.stop()}catch(e){}try{mr&&mr.state!='inactive'&&mr.stop()}catch(e){}hidupMic(false);stream=null;mr=null;clearInterval(wd);aud.pause();$('menu').hidden=1}
+function halt(){lis=false;recOnly=false;clearTimeout(sil);try{rec&&rec.stop()}catch(e){}try{mr&&mr.state!='inactive'&&mr.stop()}catch(e){}lepasMic();stream=null;mr=null;clearInterval(wd);aud.pause();$('menu').hidden=1}
 function finish(auto){if(!lis)return;if(recOnly)return finishRekam();lis=false;clearTimeout(sil);clearInterval(wd);try{rec.stop()}catch(e){}
  if(auto){award(true);fin=true;misiUI()}
  const m=mr,sm=stream;mr=null;stream=null;
  const n=PM-S,benar=ST.reduce((c,x)=>c+(x==1?1:0),0),bad=errCount();paint();
- const lepas=()=>hidupMic(false);
+ const lepas=()=>lepasMic();
  if(n<=0||(!benar&&!bad)){try{m&&m.state!='inactive'&&m.stop()}catch(e){}lepas();return}
  const kes=[],ay=i=>A[F[i].a].numberInSurah;
  ST.forEach((x,i)=>{if(x>1)kes.push({ayat:ay(i),kata_seharusnya:F[i].p,kata_terbaca:HD[i]||'',jenis:x==2?'terlewat':'tertukar',hukum_tajwid:F[i].r&&T[F[i].r]?T[F[i].r][0]:''})});
  AD.forEach((x,i)=>{if(x)x.forEach(t=>kes.push({ayat:ay(i),kata_seharusnya:'',kata_terbaca:t,jenis:'tertambah',hukum_tajwid:''}))});
  const a1=ay(S),a2=ay(Math.min(PM,F.length)-1);
- const pay={sesi:{id_siswa:U.kelas+'-'+U.absen,nama:U.nama,kelas:U.kelas,absen:U.absen,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-1],
+ const pay={sesi:{id_siswa:U.id,nama:U.nama,kelas:U.kelas,absen:U.absen,sekolah:U.sekolah,rombel:U.rombel,tingkat:U.tingkat,mode:mode=='h'?'Hafalan':'Tilawah',surah:NAMA[sur-1],
   ayat:a1==a2?a1:a1+'-'+a2,kelancaran_persen:Math.round(100*benar/n),jumlah_salah:bad,bintang:sesStar,kode:U.id+'_'+KS+'_s'+(++seq),durasi_detik:Math.round((Date.now()-t0)/1000)},kesalahan:kes,ayat_detail:AL.slice(alIdx),audio:null};sentTotal+=AL.length-alIdx;alIdx=AL.length;
  const kirim=()=>{kirimAman(pay);tunggu()};
  if(m&&m.state!='inactive'){m.onstop=()=>{lepas();const b=new Blob(chunks,{type:m.mimeType});
@@ -643,7 +710,7 @@ $('cat').onclick=()=>{const s=statistik(),nh=['Ahd','Sen','Sel','Rab','Kam','Jum
  <div class="kt" style="margin-top:6px">🌟 Total Bintang<b>${s.tot}</b></div>
  <p>📖 <b>Ayat dibaca</b><br>Hari ini <b>${s.hari}</b> · Minggu ini <b>${s.minggu}</b> · Bulan ini <b>${s.bulan}</b></p>
  <div class="bar" aria-label="Ayat dibaca 7 hari terakhir">${s.t7.map(x=>`<div><small>${x.n}</small><i style="height:${Math.round(x.n/mx*46)+2}px"></i>${nh[new Date(x.tgl+'T00:00:00').getDay()]}</div>`).join('')}</div>
- <p>🕌 <b>Surah dibaca</b>: ${s.dibaca} dari 37 surah Juz 30 (${s.sel} surah selesai)</p>
+ <p>🕌 <b>Surah dibaca</b>: ${s.dibaca} dari 114 surah (${s.sel} surah selesai)</p>
  <p>🔥 <b>${s.st}</b> hari berturut-turut membaca</p>
  <div class="med">${MED.map(m=>`<span class="${m[3](s)?'':'off'}" title="${m[2]}">${m[0]} ${m[1]}${m[3](s)?'':' <small>('+m[2]+')</small>'}</span>`).join('')}</div>
  ${s.kl?`<p>🏫 <b>Target Kelas ${esc(s.kl.nama)}</b> minggu ini: ${s.kl.x} dari ${s.kl.y} ⭐</p><div class="prog"><i style="width:${Math.min(100,Math.round(s.kl.x/s.kl.y*100))}%"></i></div>`:''}
@@ -702,7 +769,7 @@ async function muatEquran(n){let c=null;try{c=JSON.parse(localStorage.getItem('t
  try{if(!localStorage.getItem('tk_l1_'+n)){const L=[];c.a.forEach(x=>L[x.n-1]=x.l);localStorage.setItem('tk_l1_'+n,JSON.stringify({s:'EQuran.id',t:L}))}}catch(e){}
  return c.a.map(x=>({number:GN[n-1]+x.n,numberInSurah:x.n,text:x.t}))}
 function setelan(){const v=SRCK();
- pop(`<h3>⚙️ Pengaturan</h3><p><b>Sumber teks Al-Qur'an</b></p><label class="rd"><input type="radio" name="src" value="cloud" ${v=='cloud'?'checked':''}><span><b>Al-Qur'an Tajwid</b><br><small>Teks Arab dari AlQuran.cloud, dengan warna tajwid.</small></span></label><label class="rd"><input type="radio" name="src" value="equran" ${v=='equran'?'checked':''}><span><b>Al-Qur'an Indonesia</b><br><small>Teks Arab dari EQuran.id (tanpa warna tajwid).</small></span></label><p><small>Transliterasi Latin: EQuran.id (cadangan: AlQuran.cloud). Pilihan disimpan di perangkat ini.</small></p>`);
+ pop(`<h3>⚙️ Pengaturan</h3><p><b>Sumber teks Al-Qur'an</b></p><label class="rd"><input type="radio" name="src" value="cloud" ${v=='cloud'?'checked':''}><span><b>Al-Qur'an Tajwid</b><br><small>Teks Arab dari AlQuran.cloud, dengan warna tajwid.</small></span></label><label class="rd"><input type="radio" name="src" value="equran" ${v=='equran'?'checked':''}><span><b>Al-Qur'an Indonesia</b><br><small>Teks Arab dari EQuran.id (tanpa warna tajwid).</small></span></label><p><small>Transliterasi Latin: EQuran.id (cadangan: AlQuran.cloud). Pilihan disimpan di perangkat ini.</small></p><p><small>🎙️ Mikrofon dipakai TahsinKidz.AI hanya saat tombol 🎙 aktif dan langsung dilepas setelah selesai, sehingga aplikasi lain (misalnya perekam layar) bisa memakainya. Jika perekam layar belum merekam suara saat Anda membaca, pakai audio internal atau jeda perekamnya.</small></p>`);
  document.querySelectorAll('#pb input[name=src]').forEach(x=>x.onchange=()=>{try{localStorage.setItem('tk_src',x.value)}catch(e){}$('pop').hidden=1;load(sur)})}
 async function muatLatin(n){latLoading=true;sumber();let L=[],s='';
  try{const c=JSON.parse(localStorage.getItem('tk_l1_'+n)||'null');if(c&&c.t&&c.t.length){L=c.t;s=c.s}}catch(e){}
@@ -725,6 +792,9 @@ function fitHome(){const hm=$('home');if(hm.hidden)return;hm.classList.remove('k
  if(fok&&i>0&&t<vhMax*.8){hm.classList.remove('s1','s2','s3','s4');hm.classList.add('kb')}}      // sedang mengisi dan ruang kurang: formulir diperbesar, hiasan disembunyikan
 if(window.visualViewport)visualViewport.addEventListener('resize',vv);addEventListener('resize',vv);
 ['focusin','focusout'].forEach(ev=>$('home').addEventListener(ev,()=>setTimeout(fitHome,80)));
-function cekIsi(){const a=parseInt($('fa').value,10);$('go').classList.toggle('dis',!($('fn').value.trim()&&$('fk').value&&a>=1&&a<=99))}
-['fn','fk','fa'].forEach(i=>{$(i).addEventListener('input',cekIsi);$(i).addEventListener('change',cekIsi)});vv();cekIsi();
+function lihatFokus(){const a=document.activeElement;if(a&&$('home').contains(a)&&/^(INPUT|SELECT)$/.test(a.tagName)&&$('home').classList.contains('kb'))a.scrollIntoView({block:'center',behavior:'smooth'})}
+$('home').addEventListener('focusin',()=>{setTimeout(lihatFokus,380);setTimeout(lihatFokus,800)});
+if(window.visualViewport)visualViewport.addEventListener('resize',()=>setTimeout(lihatFokus,200));
+function cekIsi(){const a=parseInt($('fa').value,10),lain=$('fs').value=='l';$('fsw').hidden=!lain;$('go').classList.toggle('dis',!($('fn').value.trim()&&$('fk').value&&a>=1&&a<=99&&(!lain||$('fsn').value.trim().length>=3)));try{fitHome()}catch(e){}}
+['fn','fk','fr','fa','fs','fsn'].forEach(i=>{$(i).addEventListener('input',cekIsi);$(i).addEventListener('change',cekIsi)});vv();cekIsi();
 </script></body></html>
